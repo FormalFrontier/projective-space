@@ -1,0 +1,43 @@
+/-
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Formal Frontier Agents
+Contributors: formalization-worker-a (AI-assisted)
+Hive Task: hive-request-92c08639fb81b0816b051996b79498bf6ffc5a8f
+Task UID: 4a594451-3ef9-4b59-84ad-5b19680bf05b
+-/
+module
+
+public import ProjectiveSpace.GradedProjIso
+public import ProjectiveSpace.SymmetricAlgebraProj
+
+/-!
+# Axioms of graded `Proj` transport
+
+Checks the transitive axioms used by the graded-ring and symmetric-algebra
+transport constructions under ordinary public imports.
+-/
+
+set_option warningAsError true
+
+#print axioms ProjectiveSpace.map_irrelevant_le
+#print axioms ProjectiveSpace.irrelevant_le_map_of_comp_eq_id
+#print axioms ProjectiveSpace.projIsoOfInverseGradedRingHom
+#print axioms ProjectiveSpace.projectiveSpectrumEquivOfInverseGradedRingHom
+#print axioms ProjectiveSpace.projectiveSpectrumEquivOfInverseGradedRingHom_apply
+#print axioms ProjectiveSpace.projectiveSpectrumHomeomorphOfInverseGradedRingHom
+#print axioms ProjectiveSpace.closedPointsEquivOfIso
+#print axioms ProjectiveSpace.closedPointsEquivOfIso_apply_coe
+#print axioms ProjectiveSpace.projClosedPointsEquivOfInverseGradedRingHom
+#print axioms ProjectiveSpace.projClosedPointsEquivOfInverseGradedRingHom_apply_coe
+
+#print axioms ProjectiveSpace.symmetricAlgebraGradedHom_comp_mvPolynomialGradedHom
+#print axioms ProjectiveSpace.mvPolynomialGradedHom_comp_symmetricAlgebraGradedHom
+#print axioms ProjectiveSpace.mvPolynomialProjIsoSymmetricAlgebra
+#print axioms ProjectiveSpace.mvPolynomialProjClosedPointsEquivSymmetricAlgebra
+#print axioms ProjectiveSpace.symmetricAlgebraGradedMap_comp_symm
+#print axioms ProjectiveSpace.symmetricAlgebraGradedMap_symm_comp
+#print axioms ProjectiveSpace.symmetricAlgebraProjIsoOfLinearEquiv
+#print axioms ProjectiveSpace.symmetricAlgebraProjectiveSpectrumEquivOfLinearEquiv
+#print axioms ProjectiveSpace.symmetricAlgebraProjectiveSpectrumEquivOfLinearEquiv_apply
+#print axioms ProjectiveSpace.symmetricAlgebraProjClosedPointsEquivOfLinearEquiv
+#print axioms ProjectiveSpace.symmetricAlgebraProjClosedPointsEquivOfLinearEquiv_apply_coe

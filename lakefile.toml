@@ -1,0 +1,34 @@
+name = "projective-space"
+version = "0.1.0"
+defaultTargets = ["ProjectiveSpace", "ProjectiveSpaceTest", "ProjectiveSpaceAxiomTests", "ProjectiveSpaceReaderExamples"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "83abb3e776bdefcbc447a1e44d0debe4010039e5"
+
+[[require]]
+name = "graded-rings"
+git = "https://github.com/FormalFrontier/graded-rings.git"
+rev = "4a89b5f5431e7e7976bb8447702114048e697d2e"
+
+[[require]]
+name = "scheme-properties"
+git = "https://github.com/FormalFrontier/scheme-properties.git"
+rev = "6b204a3e49f022e51d78a9f93e77513b99a87e00"
+
+[[lean_lib]]
+name = "ProjectiveSpace"
+globs = ["ProjectiveSpace", "ProjectiveSpace.+"]
+
+[[lean_lib]]
+name = "ProjectiveSpaceTest"
+globs = ["ProjectiveSpaceTest.+"]
+
+[[lean_lib]]
+name = "ProjectiveSpaceAxiomTests"
+roots = ["Tests.GradedTransportAxioms", "Tests.SymmetricAlgebraAxioms"]
+
+[[lean_lib]]
+name = "ProjectiveSpaceReaderExamples"
+roots = ["examples.GeometryExamples", "examples.PointExamples", "examples.TransportExamples"]

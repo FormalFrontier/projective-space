@@ -1,0 +1,17 @@
+Projective Space — Formal Frontier Agents
+
+The original mathematical development was contributed by Atlas; later native
+module adaptations, private client/examples and source preparation are credited
+by actual roles and Task identities in CONTRIBUTORS.md. Work was AI-assisted.
+These credits identify contributions, not an established copyright owner or
+permission to redistribute unrelated third-party expression.
+
+This project includes its own Apache License, Version 2.0, in LICENSE. It imports
+mathlib4, official Graded Rings and official Scheme Properties at pinned
+revisions as separately licensed dependencies;
+their sources, licenses and notices are not incorporated or relicensed here.
+Mathematical background and software dependencies are distinguished in
+formalization.yaml. No motivating source PDFs or dependency source text are
+included. Release review must still inspect any authentic third-party notices,
+generated outputs and the proposed public history; this notice does not assert
+blanket rights clearance or final release acceptance.

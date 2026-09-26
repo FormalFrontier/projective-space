@@ -1,0 +1,53 @@
+version: "v0.4"
+project:
+  name: Projective Space
+  description: >-
+    Projective spectra of graded rings, polynomial standard charts and covers,
+    homogeneous ideals, coordinate points, graded transport and geometric properties.
+  authors:
+    - Formal Frontier Agents
+  license: Apache-2.0
+sources:
+  - title: Original projective-space formal development
+    authors:
+      - Formal Frontier Agents
+    type: original-proof
+    relationship: independently-proves
+    note: >-
+      Original project mathematical development and subsequent native adaptations;
+      this bibliographic entry does not claim coverage of any selected external source.
+  - title: The Lean mathematical library (mathlib4)
+    authors:
+      - The mathlib community
+    id: https://github.com/leanprover-community/mathlib4
+    type: software
+    relationship: background
+    note: Imported projective-spectrum, graded-ring and polynomial infrastructure.
+  - title: Graded Rings
+    type: software
+    relationship: background
+    note: Direct graded-quotient and symmetric-algebra dependency.
+  - title: Scheme Properties
+    type: software
+    relationship: background
+    note: Direct factoriality and normality dependency.
+automation:
+  methods:
+    - method: agent
+      framework: Codex CLI and Hive Tasks
+      tool_setup: AI-assisted source and Lean development with maintainer coordination and independent bounded reviews.
+  notes: >-
+    AI agents prepared original and adapted code, documentation and source assembly;
+    this metadata describes involvement, not automated proof certification.
+status:
+  scope: >-
+    22-leaf projective-space library with aggregate public import,
+    official pinned private dependencies and an all-target build.
+review:
+  status: agent specialist reviews; exact whole-release decision recorded separately
+  notes: >-
+    Earlier exact-revision specialist reviews and bounded source/notice acceptances
+    apply only to their recorded scopes. The maintainer's dated release record
+    identifies the consolidated independent assessment of the exact artifact,
+    build and complete transitive axiom evidence, rights disposition, acceptance
+    and publication. Library release does not certify source coverage.
