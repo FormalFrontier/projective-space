@@ -153,3 +153,27 @@ release gates.
   edits change no Lean source, dependency or build input and claim no new runtime
   result. Exact review, acceptance and publication decisions remain in the dated
   release record.
+
+## Geometric global-sections contribution
+
+- **Andrew Yang** authored the 2024 mathlib gluing and chart arguments in
+  `Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Basic` adapted in the new
+  `ProjectiveSpace.GlobalSections` leaf. The adapted proof text retains its
+  copyright and Apache-2.0 notice in that file.
+- **hive-request-b988d896159b1606f206dbd80748f923ee680d6f** (UID
+  `66dd1fe1-34c7-4874-b17b-5400ac0aa165`, worker-a) prepared the original
+  geometric-cover producer, complete public-import client and starting guide.
+- **hive-request-af87e868d7dce8c74c764b92299ed7eee5bf2391** (UID
+  `0679634e-c393-4e51-bb75-2a5afdd30709`, worker-a) transferred the producer
+  unchanged, adapted the client import and test namespace, registered the
+  destination root import and updated this library's reader/rights metadata.
+
+These Tasks prepared the contribution for independent destination review.
+At development revision `c74a33c74b7d9bde054a284ada6d28bac7bd2f7d`, the
+33-file graph passed its full build and private-inclusive standard-axiom audit,
+and independent destination review and maintainer code acceptance were recorded.
+Atlas subsequently reconciled the reader/status metadata with that recorded
+evidence without changing Lean or dependency inputs. Release acceptance and
+verified publication are distinct revision-specific decisions in the dated
+release record. These credits neither alter prior release decisions nor establish
+source coverage or blanket rights clearance.

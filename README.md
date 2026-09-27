@@ -41,6 +41,13 @@ coverage decisions are separate.
 - `ProjectiveSpace.Irreducible` proves polynomial `Proj` irreducible over an
   **integral domain with a nonempty coordinate type**; this is not a claim for
   arbitrary bases or empty coordinates.
+- `ProjectiveSpace.GlobalSections` constructs `X ⟶ Proj 𝒜` from an ordinary
+  ring homomorphism `A →+* Γ(X, ⊤)` **from** a graded ring when the actual
+  positive-homogeneous source basic opens cover `X`. It also provides chart
+  and degree-zero identities and recovers mathlib's stronger construction
+  under its separate irrelevant-ideal hypothesis. See the
+  [global-sections guide](docs/GlobalSections.md); no affine or
+  ideal-equals-top hypothesis is needed for the new construction.
 
 Other files give polynomial standard-chart algebras and overlaps over any
 commutative ring (including the zero ring), finite-coordinate polynomial
@@ -55,21 +62,29 @@ over a base ring with zero divisors.
 
 ## Imports and build status
 
-All 22 mathematical leaves and the aggregate `ProjectiveSpace.lean` root are
+All 23 mathematical leaves and the aggregate `ProjectiveSpace.lean` root are
 written as Lean `module` files
 with deliberate `public import` interfaces. `import ProjectiveSpace` is the
 intended ordinary import of the whole mathematical API; clients may instead
-import a specific `ProjectiveSpace.*` leaf. The pinned final graph and all four
-default targets have been built; this does not substitute for independent review
-or acceptance. The scoped polynomial grading requires `open scoped ProjectiveSpace`
-when used.
+import a specific `ProjectiveSpace.*` leaf. At development revision
+`c74a33c74b7d9bde054a284ada6d28bac7bd2f7d` on September 27, 2026, all
+33 Lean files and four default targets passed the full build and transitive
+standard-axiom audit, including private declarations. Independent destination
+review and maintainer code acceptance were recorded for that revision.
+These results are revision-specific; exact release acceptance and publication
+are separate decisions recorded for each release. The scoped polynomial grading requires
+`open scoped ProjectiveSpace` when used.
 
 Two existing private native clients import selected leaves:
 `ProjectiveSpaceTest.PointClient` and `ProjectiveSpaceTest.GeometryClient`.
 `ProjectiveSpaceTest.RootClient` imports **only** the aggregate
 root and checks chart and scoped-grading use, point evaluation, graded transport,
-reducedness and quasicompactness. This private client builds on the pinned graph;
-its private declarations add no public theorem API.
+reducedness and quasicompactness. Its named checks are private. The new test-only
+`ProjectiveSpaceTest.GlobalSectionsClient` directly imports the new leaf and
+checks its geometric-cover constructor, chart and base identities, and
+strong-hypothesis recovery. Its declarations are public Lean names in the
+`ProjectiveSpaceTest.ProjGlobalSections` namespace, but the mathematical library
+root does not import this test module; they are not intended as library API.
 
 Three additional private, complete ordinary-native-import examples are stored
 in [geometry](examples/GeometryExamples.lean),
@@ -93,9 +108,9 @@ Lean snippets substitute for these complete modules.
 packages in the resolved 13-package manifest). Graded Rings and Scheme
 Properties are pinned to their official private GitHub releases; access to
 those repositories is presently required to build this library.
-Four explicit Lake targets cover all 31 shipped Lean
-files: `ProjectiveSpace` (root and 22 leaves), `ProjectiveSpaceTest` (two
-earlier clients and the new root-only client), `ProjectiveSpaceAxiomTests`
+Four existing Lake targets cover all 33 Lean
+files: `ProjectiveSpace` (root and 23 leaves), `ProjectiveSpaceTest` (two
+earlier clients, the root-only client, and the new global-sections client), `ProjectiveSpaceAxiomTests`
 (both diagnostic test modules), and `ProjectiveSpaceReaderExamples` (all
 three complete examples). Literal `defaultTargets` names all four. With access
 to the private dependencies, install the pinned Lean toolchain using `elan`,
@@ -107,13 +122,15 @@ lake exe cache get
 lake --wfail build
 ```
 
-The default build includes all 31 files. To build an individual target, use
+The default build includes all 33 files. To build an individual target, use
 `lake --wfail build ProjectiveSpace` (or one of the other three target names).
 `--wfail` is Lake's warning-fatal option; `-KwarningAsError=true` alone does
 not make Lake fail on source warnings. On the initial pinned-graph checkout,
 the matching mathlib cache is several gigabytes; once dependencies are cached,
-the full build took about 42 seconds in the author's environment, but fresh
-dependency fetches and other machines may take longer. The three reader examples
+the 33-file, four-target build at the revision recorded above took about 52
+seconds after cache preparation in native CI. This is not an end-to-end clean
+installation time; dependency fetches and other machines may take longer.
+The three reader examples
 independently import selected leaves, not the aggregate root. The two `Tests`
 files contain diagnostic axiom commands; their selected-name prints are not a
 complete transitive audit of all shipped declarations, including private ones.
@@ -139,13 +156,16 @@ interfaces.
 
 ## Integration and attribution
 
-Earlier bounded source/math/reviewer findings apply only to their exact revisions
-and scopes. The all-target build and complete transitive standard-axiom census
-check the pinned source; they do not alone establish mathematical/API acceptance
-or source-coverage certification. The maintainer's dated release record identifies
-the consolidated independent assessment, disposition of findings, accepted source
-and public commits, and verified publication. Candidate branches are not official
-releases merely because their builds pass.
+Bounded source, mathematical and review findings apply only to their exact
+revisions and scopes. The full check recorded above covered 33 shipped modules
+and 669 module/declaration origins, including 249 private declarations, with
+only `propext`, `Classical.choice` and `Quot.sound` as transitive axioms.
+Focused producer checks alone would not substitute for that full-graph check.
+Unchanged mathematical/build/dependency inputs may reuse this evidence; changed
+inputs need reassessment. The maintainer's dated release record identifies the
+exact independently assessed artifact, release acceptance and verified
+publication. A passing build or development-main acceptance alone does not make
+a candidate an official release; no source-coverage certification is implied.
 
 The `formalization.yaml` metadata and module/API map describe this library without
 asserting source completeness. The `NOTICE` records bounded attribution, not a
@@ -170,5 +190,6 @@ are credited in [CONTRIBUTORS.md](CONTRIBUTORS.md). These credits record
 contributions, not an assertion of copyright ownership.
 
 Original project contributions are offered under the complete Apache License
-2.0 in `LICENSE`; dependency licenses and notices remain separate. Nothing
-here relicenses dependency files or reproduces mathematical source text.
+2.0 in `LICENSE`; dependency licenses and notices remain separate. The adapted
+mathlib proof text retains its own attribution as described in `NOTICE`; no
+motivating source PDFs are reproduced or other dependency files relicensed.

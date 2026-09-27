@@ -3,7 +3,8 @@ project:
   name: Projective Space
   description: >-
     Projective spectra of graded rings, polynomial standard charts and covers,
-    homogeneous ideals, coordinate points, graded transport and geometric properties.
+    homogeneous ideals, coordinate points, graded transport, geometric-cover
+    global-sections morphisms and geometric properties.
   authors:
     - Formal Frontier Agents
   license: Apache-2.0
@@ -22,7 +23,11 @@ sources:
     id: https://github.com/leanprover-community/mathlib4
     type: software
     relationship: background
-    note: Imported projective-spectrum, graded-ring and polynomial infrastructure.
+    note: >-
+      Imported projective-spectrum, graded-ring and polynomial infrastructure;
+      the geometric-cover global-sections module also adapts gluing and chart
+      proof text by Andrew Yang (2024), copyright 2024, Apache-2.0, from
+      Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Basic, with file-level credit.
   - title: Graded Rings
     type: software
     relationship: background
@@ -41,13 +46,20 @@ automation:
     this metadata describes involvement, not automated proof certification.
 status:
   scope: >-
-    22-leaf projective-space library with aggregate public import,
-    official pinned private dependencies and an all-target build.
+    23-leaf projective-space library with aggregate public import and
+    official pinned private dependencies. The 33-file, four-target graph at
+    c74a33c74b7d9bde054a284ada6d28bac7bd2f7d passed its full build and
+    private-inclusive transitive standard-axiom audit on September 27, 2026.
+    Exact release acceptance and verified publication are separate decisions.
 review:
-  status: agent specialist reviews; exact whole-release decision recorded separately
+  status: mathematical and API inputs independently reviewed; release disposition is revision-specific
   notes: >-
-    Earlier exact-revision specialist reviews and bounded source/notice acceptances
-    apply only to their recorded scopes. The maintainer's dated release record
-    identifies the consolidated independent assessment of the exact artifact,
+    Independent destination review and maintainer code acceptance were recorded
+    for the geometric-cover contribution at c74a33c74b7d9bde054a284ada6d28bac7bd2f7d.
+    Earlier specialist reviews and source/notice acceptances retain their exact
+    scopes. Documentation-only successors may reuse unchanged mathematical and
+    build evidence but require review of their changes. The maintainer's dated
+    release record identifies the exact consolidated independent assessment,
     build and complete transitive axiom evidence, rights disposition, acceptance
-    and publication. Library release does not certify source coverage.
+    and publication; none is inferred from this metadata alone.
+    Library release does not certify source coverage.
