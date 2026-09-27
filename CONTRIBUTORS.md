@@ -177,3 +177,41 @@ evidence without changing Lean or dependency inputs. Release acceptance and
 verified publication are distinct revision-specific decisions in the dated
 release record. These credits neither alter prior release decisions nor establish
 source coverage or blanket rights clearance.
+
+## Whole-arrow unit-scaling transfer
+
+- **Andrew Yang** authored the 2024 mathlib chart construction and gluing
+  arguments whose proof text is adapted by the retained UnitScaling producer;
+  his copyright and Apache-2.0 notice remain in its original file header.
+- **hive-request-abe10fe9c5ec88d2df349fec9d666c384e47d04d** (UID
+  `ff74f964-5e2c-47db-99be-c337acb67ece`, worker-a) authored the original
+  UnitScaling producer and five-example public-import client. Independent
+  original-review Task **hive-request-6123e6e1df373f548ef693a8ee3f22dfb00f5fce**
+  (UID `982c79e2-f33b-4670-8925-83809e9e1b3b`, worker-b) reviewed only
+  the isolated incubator contribution; its separate acceptance did not
+  approve subsequent changed graphs.
+- **hive-request-c077e30623410ca2179b8fc671fb2f2c03d67d62** (UID
+  `e3db0b17-b03a-4cc7-8e68-7648d41f355d`, worker-a) registered the
+  original implementation against the official GlobalSections public import
+  in incubator candidate `517642ad3898094abcd251909a1588528631985c`.
+  Fresh affected-incubator reviewer **hive-request-9295f5baff6e1ff6d7aaa013e4c97afb0437e1a3**
+  (UID `34bb5bd2-0ba6-4883-aaba-88d66adf7987`, worker-b) approved that
+  candidate's scoped mathematical/API/provenance changes, not this destination
+  adaptation. Atlas separately accepted and integrated that exact incubator
+  candidate on September 27, 2026 after its applicable full-graph native checks.
+- **hive-request-f21b058a3d8d5d01daaa7dd90da6cac3c93da7b2** (UID
+  `6de94f9b-6108-4423-af67-bf6ef0d9524f`, worker-a /
+  `formalization-worker-a`) prepared this destination transfer:
+  byte-identical producer, two client import/namespace substitutions, new
+  standalone guide and bounded root/reader/metadata/rights updates based on
+  accepted destination `7eab8f1f08cbc12e63520f189efbc3d3ea1841bf`.
+  Atlas remains responsible maintainer and integration owner, and clarified
+  the revision-specific status wording after the incubator acceptance.
+
+At the author's frozen preparation revision
+`72750ea6bfd8f04ddf8b51898021b8a39f319007`, no destination build, audit,
+independent destination review or release had been performed. Subsequent
+reviewers and exact decisions are identified in the maintainer's dated
+revision records. The previous official release's evidence remains historical;
+credits are not blanket third-party rights clearance, proof certification
+or source-coverage decisions.

@@ -13,11 +13,16 @@ their repositories and licenses remain separate. Except for the adapted
 mathlib proof text described below, their source files are not incorporated
 or relicensed here.
 Mathematical background and software dependencies are distinguished in
-formalization.yaml. No motivating source PDFs are included. The new
+formalization.yaml. No motivating source PDFs are included.
 `ProjectiveSpace/GlobalSections.lean` adapts gluing and chart proof text from
 `Mathlib/AlgebraicGeometry/ProjectiveSpectrum/Basic.lean` by Andrew Yang,
 copyright 2024, under Apache-2.0; its file header preserves his notice and
-license attribution. Other dependency source files are not incorporated or
-relicensed here. Release review must still inspect any authentic third-party
-notices, generated outputs and the proposed public history; this notice does
-not assert blanket rights clearance or acceptance of the new candidate.
+license attribution. The transferred `ProjectiveSpace/UnitScaling.lean`
+retains the original author's header credit, Andrew Yang's 2024 mathlib chart
+credit, copyright and Apache-2.0 notice for its adapted chart construction
+and gluing proof expression. This source transfer preserves the original
+proof body but does not alone certify its new dependency graph. Other
+dependency source files are not incorporated or relicensed here. Release
+review must still inspect authentic third-party notices, generated outputs
+and the proposed public history; this notice does not assert blanket rights
+clearance or acceptance of the new candidate.

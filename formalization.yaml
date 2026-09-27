@@ -4,7 +4,8 @@ project:
   description: >-
     Projective spectra of graded rings, polynomial standard charts and covers,
     homogeneous ideals, coordinate points, graded transport, geometric-cover
-    global-sections morphisms and geometric properties.
+    global-sections morphisms, whole-arrow unit-scaling invariance and
+    geometric properties.
   authors:
     - Formal Frontier Agents
   license: Apache-2.0
@@ -25,9 +26,10 @@ sources:
     relationship: background
     note: >-
       Imported projective-spectrum, graded-ring and polynomial infrastructure;
-      the geometric-cover global-sections module also adapts gluing and chart
-      proof text by Andrew Yang (2024), copyright 2024, Apache-2.0, from
-      Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Basic, with file-level credit.
+      the geometric-cover global-sections and unit-scaling modules adapt gluing
+      and chart proof text by Andrew Yang (2024), copyright 2024, Apache-2.0,
+      from Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Basic, with file-level
+      credit and a corresponding NOTICE.
   - title: Graded Rings
     type: software
     relationship: background
@@ -46,20 +48,30 @@ automation:
     this metadata describes involvement, not automated proof certification.
 status:
   scope: >-
-    23-leaf projective-space library with aggregate public import and
-    official pinned private dependencies. The 33-file, four-target graph at
+    24-leaf projective-space library with aggregate public import,
+    five direct/root clients, and official pinned private dependencies. Its
+    35-file, four-target graph requires revision-specific evidence. The
+    historical 33-file, four-target graph at
     c74a33c74b7d9bde054a284ada6d28bac7bd2f7d passed its full build and
     private-inclusive transitive standard-axiom audit on September 27, 2026.
-    Exact release acceptance and verified publication are separate decisions.
+    Its documentation successor 7eab8f1f08cbc12e63520f189efbc3d3ea1841bf
+    was published as official release 18b517099fddac61a86f7c20d591178db9825b9a;
+    later code acceptance and publication are separate dated decisions.
+    Source coverage is separate.
 review:
-  status: mathematical and API inputs independently reviewed; release disposition is revision-specific
+  status: inherited mathematics independently reviewed; destination assessment is revision-specific
   notes: >-
     Independent destination review and maintainer code acceptance were recorded
     for the geometric-cover contribution at c74a33c74b7d9bde054a284ada6d28bac7bd2f7d.
     Earlier specialist reviews and source/notice acceptances retain their exact
-    scopes. Documentation-only successors may reuse unchanged mathematical and
-    build evidence but require review of their changes. The maintainer's dated
-    release record identifies the exact consolidated independent assessment,
-    build and complete transitive axiom evidence, rights disposition, acceptance
-    and publication; none is inferred from this metadata alone.
-    Library release does not certify source coverage.
+    scopes. The transferred whole-arrow UnitScaling producer was independently
+    reviewed and subsequently code-accepted in its original incubator graph
+    at 517642ad3898094abcd251909a1588528631985c on September 27, 2026.
+    That evidence does not certify this different destination graph.
+    Independent destination promotion review, native 35-file build, complete
+    private-inclusive standard-axiom audit and owner acceptance must apply to
+    the actual destination revision. The maintainer's dated record identifies
+    those checks and decisions; release acceptance and verified publication
+    are separate and are not inferred from this metadata. Earlier unchanged-input
+    evidence does not certify the changed root and added files. Neither code
+    acceptance nor library publication certifies source coverage.

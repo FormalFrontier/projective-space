@@ -5,7 +5,8 @@ particular, total-degree graded polynomial rings. The library includes
 positive-degree basic-open topology, a projective radical criterion, coordinate
 points, graded-map transport, homogeneous-component dimensions, polynomial
 standard charts and transitions, gluing, equations and quotients,
-symmetric-algebra models, and geometric properties. See [the module and API
+symmetric-algebra models, geometric-cover global-sections morphisms, whole-arrow
+unit-scaling invariance, and geometric properties. See [the module and API
 map](docs/MODULES.md) for the per-file imports and hypotheses. This guide
 describes the mathematical interfaces; source-specific correspondence and
 coverage decisions are separate.
@@ -48,6 +49,13 @@ coverage decisions are separate.
   under its separate irrelevant-ideal hypothesis. See the
   [global-sections guide](docs/GlobalSections.md); no affine or
   ideal-equals-top hypothesis is needed for the new construction.
+- `ProjectiveSpace.UnitScaling` proves that degree-weighted multiplication by
+  a global unit preserves the **whole** geometric-cover Proj morphism, even
+  with independently supplied cover witnesses. It compares degree-zero
+  fractions, source basic opens and complete chart arrows without requiring
+  an affine source, reducedness, a field or an irrelevant-ideal-equals-top
+  assumption. It needs an actual positive-homogeneous source-open cover for
+  the whole-arrow conclusion; see the [unit-scaling guide](docs/UnitScaling.md).
 
 Other files give polynomial standard-chart algebras and overlaps over any
 commutative ring (including the zero ring), finite-coordinate polynomial
@@ -62,7 +70,7 @@ over a base ring with zero divisors.
 
 ## Imports and build status
 
-All 23 mathematical leaves and the aggregate `ProjectiveSpace.lean` root are
+All 24 mathematical leaves and the aggregate `ProjectiveSpace.lean` root are
 written as Lean `module` files
 with deliberate `public import` interfaces. `import ProjectiveSpace` is the
 intended ordinary import of the whole mathematical API; clients may instead
@@ -71,8 +79,15 @@ import a specific `ProjectiveSpace.*` leaf. At development revision
 33 Lean files and four default targets passed the full build and transitive
 standard-axiom audit, including private declarations. Independent destination
 review and maintainer code acceptance were recorded for that revision.
-These results are revision-specific; exact release acceptance and publication
-are separate decisions recorded for each release. The scoped polynomial grading requires
+Those results are revision-specific: they do not by themselves check the
+additional leaf, client and changed root in the 35-file graph. The earlier
+documentation successor `7eab8f1f08cbc12e63520f189efbc3d3ea1841bf` was
+published as official release `18b517099fddac61a86f7c20d591178db9825b9a`.
+Each later revision needs applicable full-graph evidence and independent
+destination review. The maintainer's dated revision record identifies its
+actual checks, code acceptance and integration; the separate release record
+identifies official publication. Neither is inferred from the older checks
+or from this guide. The scoped polynomial grading requires
 `open scoped ProjectiveSpace` when used.
 
 Two existing private native clients import selected leaves:
@@ -80,11 +95,15 @@ Two existing private native clients import selected leaves:
 `ProjectiveSpaceTest.RootClient` imports **only** the aggregate
 root and checks chart and scoped-grading use, point evaluation, graded transport,
 reducedness and quasicompactness. Its named checks are private. The new test-only
-`ProjectiveSpaceTest.GlobalSectionsClient` directly imports the new leaf and
+`ProjectiveSpaceTest.GlobalSectionsClient` directly imports the existing leaf and
 checks its geometric-cover constructor, chart and base identities, and
 strong-hypothesis recovery. Its declarations are public Lean names in the
 `ProjectiveSpaceTest.ProjGlobalSections` namespace, but the mathematical library
 root does not import this test module; they are not intended as library API.
+The fifth client, `ProjectiveSpaceTest.UnitScalingClient`, directly imports
+`ProjectiveSpace.UnitScaling` and tests five public declarations in the
+test-only `ProjectiveSpaceTest.ProjUnitScaling` namespace. It is not a
+mathematical-library API or imported by the root.
 
 Three additional private, complete ordinary-native-import examples are stored
 in [geometry](examples/GeometryExamples.lean),
@@ -108,9 +127,10 @@ Lean snippets substitute for these complete modules.
 packages in the resolved 13-package manifest). Graded Rings and Scheme
 Properties are pinned to their official private GitHub releases; access to
 those repositories is presently required to build this library.
-Four existing Lake targets cover all 33 Lean
-files: `ProjectiveSpace` (root and 23 leaves), `ProjectiveSpaceTest` (two
-earlier clients, the root-only client, and the new global-sections client), `ProjectiveSpaceAxiomTests`
+Four existing Lake targets cover all 35 Lean
+files: `ProjectiveSpace` (root and 24 leaves), `ProjectiveSpaceTest` (two
+earlier clients, the root-only client, the global-sections client and the
+unit-scaling client), `ProjectiveSpaceAxiomTests`
 (both diagnostic test modules), and `ProjectiveSpaceReaderExamples` (all
 three complete examples). Literal `defaultTargets` names all four. With access
 to the private dependencies, install the pinned Lean toolchain using `elan`,
@@ -122,7 +142,7 @@ lake exe cache get
 lake --wfail build
 ```
 
-The default build includes all 33 files. To build an individual target, use
+The default build includes all 35 files in this candidate. To build an individual target, use
 `lake --wfail build ProjectiveSpace` (or one of the other three target names).
 `--wfail` is Lake's warning-fatal option; `-KwarningAsError=true` alone does
 not make Lake fail on source warnings. On the initial pinned-graph checkout,
@@ -157,13 +177,15 @@ interfaces.
 ## Integration and attribution
 
 Bounded source, mathematical and review findings apply only to their exact
-revisions and scopes. The full check recorded above covered 33 shipped modules
+revisions and scopes. The historical full check recorded above covered 33 shipped modules
 and 669 module/declaration origins, including 249 private declarations, with
 only `propext`, `Classical.choice` and `Quot.sound` as transitive axioms.
 Focused producer checks alone would not substitute for that full-graph check.
-Unchanged mathematical/build/dependency inputs may reuse this evidence; changed
-inputs need reassessment. The maintainer's dated release record identifies the
-exact independently assessed artifact, release acceptance and verified
+Unchanged mathematical/build/dependency inputs may reuse this evidence; the
+added producer, client and root need new applicable build and complete axiom
+evidence and a fresh destination promotion review. The maintainer's dated
+release record for the earlier library identifies the exact independently
+assessed artifact, release acceptance and verified
 publication. A passing build or development-main acceptance alone does not make
 a candidate an official release; no source-coverage certification is implied.
 
@@ -185,7 +207,7 @@ module map and original private example bodies; Worker A Task
 `hive-request-a11cc160eed1b0c777c9d375b66b4c5b41de124b` (UID
 `01de320f-d2fb-47c5-91b1-98d7a4984f70`) selected and corrected the
 earlier reader payload, its headers and Lake configuration. Later native
-adaptations, the bounded source assembly, and this source-only preparation
+adaptations, the bounded source assembly, and the UnitScaling transfer
 are credited in [CONTRIBUTORS.md](CONTRIBUTORS.md). These credits record
 contributions, not an assertion of copyright ownership.
 
