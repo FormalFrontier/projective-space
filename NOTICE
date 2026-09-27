@@ -24,5 +24,18 @@ and gluing proof expression. This source transfer preserves the original
 proof body but does not alone certify its new dependency graph. Other
 dependency source files are not incorporated or relicensed here. Release
 review must still inspect authentic third-party notices, generated outputs
-and the proposed public history; this notice does not assert blanket rights
-clearance or acceptance of the new candidate.
+and any proposed public history; this notice does not assert blanket rights
+clearance or release acceptance for any candidate.
+
+The transferred `ProjectiveSpace/DegreeScaledMap.lean` preserves its original
+Apache-2.0 file header and adapted mathlib projective-chart/gluing notice for
+Andrew Yang (copyright 2024), together with homogeneous-localization credit
+for Jujian Zhang (copyright 2022) and Eric Wieser. The degree-multiplying
+localization implementation is imported from the separately licensed official
+Graded Rings dependency, not copied into this project. The original Proj
+author and localization contributor retain their distinct credits in the
+producer and CONTRIBUTORS.md. This static transfer adds no proof edits.
+Independent review 4376, full-graph native run 632 and maintainer code
+acceptance apply to exact revision `d866ec190766ef2a76978fadc05627717f300468`;
+they do not by themselves certify redistribution rights for unrelated material,
+review of a later documentary revision, release acceptance or publication.

@@ -4,8 +4,9 @@ project:
   description: >-
     Projective spectra of graded rings, polynomial standard charts and covers,
     homogeneous ideals, coordinate points, graded transport, geometric-cover
-    global-sections morphisms, whole-arrow unit-scaling invariance and
-    geometric properties.
+    global-sections morphisms, positive-degree-scaled Proj maps on their
+    natural open domains, whole-arrow unit-scaling invariance and geometric
+    properties.
   authors:
     - Formal Frontier Agents
   license: Apache-2.0
@@ -26,14 +27,17 @@ sources:
     relationship: background
     note: >-
       Imported projective-spectrum, graded-ring and polynomial infrastructure;
-      the geometric-cover global-sections and unit-scaling modules adapt gluing
-      and chart proof text by Andrew Yang (2024), copyright 2024, Apache-2.0,
-      from Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Basic, with file-level
-      credit and a corresponding NOTICE.
+      the geometric-cover global-sections, unit-scaling and degree-scaled-map
+      modules adapt gluing and chart proof text by Andrew Yang (2024), copyright
+      2024, Apache-2.0, from Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Basic,
+      with file-level credit and a corresponding NOTICE. The degree-scaled-map
+      module also retains the 2022 Jujian Zhang homogeneous-localization credit.
   - title: Graded Rings
     type: software
     relationship: background
-    note: Direct graded-quotient and symmetric-algebra dependency.
+    note: >-
+      Direct graded-quotient, symmetric-algebra and degree-multiplying
+      homogeneous-localization dependency at the reviewed official release.
   - title: Scheme Properties
     type: software
     relationship: background
@@ -48,30 +52,67 @@ automation:
     this metadata describes involvement, not automated proof certification.
 status:
   scope: >-
-    24-leaf projective-space library with aggregate public import,
-    five direct/root clients, and official pinned private dependencies. Its
-    35-file, four-target graph requires revision-specific evidence. The
+    25-leaf projective-space library with aggregate public import,
+    six direct/root clients, and official pinned private dependencies. Its
+    37-file, four-target graph has revision-specific evidence. The
     historical 33-file, four-target graph at
     c74a33c74b7d9bde054a284ada6d28bac7bd2f7d passed its full build and
     private-inclusive transitive standard-axiom audit on September 27, 2026.
     Its documentation successor 7eab8f1f08cbc12e63520f189efbc3d3ea1841bf
     was published as official release 18b517099fddac61a86f7c20d591178db9825b9a;
-    later code acceptance and publication are separate dated decisions.
-    Source coverage is separate.
+    the later 35-file accepted baseline was separately published with the same
+    tree as its accepted main. This open-domain transfer was prepared from
+    frozen incubator input separately accepted on September 27, 2026. Exact
+    destination code revision d866ec190766ef2a76978fadc05627717f300468
+    passed native run 632 on all four targets and 37 files (3493 build jobs),
+    with 770 audited origins including 294 private names and only the three
+    standard axioms. Independent promotion review 4376 and Atlas's code
+    acceptance and integration apply to that revision. Any independent release
+    assessment, release acceptance and verified publication of a documentary
+    successor are separate revision-specific decisions in the maintainer's
+    dated release record. Source coverage is separate.
+  main_results:
+    - declaration: AlgebraicGeometry.Proj.imageIrrelevant
+      file: ProjectiveSpace/DegreeScaledMap.lean
+    - declaration: AlgebraicGeometry.Proj.degreeScaledDomain
+      file: ProjectiveSpace/DegreeScaledMap.lean
+    - declaration: AlgebraicGeometry.Proj.degreeScaledDomain_eq_zeroLocus_compl
+      file: ProjectiveSpace/DegreeScaledMap.lean
+    - declaration: AlgebraicGeometry.Proj.degreeScaledChartMap
+      file: ProjectiveSpace/DegreeScaledMap.lean
+    - declaration: AlgebraicGeometry.Proj.degreeScaledChartMap_compatible
+      file: ProjectiveSpace/DegreeScaledMap.lean
+    - declaration: AlgebraicGeometry.Proj.degreeScaledMap
+      file: ProjectiveSpace/DegreeScaledMap.lean
+    - declaration: AlgebraicGeometry.Proj.chartCover_map
+      file: ProjectiveSpace/DegreeScaledMap.lean
+    - declaration: AlgebraicGeometry.Proj.degreeScaledMap_chartSpec
+      file: ProjectiveSpace/DegreeScaledMap.lean
+    - declaration: AlgebraicGeometry.Proj.degreeScaledMap_unique
+      file: ProjectiveSpace/DegreeScaledMap.lean
+    - declaration: AlgebraicGeometry.Proj.degreeZeroRingHom
+      file: ProjectiveSpace/DegreeScaledMap.lean
+    - declaration: AlgebraicGeometry.Proj.degreeScaledMap_toSpecZero
+      file: ProjectiveSpace/DegreeScaledMap.lean
+    - declaration: AlgebraicGeometry.Proj.degreeScaledMap_preimage_basicOpen
+      file: ProjectiveSpace/DegreeScaledMap.lean
 review:
-  status: inherited mathematics independently reviewed; destination assessment is revision-specific
+  status: destination code reviewed and accepted at exact revision; release acceptance separate
   notes: >-
     Independent destination review and maintainer code acceptance were recorded
     for the geometric-cover contribution at c74a33c74b7d9bde054a284ada6d28bac7bd2f7d.
     Earlier specialist reviews and source/notice acceptances retain their exact
-    scopes. The transferred whole-arrow UnitScaling producer was independently
-    reviewed and subsequently code-accepted in its original incubator graph
-    at 517642ad3898094abcd251909a1588528631985c on September 27, 2026.
-    That evidence does not certify this different destination graph.
-    Independent destination promotion review, native 35-file build, complete
-    private-inclusive standard-axiom audit and owner acceptance must apply to
-    the actual destination revision. The maintainer's dated record identifies
-    those checks and decisions; release acceptance and verified publication
-    are separate and are not inferred from this metadata. Earlier unchanged-input
-    evidence does not certify the changed root and added files. Neither code
-    acceptance nor library publication certifies source coverage.
+    scopes. The earlier UnitScaling transfer has a distinct accepted and
+    published baseline. The positive-degree-scaled Proj mathematics was
+    independently reviewed in its isolated incubator contribution; the frozen
+    official-Graded-import input was subsequently accepted in the incubator on
+    September 27, 2026. Neither that
+    review nor earlier destination build evidence alone certified the new graph.
+    Exact code revision d866ec190766ef2a76978fadc05627717f300468 received
+    independent destination review 4376, applicable native build and complete
+    private/generated-inclusive transitive standard-axiom audit in run 632,
+    and maintainer code acceptance on September 27, 2026. This documentary
+    revision preserves Lean/build/dependency/checker inputs; its independent
+    release assessment, acceptance and verified official publication are
+    separate revision-specific maintainer decisions recorded elsewhere.
+    No source correspondence or coverage follows from this metadata.

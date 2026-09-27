@@ -6,7 +6,8 @@ positive-degree basic-open topology, a projective radical criterion, coordinate
 points, graded-map transport, homogeneous-component dimensions, polynomial
 standard charts and transitions, gluing, equations and quotients,
 symmetric-algebra models, geometric-cover global-sections morphisms, whole-arrow
-unit-scaling invariance, and geometric properties. See [the module and API
+unit-scaling invariance, positive-degree-scaled maps on their natural open
+domains, and geometric properties. See [the module and API
 map](docs/MODULES.md) for the per-file imports and hypotheses. This guide
 describes the mathematical interfaces; source-specific correspondence and
 coverage decisions are separate.
@@ -56,6 +57,13 @@ coverage decisions are separate.
   an affine source, reducedness, a field or an irrelevant-ideal-equals-top
   assumption. It needs an actual positive-homogeneous source-open cover for
   the whole-arrow conclusion; see the [unit-scaling guide](docs/UnitScaling.md).
+- `ProjectiveSpace.DegreeScaledMap` constructs an actual morphism
+  `U.toScheme ⟶ Proj 𝒜` from an ordinary unital `f : A →+* B` that sends
+  degree `n` into degree `d * n` for **positive** `d`. The open `U` in `Proj ℬ`
+  is the complement of the image-irrelevant zero locus, not automatically all
+  of `Proj ℬ`. The API proves both overlap faces, whole-chart fraction laws,
+  uniqueness, degree-zero base naturality and `U`-relative basic-open
+  preimages. See the [degree-scaled-map guide](docs/DegreeScaledMap.md).
 
 Other files give polynomial standard-chart algebras and overlaps over any
 commutative ring (including the zero ring), finite-coordinate polynomial
@@ -70,7 +78,7 @@ over a base ring with zero divisors.
 
 ## Imports and build status
 
-All 24 mathematical leaves and the aggregate `ProjectiveSpace.lean` root are
+All 25 mathematical leaves and the aggregate `ProjectiveSpace.lean` root are
 written as Lean `module` files
 with deliberate `public import` interfaces. `import ProjectiveSpace` is the
 intended ordinary import of the whole mathematical API; clients may instead
@@ -80,15 +88,23 @@ import a specific `ProjectiveSpace.*` leaf. At development revision
 standard-axiom audit, including private declarations. Independent destination
 review and maintainer code acceptance were recorded for that revision.
 Those results are revision-specific: they do not by themselves check the
-additional leaf, client and changed root in the 35-file graph. The earlier
+later 35-file accepted baseline, nor the subsequent 37-file graph. The earlier
 documentation successor `7eab8f1f08cbc12e63520f189efbc3d3ea1841bf` was
-published as official release `18b517099fddac61a86f7c20d591178db9825b9a`.
-Each later revision needs applicable full-graph evidence and independent
-destination review. The maintainer's dated revision record identifies its
-actual checks, code acceptance and integration; the separate release record
-identifies official publication. Neither is inferred from the older checks
-or from this guide. The scoped polynomial grading requires
-`open scoped ProjectiveSpace` when used.
+published as official release `18b517099fddac61a86f7c20d591178db9825b9a`;
+the 35-file baseline was separately accepted and published, with official
+release `a02283d8e40759d4ef58a76e8183b11dd7021a17` sharing its tree.
+The frozen incubator input was separately accepted on September 27, 2026.
+At accepted destination code revision
+`d866ec190766ef2a76978fadc05627717f300468`, native CI run 632 built
+all four targets and 37 Lean files (3,493 jobs) and audited 770 declaration
+origins, including 294 private names, with only the three standard axioms.
+Independent destination review 4376 and Atlas's code acceptance and protected
+integration followed on September 27, 2026. This documentation-only correction
+preserves those Lean, build, dependency and checker inputs; its own review and
+release status are distinct from the accepted code evidence. The maintainer's
+dated release record identifies separate release acceptance and verified
+publication decisions; this guide alone asserts neither. The scoped polynomial
+grading requires `open scoped ProjectiveSpace` when used.
 
 Two existing private native clients import selected leaves:
 `ProjectiveSpaceTest.PointClient` and `ProjectiveSpaceTest.GeometryClient`.
@@ -104,6 +120,11 @@ The fifth client, `ProjectiveSpaceTest.UnitScalingClient`, directly imports
 `ProjectiveSpace.UnitScaling` and tests five public declarations in the
 test-only `ProjectiveSpaceTest.ProjUnitScaling` namespace. It is not a
 mathematical-library API or imported by the root.
+The sixth client, `ProjectiveSpaceTest.DegreeScaledMapClient`, directly imports
+`ProjectiveSpace.DegreeScaledMap`. Its seven examples use the generic arrow,
+domain complement, whole chart, localization fraction, open preimage,
+degree-zero triangle and uniqueness; the chart witness is private. Its
+test-only namespace is not imported by the mathematical root.
 
 Three additional private, complete ordinary-native-import examples are stored
 in [geometry](examples/GeometryExamples.lean),
@@ -122,15 +143,15 @@ Lean snippets substitute for these complete modules.
 `lean-toolchain` pins Lean `v4.34.0-rc2`; `lake-manifest.json` and
 `lakefile.toml` fix mathlib
 `83abb3e776bdefcbc447a1e44d0debe4010039e5`, graded-rings
-`4a89b5f5431e7e7976bb8447702114048e697d2e` and scheme-properties
+`f77410141b89532409fff563d368930a728f55b7` and scheme-properties
 `6b204a3e49f022e51d78a9f93e77513b99a87e00` (plus ten inherited
 packages in the resolved 13-package manifest). Graded Rings and Scheme
 Properties are pinned to their official private GitHub releases; access to
 those repositories is presently required to build this library.
-Four existing Lake targets cover all 35 Lean
-files: `ProjectiveSpace` (root and 24 leaves), `ProjectiveSpaceTest` (two
+Four existing Lake targets cover all 37 Lean
+files: `ProjectiveSpace` (root and 25 leaves), `ProjectiveSpaceTest` (two
 earlier clients, the root-only client, the global-sections client and the
-unit-scaling client), `ProjectiveSpaceAxiomTests`
+unit-scaling client, and the degree-scaled-map client), `ProjectiveSpaceAxiomTests`
 (both diagnostic test modules), and `ProjectiveSpaceReaderExamples` (all
 three complete examples). Literal `defaultTargets` names all four. With access
 to the private dependencies, install the pinned Lean toolchain using `elan`,
@@ -142,7 +163,7 @@ lake exe cache get
 lake --wfail build
 ```
 
-The default build includes all 35 files in this candidate. To build an individual target, use
+The default build includes all 37 files in this candidate. To build an individual target, use
 `lake --wfail build ProjectiveSpace` (or one of the other three target names).
 `--wfail` is Lake's warning-fatal option; `-KwarningAsError=true` alone does
 not make Lake fail on source warnings. On the initial pinned-graph checkout,
@@ -180,14 +201,15 @@ Bounded source, mathematical and review findings apply only to their exact
 revisions and scopes. The historical full check recorded above covered 33 shipped modules
 and 669 module/declaration origins, including 249 private declarations, with
 only `propext`, `Classical.choice` and `Quot.sound` as transitive axioms.
-Focused producer checks alone would not substitute for that full-graph check.
-Unchanged mathematical/build/dependency inputs may reuse this evidence; the
-added producer, client and root need new applicable build and complete axiom
-evidence and a fresh destination promotion review. The maintainer's dated
+Focused producer checks alone would not substitute for a full-graph check.
+Unchanged mathematical/build/dependency inputs may reuse applicable evidence;
+the degree-scaled producer, client, root and dependency change received the
+full-graph native run 632 and author-distinct review 4376 at the exact accepted
+code revision recorded above. The maintainer's dated
 release record for the earlier library identifies the exact independently
 assessed artifact, release acceptance and verified
-publication. A passing build or development-main acceptance alone does not make
-a candidate an official release; no source-coverage certification is implied.
+publication. Code acceptance and proof evidence alone do not make a candidate
+an official release; no source-coverage certification is implied.
 
 The `formalization.yaml` metadata and module/API map describe this library without
 asserting source completeness. The `NOTICE` records bounded attribution, not a

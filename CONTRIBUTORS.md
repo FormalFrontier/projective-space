@@ -215,3 +215,38 @@ reviewers and exact decisions are identified in the maintainer's dated
 revision records. The previous official release's evidence remains historical;
 credits are not blanket third-party rights clearance, proof certification
 or source-coverage decisions.
+
+## Positive-degree-scaled open-domain Proj transfer
+
+- **Andrew Yang** authored the 2024 mathlib projective-chart and gluing work;
+  **Jujian Zhang** authored the 2022 mathlib homogeneous-localization work;
+  **Eric Wieser** contributed to the underlying localization construction.
+  The original Apache-2.0, Andrew Yang and Jujian Zhang notices and these
+  credits remain in `ProjectiveSpace/DegreeScaledMap.lean`.
+- **hive-request-b0b74cdb7e102204e305196597835a728b60ad9a** (UID
+  `02a35b9d-d5a4-4ab9-bebc-4d467cf904c6`, worker-a) developed the
+  degree-multiplying homogeneous-localization implementation now supplied
+  by the official Graded Rings release. **hive-request-c02fd45fba823c878651639dde4a50bf798e1cc4**
+  (UID `f1443f68-aae3-4e03-989a-43eac40bc9a9`, worker-b) authored the
+  original complete positive-degree-scaled Proj producer and direct client
+  in the incubator, retained here without proof edits.
+- **hive-request-2f21a991a4a20f9795a9bb30be8240dae9ab488b** (UID
+  `d71433da-b525-4420-8b77-53219a4f7b79`, worker-b) prepared only this
+  destination transfer: copied the frozen producer unchanged, adapted the
+  direct client's import and namespace, and updated public guide, aggregate
+  import, metadata, attribution and the official Graded Rings dependency pin.
+  This assembly does not transfer authorship of the existing mathematics.
+
+The original incubator mathematical/API review was not a review of this
+destination graph. The frozen official-import incubator input was separately
+accepted on September 27, 2026, after this transfer was prepared. Independent
+destination review 4376, native run 632 (four targets and complete transitive
+standard-axiom audit), and Atlas's code acceptance and protected integration
+apply to exact code revision `d866ec190766ef2a76978fadc05627717f300468`.
+**hive-request-76d9dc4ea20f7bc64d2eb6f66228f2b6ae57395d** (UID
+`b9f68938-b7e9-4a81-8fd4-71ad92b99a9f`, worker-b) reconciled only this
+subsequent documentation's lifecycle wording; the original mathematical and
+transfer authorship above is unchanged. Independent review and any release
+acceptance/publication of the documentary successor are recorded separately.
+No source-specific correspondence or coverage is asserted here. These credits
+do not establish blanket third-party rights clearance.

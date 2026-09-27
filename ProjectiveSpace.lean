@@ -8,6 +8,7 @@ module
 public import ProjectiveSpace.BasicOpenBasis
 public import ProjectiveSpace.CoefficientRingBase
 public import ProjectiveSpace.Compact
+public import ProjectiveSpace.DegreeScaledMap
 public import ProjectiveSpace.Factorial
 public import ProjectiveSpace.GlobalSections
 public import ProjectiveSpace.GradedProjIso
@@ -33,11 +34,12 @@ public import ProjectiveSpace.UnitScaling
 /-!
 # Projective space
 
-Public aggregate import for the project's 24 mathematical modules. The library
+Public aggregate import for the project's 25 mathematical modules. The library
 develops basic opens and homogeneous ideals on `Proj`, polynomial standard
 charts, chart covers and equation localizations, coordinate and closed points,
 graded transport, symmetric-algebra models, geometric-cover global-sections
-morphisms, whole-arrow invariance under unit scaling, and geometric properties.
+morphisms, positive-degree-scaled maps on their natural open domains, whole-arrow
+invariance under unit scaling, and geometric properties.
 
 The total-degree grading on multivariable polynomials is deliberately scoped:
 use `open scoped ProjectiveSpace` when relying on its instance. Chart
