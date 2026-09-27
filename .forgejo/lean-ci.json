@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "mode": "strict",
+  "projects": [
+    {
+      "path": ".",
+      "targets": [
+        "ProjectiveSpace",
+        "ProjectiveSpaceTest",
+        "ProjectiveSpaceAxiomTests",
+        "ProjectiveSpaceReaderExamples"
+      ]
+    }
+  ],
+  "docs_only_paths": []
+}
