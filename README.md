@@ -13,6 +13,41 @@ equivalences and whole-scheme invariance, and geometric properties. See
 describes the mathematical interfaces; source-specific correspondence and
 coverage decisions are separate.
 
+## Headline results
+
+- Inverse degree-preserving graded ring maps give whole-scheme `Proj`
+  isomorphisms through `ProjectiveSpace.projIsoOfInverseGradedRingHom` and
+  homeomorphisms and closed-point equivalences through
+  `ProjectiveSpace.projectiveSpectrumHomeomorphOfInverseGradedRingHom` and
+  `ProjectiveSpace.projClosedPointsEquivOfInverseGradedRingHom`.
+  Scheme transport uses one universe for underlying rings; point transport
+  permits independent ring universes. See `ProjectiveSpace.GradedProjIso`.
+- Compatible graded tails with equivalent degree-zero rings and high-degree
+  pieces induce an isomorphism of **entire projective schemes**
+  `E.projIso n hNn hn` for `N ≤ n` and `0 < n`, with both forward and inverse
+  equalities over the actual degree-zero base. No graded map on the omitted
+  low-degree original components, finite generation, domain, reducedness or
+  `Nontrivial` is needed. The algebraic `TailEquiv` is provided by the official
+  Graded Rings dependency; this library proves the geometric transfer. See
+  [the coherent-tail guide](docs/CoherentTailProj.md).
+- Every positive selected-component Veronese has a whole-scheme isomorphism
+  `AlgebraicGeometry.Proj.Veronese.schemeIso`, compatible with the degree-zero
+  coefficient map; its charts accommodate zero divisors and nilpotents.
+  Selected-component ring algebra comes from Graded Rings. See
+  [the Veronese guide](docs/Veronese.md).
+- A positive degree-scaled ring hom constructs a projective scheme arrow on
+  the **actual open complement** of its image-irrelevant zero locus, with
+  coefficient naturality and arbitrary-element ordinary point-prime
+  contraction. The generic arrow is not asserted to extend to all of `Proj`.
+  See [the degree-scaled guide](docs/DegreeScaledMap.md) and
+  [the point-prime guide](docs/DegreeScaledMapPoint.md).
+- Positive-degree homogeneous basic opens form a basis on arbitrary graded
+  `Proj`, including the zero ring; the positive-degree projective radical
+  criterion identifies vanishing with membership in an **ordinary** radical.
+  The latter needs a positive-degree homogeneous element, not a field or
+  Noetherianity. See `ProjectiveSpace.BasicOpenBasis` and
+  `ProjectiveSpace.ProjectiveNullstellensatz`.
+
 ## Mathematical scope
 
 - `ProjectiveSpace.BasicOpenBasis` gives a basis of positive-degree homogeneous
@@ -36,7 +71,8 @@ coverage decisions are separate.
   ring maps, with **independent universes** for the ring and grading carriers.
   Transport is contravariant: `f : 𝒜 →+*ᵍ ℬ` sends `Proj ℬ` to `Proj 𝒜`.
   Scheme-level `Proj` isomorphisms retain mathlib's same-carrier-universe
-  restriction.
+  restriction. Its `AlgebraicGeometry.Proj.map_toSpecZero` compares the actual
+  native graded `Proj.map` with the degree-zero coefficient ring homomorphism.
 - `ProjectiveSpace.HomogeneousDimension` counts degree-`d` components for
   finite coordinate types by `card ι` multichoose `d`, specializing to
   `(n + d).choose d` for `Fin (n + 1)`. The coefficient type needs only a
@@ -81,6 +117,14 @@ coverage decisions are separate.
   Its canonical forward arrow contracts arbitrary ordinary point ideals
   and commutes with the degree-zero coefficient-ring arrow. See the
   [Veronese guide](docs/Veronese.md).
+- `ProjectiveSpace.CoherentTailProj` uses the official Graded Rings coherent
+  `TailEquiv` to identify **whole sheaf-bearing** `Proj` schemes at every
+  selected positive degree beyond the cutoff. Its selected and whole isos,
+  exact composite map, and both actual degree-zero coefficient triangles
+  require no original-ring extension across the omitted low degrees. Native
+  `Proj.map` requires the underlying rings in one universe, but the original
+  grading-carrier universes are independent. See the
+  [coherent-tail guide](docs/CoherentTailProj.md).
 
 Other files give polynomial standard-chart algebras and overlaps over any
 commutative ring (including the zero ring), finite-coordinate polynomial
@@ -95,7 +139,7 @@ over a base ring with zero divisors.
 
 ## Imports and build status
 
-All 27 mathematical leaves and the aggregate `ProjectiveSpace.lean` root are
+All 28 mathematical leaves and the aggregate `ProjectiveSpace.lean` root are
 written as Lean `module` files
 with deliberate `public import` interfaces. `import ProjectiveSpace` is the
 intended ordinary import of the whole mathematical API; clients may instead
@@ -107,8 +151,20 @@ origins, including 305 private-prefix names and generated declarations; only
 `propext`, `Classical.choice` and `Quot.sound` occurred. Independent destination
 review 4474 approved that exact code, and Atlas accepted and integrated it
 into protected main on September 28, 2026 at 08:56:12 UTC. These are code
-facts; review and acceptance of a documentary release candidate, official
-release and publication are distinct decisions.
+facts; the earlier official Projective release `787322743df1506fdca2cf9d5666e2e38edbc42f`
+has the same tree as the accepted 41-file baseline. It predates this
+coherent-tail transfer. At exact candidate
+`4d7243be9503b8898e48d6495e54a182a5eb8cc6`, cache-first native run 774
+(UI run 27, artifact 157826) succeeded September 28, 2026 at 13:25:28 UTC:
+all four targets built, including the upstream flat fixture and destination
+client, and the transitive audit checked 859 kernel declaration origins across
+all 43 Lean modules, including 313 private-prefix names and generated
+declarations, with
+only `propext`, `Classical.choice` and `Quot.sound`. The H-bound independent
+review 4565 requested documentation corrections; that verdict does not approve
+a repaired candidate. Exact-revision review, Atlas's code acceptance and
+protected integration, and a separately reviewed official release are distinct
+from these CI results.
 At development revision
 `c74a33c74b7d9bde054a284ada6d28bac7bd2f7d` on September 27, 2026, all
 33 Lean files and four default targets passed the full build and transitive
@@ -171,6 +227,13 @@ equivalences, the whole and `n = 1` scheme isomorphisms, arbitrary point-ideal
 membership, positive basic-open preimages and the coefficient-ring triangle.
 Its test-only namespace is not imported by the mathematical root. The
 aggregate-only `RootClient` has an additional private whole-scheme witness.
+The ninth client, `ProjectiveSpaceTest.CoherentTailProjClient`, imports the
+coherent-tail producer and the official Graded Rings **flat test fixture**
+`CoherentTailVeronese` only in test code. Its missing-linear case retains
+the actual universal high-identity nonextension theorem, and the coefficient
+swap and zero-ring cases exercise complete scheme inverse laws and the actual
+coefficient triangle. The root client separately tests a private generic
+coherent-tail iso without importing this fixture.
 
 Three additional private, complete ordinary-native-import examples are stored
 in [geometry](examples/GeometryExamples.lean),
@@ -189,16 +252,16 @@ Lean snippets substitute for these complete modules.
 `lean-toolchain` pins Lean `v4.34.0-rc2`; `lake-manifest.json` and
 `lakefile.toml` fix mathlib
 `83abb3e776bdefcbc447a1e44d0debe4010039e5`, graded-rings
-`0a5c69da9b24beb5c33ddddbfe4d0067e53146ec` and scheme-properties
+`db2a1d555639e2a381abbf755982ffdcf126621e` and scheme-properties
 `6b204a3e49f022e51d78a9f93e77513b99a87e00` (plus ten inherited
 packages in the resolved 13-package manifest). Graded Rings and Scheme
 Properties are pinned to their official private GitHub releases; access to
 those repositories is presently required to build this library.
-Four existing Lake targets cover all 41 Lean
-files: `ProjectiveSpace` (root and 27 leaves), `ProjectiveSpaceTest` (two
+Four existing Lake targets cover all 43 Lean
+files: `ProjectiveSpace` (root and 28 leaves), `ProjectiveSpaceTest` (two
 earlier clients, the root-only client, the global-sections client and the
 unit-scaling client, the degree-scaled-map client, the point-prime client and
-the Veronese client),
+the Veronese client and coherent-tail client),
 `ProjectiveSpaceAxiomTests`
 (both diagnostic test modules), and `ProjectiveSpaceReaderExamples` (all
 three complete examples). Literal `defaultTargets` names all four. With access
@@ -211,7 +274,7 @@ lake exe cache get
 lake --wfail build
 ```
 
-The default build covers all 41 Lean files. To build an individual target, use
+The default build covers all 43 Lean files. To build an individual target, use
 `lake --wfail build ProjectiveSpace` (or one of the other three target names).
 `--wfail` is Lake's warning-fatal option; `-KwarningAsError=true` alone does
 not make Lake fail on source warnings. On the initial pinned-graph checkout,

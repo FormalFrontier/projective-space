@@ -8,7 +8,8 @@ project:
     natural open domains with full ordinary point-prime contraction and
     arbitrary-element membership, whole-arrow unit-scaling invariance,
     positive-Veronese chart equivalences and whole-scheme Proj invariance,
-    and geometric properties.
+    coherent-tail whole-scheme isomorphisms with actual degree-zero coefficient
+    naturality, and geometric properties.
   authors:
     - Formal Frontier Agents
   license: Apache-2.0
@@ -65,16 +66,28 @@ automation:
     this metadata describes involvement, not automated proof certification.
 status:
   scope: >-
-    27-leaf projective-space library with aggregate public import,
-    eight direct/root clients, 41 Lean files and official pinned private
-    dependencies. Exact Veronese destination code revision
+    28-leaf projective-space library with aggregate public import,
+    nine direct/root clients, 43 Lean files and official pinned private
+    dependencies. The coherent-tail candidate pins official Graded Rings
+    db2a1d555639e2a381abbf755982ffdcf126621e. Exact candidate
+    4d7243be9503b8898e48d6495e54a182a5eb8cc6 passed cache-first native
+    run 774 (UI run 27, artifact 157826) on September 28, 2026 at 13:25:28 UTC:
+    all four targets, including the actual upstream flat fixture and destination
+    client, built; the transitive standard-three audit covered all 43 Lean
+    modules and 859 kernel declaration origins, including 313 private-prefix
+    names and generated declarations. Independent H-bound review 4565 requested documentary
+    correction, not acceptance of a repaired candidate; owner acceptance,
+    protected integration and corresponding official release are separate
+    exact-revision decisions. Exact prior Veronese destination code revision
     66933ebea062f913f4f155480d6e2a7bbd667907 passed native run 708 on
     all four targets (3498 build jobs) and all 41 Lean files: 819 actual
     transitive declaration origins, 305 private-prefix names, generated
     declarations included, only propext, Classical.choice and Quot.sound.
     Independent review 4474 approved that code; Atlas accepted and integrated
     it on September 28, 2026 at 08:56:12 UTC. Subsequent documentary
-    release candidates require separate review and acceptance. The earlier
+    release candidates require separate review and acceptance. The prior
+    41-file main tree is also the official Projective release
+    787322743df1506fdca2cf9d5666e2e38edbc42f. The earlier
     accepted 26-leaf library's
     39-file, four-target graph at accepted code revision
     8712cd1d042032ba4577145b3a3034ed2609e671 passed its own native
@@ -146,8 +159,16 @@ status:
       file: ProjectiveSpace/Veronese.lean
     - declaration: AlgebraicGeometry.Proj.Veronese.forward_toSpecZero
       file: ProjectiveSpace/Veronese.lean
+    - declaration: AlgebraicGeometry.Proj.map_toSpecZero
+      file: ProjectiveSpace/GradedProjIso.lean
+    - declaration: GradedRing.Veronese.CoherentTail.TailEquiv.selectedProjIso
+      file: ProjectiveSpace/CoherentTailProj.lean
+    - declaration: GradedRing.Veronese.CoherentTail.TailEquiv.projIso
+      file: ProjectiveSpace/CoherentTailProj.lean
+    - declaration: GradedRing.Veronese.CoherentTail.TailEquiv.projIso_toSpecZero
+      file: ProjectiveSpace/CoherentTailProj.lean
 review:
-  status: positive-Veronese destination code accepted at 66933ebea062f913f4f155480d6e2a7bbd667907
+  status: coherent-tail candidate H passed native run 774; H-bound review 4565 requested documentation changes; repaired-candidate review and owner acceptance are distinct
   notes: >-
     Independent destination review and maintainer code acceptance were recorded
     for the geometric-cover contribution at c74a33c74b7d9bde054a284ada6d28bac7bd2f7d.
@@ -183,6 +204,19 @@ review:
     generated declarations, with only the three standard axioms. Fresh
     author-distinct destination review 4474 approved that exact revision;
     Atlas accepted and integrated the code into protected main on
-    September 28, 2026 at 08:56:12 UTC. Later documentary release candidates
-    need their own review and acceptance. This metadata alone records neither
-    official publication nor source correspondence or coverage.
+    September 28, 2026 at 08:56:12 UTC. Its later official Projective release
+    is 787322743df1506fdca2cf9d5666e2e38edbc42f, sharing the accepted
+    main tree. This later coherent-tail transfer is a separate code candidate:
+    the accepted isolated geometry review and checks, Graded Rings evidence,
+    and earlier 41-file native run do not certify the new 43-file graph.
+    Exact coherent-tail candidate 4d7243be9503b8898e48d6495e54a182a5eb8cc6
+    passed native run 774 on September 28, 2026 at 13:25:28 UTC after fetching
+    matching mathlib cache: all four targets built, and the complete transitive
+    audit of 859 actual kernel origins across all 43 Lean modules, including
+    313 private-prefix names and generated declarations, reported only propext,
+    Classical.choice and Quot.sound. Independent review 4565 requested only
+    documentation changes on that exact candidate; it does not approve a
+    revised candidate. Revised-candidate independent review, Atlas's code
+    acceptance and protected integration, and a separately reviewed official
+    release/private publication are distinct steps. This metadata makes no
+    new official release, source correspondence or coverage claim.

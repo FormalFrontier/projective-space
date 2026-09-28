@@ -1,8 +1,8 @@
 # Projective-space module and API map
 
-This library has 27 mathematical leaves, one aggregate root, eight test
+This library has 28 mathematical leaves, one aggregate root, nine test
 clients (four with private named checks), two diagnostic tests and three
-complete reader examples: **41 Lean files**. All 27 leaves and the root have
+complete reader examples: **43 Lean files**. All 28 leaves and the root have
 native `module` headers and public imports. The Veronese leaf, client, root
 and updated official Graded Rings dependency at accepted code revision
 `66933ebea062f913f4f155480d6e2a7bbd667907` passed native run 708 on
@@ -30,7 +30,13 @@ jobs), all 39 Lean files and 780 audited origins (302 private-prefix names),
 with only the three standard axioms. Atlas accepted and integrated that code
 on September 28, 2026; its subsequent verified official release is
 `94d6259a42b04eeaab8fab2c6e0f7e741abf6844`. Those earlier graph checks
-do not by themselves certify the later Veronese graph.
+do not by themselves certify the later Veronese graph. The accepted Veronese
+baseline appeared in the official Projective release
+`787322743df1506fdca2cf9d5666e2e38edbc42f` with the same tree.
+The coherent-tail candidate requires distinct four-target,
+private/generated-inclusive transitive standard-axiom evidence, review and
+owner acceptance; prior isolated geometry and Graded algebra evidence alone
+do not certify this new graph.
 This table records actual direct imports and
 principal public entry points, not independent release or proof acceptance. Typeclass and
 size restrictions below come from the declarations, not just their names.
@@ -41,7 +47,7 @@ and cache-first build commands; neither document certifies a release.
 | File / status | Direct project/provider imports | Main interfaces and requirements |
 | --- | --- | --- |
 | `BasicOpenBasis` **native** | mathlib only | `AlgebraicGeometry.Proj.positiveBasicOpens`, `isTopologicalBasis_positiveBasicOpens`: any naturally graded commutative ring; positive degree. |
-| `GradedProjIso` **native** | mathlib only | `ProjectiveSpace.map_irrelevant_le`, `irrelevant_le_map_of_comp_eq_id`, `projectiveSpectrumEquivOfInverseGradedRingHom`, `projectiveSpectrumHomeomorphOfInverseGradedRingHom`, `projClosedPointsEquivOfInverseGradedRingHom`: inverse degree-preserving homomorphisms, independent ring/carrier universes; `projIsoOfInverseGradedRingHom`, `closedPointsEquivOfIso`: scheme-level same carrier universe. Application equations marked `@[simp]`. |
+| `GradedProjIso` **native + coherent-tail candidate** | mathlib only | `ProjectiveSpace.map_irrelevant_le`, `irrelevant_le_map_of_comp_eq_id`, `projectiveSpectrumEquivOfInverseGradedRingHom`, `projectiveSpectrumHomeomorphOfInverseGradedRingHom`, `projClosedPointsEquivOfInverseGradedRingHom`: inverse degree-preserving homomorphisms, independent ring/carrier universes; `projIsoOfInverseGradedRingHom`, `closedPointsEquivOfIso`: scheme-level same carrier universe. New `AlgebraicGeometry.Proj.map_toSpecZero` proves native graded-map naturality over the actual degree-zero hom under the native irrelevant-ideal bound. Application equations marked `@[simp]`. |
 | `HomogeneousCoordinatePoint` **native** | mathlib only | `homogeneousCoordinateMap`, `homogeneousCoordinateIdeal`, `mem_homogeneousCoordinateIdeal_iff_eval_eq_zero` (homogeneous polynomial), `homogeneousCoordinatePoint` (nonzero vector), `homogeneousCoordinatePoint_eq_of_eq_smul`, `projectivizationToProj`; arbitrary coordinate type over a field, no algebraic closure or finite type. Generator/mk equations marked `@[simp]`. |
 | `HomogeneousDimension` **native** | mathlib only | `finrank_homogeneousSubmodule` (`Fintype ι`) and `finrank_homogeneousSubmodule_fin` (`Fin (n+1)`): commutative semiring + `StrongRankCondition`. |
 | `Irreducible` **native** | mathlib only | `ProjectiveSpace.polynomialProj_irreducibleSpace` instance: coefficient ring is a domain, coordinate type `Nonempty`. |
@@ -67,15 +73,17 @@ and cache-first build commands; neither document certifies a release.
 | `DegreeScaledMapPoint` **accepted point leaf** | `DegreeScaledMap` only | `AlgebraicGeometry.Proj.degreeScaledMap_pointIdeal`: the entire ordinary ideal of each point under the existing degree-scaled arrow from its **actual open domain** equals `Ideal.comap f` of the domain point's prime; `degreeScaledMap_mem_pointIdeal`: membership for any `a : A`, including degree zero and inhomogeneous elements. Positive `d`, common underlying-ring universe; no global map. See [`DegreeScaledMapPoint.md`](DegreeScaledMapPoint.md). |
 | `UnitScaling` **native leaf** | `GlobalSections` only | `AlgebraicGeometry.Proj.awayMapOfIsUnit`, `awayMapOfIsUnit_mk_spec`, `awayMapOfIsUnit_eq_of_unitScaling`, `basicOpen_eq_of_unitScaling`, `isOpenCover_of_unitScaling`, `toBasicOpenOfGlobalSections_eq_of_unitScaling`, `fromOfGlobalSectionsOfIsOpenCover_eq_of_unitScaling`, `fromOfGlobalSectionsOfIsOpenCover_unitScaling`: degree-weighted global-unit scaling with an actual geometric source cover for whole arrows, including independently supplied witnesses; no extra ideal-equals-top hypothesis. See [`UnitScaling.md`](UnitScaling.md). |
 | `Veronese` **accepted code leaf** | official `GradedRings.Veronese`, `DegreeScaledMapPoint`, mathlib `Morphisms.Basic` | `AlgebraicGeometry.Proj.Veronese.chartEquiv`: entire positive-index selected-component chart equivalence even for nilpotent/zero-divisor denominators; `schemeIso`: whole sheaf-bearing Proj scheme isomorphism via the degree-scaled arrow and target-local chart gluing; `forward_pointIdeal`: arbitrary-element ordinary-prime contraction; `forward_toSpecZero`: whole coefficient triangle. `chartHom_awayMap`, `chartEquiv_awayMap`, `forward_restrict_chart` and `forward_preimage_basicOpen` retain public gluing and basic-open interfaces. No finiteness, domain, reducedness or nontriviality assumption. See [`Veronese.md`](Veronese.md). |
-| `ProjectiveSpace.lean` **aggregate root** | direct public imports of all 27 mathematical leaves | Ordinary `import ProjectiveSpace` entry point; no new declarations. Native run 708 checked the complete accepted 41-file graph, including the new root witness. |
+| `CoherentTailProj` **promotion candidate** | `GradedProjIso`, official `GradedRings.CoherentTailVeronese`, `Veronese` | `GradedRing.Veronese.CoherentTail.TailEquiv.selectedProjIso`, `projIso`, `projIso_hom`, `selected_zero_spec`, `projIso_comp_selected_inv`, `projIso_toSpecZero`, `projIso_inv_toSpecZero`: selected and original **whole-scheme** isomorphisms and both actual coefficient triangles for a coherent degree-zero/high-tail equivalence at `N ≤ n`, `0 < n`. One universe for underlying rings; independent original grading-carrier universes. No original-ring extension or finiteness/domain/reducedness/nontriviality premise. See [`CoherentTailProj.md`](CoherentTailProj.md). |
+| `ProjectiveSpace.lean` **aggregate root** | direct public imports of all 28 mathematical leaves | Ordinary `import ProjectiveSpace` entry point; no new declarations. Native run 708 checked the complete accepted 41-file graph, including its root witness; native run 774 checked the 43-file coherent-tail candidate graph. |
 | `ProjectiveSpaceTest.PointClient` **native private test** | `HomogeneousCoordinatePoint`, `GradedProjIso` | Public generator simplification, definitional kernel, stored algebra map, irrelevant-map bound across independent universes. Not a published theorem API. |
 | `ProjectiveSpaceTest.GeometryClient` **native private test** | `BasicOpenBasis`, `ProjectiveNullstellensatz`, `Irreducible`, `HomogeneousDimension` | Positive-degree radical/basis, semiring finrank, domain/nonempty irreducibility. Not a published theorem API. |
-| `ProjectiveSpaceTest.RootClient` **aggregate private test** | ordinary `import ProjectiveSpace` only | Scoped chart algebra and cover, polynomial reducedness/compactness, point chart/evaluation, graded transport and whole Veronese scheme iso; all named checks are private. Run 708 checks the new witness. |
+| `ProjectiveSpaceTest.RootClient` **aggregate private test** | ordinary `import ProjectiveSpace` only | Scoped chart algebra and cover, polynomial reducedness/compactness, point chart/evaluation, graded transport and whole Veronese and generic coherent-tail scheme isos; all named checks are private. Run 708 checks only the previous Veronese witness. |
 | `ProjectiveSpaceTest.GlobalSectionsClient` **native test client** | ordinary public import `ProjectiveSpace.GlobalSections` | Geometric-cover constructor, positive-degree chart preimage/restriction, degree-zero base arrow, native strong-hypothesis recovery; public Lean names in a test-only namespace, not imported by the mathematical library root or intended as library API. |
 | `ProjectiveSpaceTest.UnitScalingClient` **native test client** | ordinary public import `ProjectiveSpace.UnitScaling` | Five direct-public-import examples: same source open, transferred cover, complete chart arrow, independently covered whole arrows, one-cover whole arrows. Its test-namespace Lean names are not imported by the mathematical root or intended as library API. |
 | `ProjectiveSpaceTest.DegreeScaledMapClient` **published producer test client** | ordinary public import `ProjectiveSpace.DegreeScaledMap` | Seven examples: generic scheme arrow, image-irrelevant complement, whole-affine chart, homogeneous fraction, open preimage inside the domain, degree-zero base triangle and uniqueness; includes a private whole-chart witness. Test-only namespace, not mathematical-library API. |
 | `ProjectiveSpaceTest.DegreeScaledMapPointClient` **accepted point test client** | ordinary public import `ProjectiveSpace.DegreeScaledMapPoint` | Three examples: full ordinary-prime equality, membership of arbitrary `a : A` and membership of a degree-zero element. Test-only namespace; not mathematical-library API. |
 | `ProjectiveSpaceTest.VeroneseClient` **accepted code client** | ordinary public import `ProjectiveSpace.Veronese` | Seven geometric examples: chart and zero chart, general and `n = 1` scheme isos, arbitrary point membership, positive-basic-open preimage and coefficient triangle. Five ring-only examples already belong to the released Graded Rings client and are not duplicated. Test-only namespace, not mathematical-library API. |
+| `ProjectiveSpaceTest.CoherentTailProjClient` **promotion client** | `public import ProjectiveSpace.CoherentTailProj`; `public import CoherentTailVeronese` from official Graded Rings `GradedRingsTests` (flat `srcDir=test` module) | Reuses existing integer-polynomial missing-linear example and genuine universal high-identity no-extension theorem, degree-zero swap with nonidentity coefficient map and actual coefficient triangle, both scheme inverse laws and `ZMod 1` whole-scheme example. Not imported by any producer/root; native destination run 774 built both the upstream flat fixture and this client at candidate `4d7243be9503b8898e48d6495e54a182a5eb8cc6`. |
 | `Tests.GradedTransportAxioms` **diagnostic** | `GradedProjIso`, `SymmetricAlgebraProj` | Ordinary public imports and literal transport `#print axioms` commands; listing is not a new axiom check. |
 | `Tests.SymmetricAlgebraAxioms` **diagnostic** | `import all` of `SymmetricAlgebraClosedPoint`, `SymmetricAlgebraAffineClosedPoint` | Internal-name axiom diagnostics, including private names; not an ordinary public-API client. |
 | `examples.GeometryExamples` **reader example** | `BasicOpenBasis`, `ProjectiveNullstellensatz`, `HomogeneousDimension`, `Irreducible` | Complete private geometry examples with scoped grading. |
@@ -88,7 +96,7 @@ downstream usage, not new public theorems. New users may import
 `ProjectiveSpace` for the intended whole API or an individual leaf; use
 `open scoped ProjectiveSpace` where polynomial grading is needed. The
 `ProjectiveSpace` target names root and all leaves, `ProjectiveSpaceTest` all
-eight clients, `ProjectiveSpaceAxiomTests` both diagnostic modules, and
+nine clients, `ProjectiveSpaceAxiomTests` both diagnostic modules, and
 `ProjectiveSpaceReaderExamples` all three examples; defaults name every target.
 The resolved 13-package manifest pins mathlib, official Graded Rings and official
 Scheme Properties directly and inherits their exact supporting dependencies.
@@ -100,6 +108,13 @@ the historical 33/35/37-file evidence alone does not certify it. The point
 graph subsequently appeared in verified official release
 `94d6259a42b04eeaab8fab2c6e0f7e741abf6844`; neither it nor isolated
 Veronese evidence alone checks the later graph. Native run 708, review 4474
-and Atlas's code acceptance apply to the exact 41-file revision above;
-documentary release candidates need separate review and acceptance. This
-lightweight map claims no source coverage or release publication for that code.
+and Atlas's code acceptance apply to the exact 41-file revision above,
+subsequently published with the same tree. For the 43-file coherent-tail graph,
+native run 774 checked exact code revision
+`4d7243be9503b8898e48d6495e54a182a5eb8cc6`: all four targets and 859
+actual kernel declaration origins, including private and generated declarations,
+with only the three standard axioms. That evidence applies to documentary
+successors with unchanged Lean, build, dependency and checker inputs; it does
+not replace independent exact-candidate review, owner acceptance or separately
+reviewed official publication. This lightweight map claims no source coverage
+or official release publication for the new code.

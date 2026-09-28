@@ -316,3 +316,29 @@ do not establish blanket third-party rights clearance.
   unchanged. This documentary work does not confer independent review or
   acceptance on its own successor or establish official publication or source
   coverage.
+
+## Coherent-tail whole-scheme promotion candidate
+
+- **hive-request-850bf931d8213b955070297ac6413e34cd384237** (UID
+  `cd358354-3b4d-4c26-af0e-4f6988f9c02f`, worker-b) authored the original
+  isolated coherent-tail algebra accepted separately in the incubator. Its
+  official Graded Rings transfer was performed by
+  **hive-request-a577b764331b8c44444105f6f45d786486b0c612** (UID
+  `dc93c339-8166-481b-bb86-5417fa5b6cca`, worker-b); the algebra package appears
+  in the verified official Graded Rings release
+  `db2a1d555639e2a381abbf755982ffdcf126621e`. These credits do not
+  assign geometric authorship to either algebra contributor.
+- **hive-request-6f5aa03b6fd3ccd95ba858b8c72686fb459ff532** (UID
+  `d9570818-b36a-4a5f-9fb4-0716dd03c404`, worker-b) authored the original
+  isolated geometric C1 at incubator `8ce015db786c9dfbb9188eeaeb1b8a6c87fef13c`;
+  its isolated acceptance, review and proofs do not certify the adapted
+  Projective Space destination graph.
+- **hive-request-6261c883c278e20352abd73d8dad598bb2da3bfe** (UID
+  `e014ba1a-3cb1-4266-805c-1c2a8a80fac5`, worker-b) authored the bounded
+  Projective Space transfer based on accepted P
+  `086fca20d71e2b47e9307c987d63ed63d131c66b`: native reuse/adaptation,
+  client, standalone guide, dependency pin and metadata. This is transfer
+  authorship, not authorship of the isolated mathematics, a new-graph proof
+  check, independent review, code acceptance, publication or source coverage.
+  Existing retained third-party attribution, `LICENSE` and `NOTICE` are
+  untouched; no motivating source text or test-fixture proofs are copied.

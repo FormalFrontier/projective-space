@@ -84,4 +84,15 @@ private noncomputable def veronese_whole_iso {ringType : Type u}
       AlgebraicGeometry.Proj (GradedRing.Veronese.component grading degree) :=
   AlgebraicGeometry.Proj.Veronese.schemeIso grading degree positive
 
+private noncomputable def coherent_tail_whole_iso
+    {R S : Type u} [CommRing R] [CommRing S]
+    {ρ : Type v} {κ : Type uτ}
+    [SetLike ρ R] [AddSubgroupClass ρ R]
+    [SetLike κ S] [AddSubgroupClass κ S]
+    {𝒞 : ℕ → ρ} {𝒟 : ℕ → κ} [GradedRing 𝒞] [GradedRing 𝒟]
+    {N : ℕ} (E : GradedRing.Veronese.CoherentTail.TailEquiv 𝒞 𝒟 N)
+    (degree : ℕ) (aboveCutoff : N ≤ degree) (positive : 0 < degree) :
+    AlgebraicGeometry.Proj 𝒞 ≅ AlgebraicGeometry.Proj 𝒟 :=
+  E.projIso degree aboveCutoff positive
+
 end ProjectiveSpaceTest

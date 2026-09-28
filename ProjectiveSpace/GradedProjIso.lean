@@ -180,3 +180,46 @@ end UniverseMonomorphic
 
 
 end ProjectiveSpace
+
+namespace AlgebraicGeometry.Proj
+
+open HomogeneousLocalization
+
+universe u
+
+variable {A B σ τ : Type u} [CommRing A] [CommRing B]
+  [SetLike σ A] [AddSubgroupClass σ A] [SetLike τ B] [AddSubgroupClass τ B]
+  {𝒜 : ℕ → σ} {ℬ : ℕ → τ} [GradedRing 𝒜] [GradedRing ℬ]
+
+set_option backward.isDefEq.respectTransparency false
+
+/-- Localized coefficient maps commute with a degree-preserving ring map. -/
+private theorem away_map_fromZeroRingHom (f : 𝒜 →+*ᵍ ℬ) (s : A) :
+    (Away.map f s).comp (fromZeroRingHom 𝒜 (Submonoid.powers s)) =
+      (fromZeroRingHom ℬ (Submonoid.powers (f s))).comp
+        (GradedRingHom.gradedZeroRingHom f) := by
+  apply RingHom.ext
+  intro a
+  simp only [RingHom.coe_comp, Function.comp_apply]
+  change HomogeneousLocalization.map f _ (HomogeneousLocalization.mk _) =
+    HomogeneousLocalization.mk _
+  rw [HomogeneousLocalization.map_mk]
+  apply HomogeneousLocalization.val_injective (Submonoid.powers (f s))
+  simp [HomogeneousLocalization.val_mk, GradedRingHom.gradedZeroRingHom]
+
+/-- The native whole-scheme Proj map respects the degree-zero coefficient base. -/
+theorem map_toSpecZero (f : 𝒜 →+*ᵍ ℬ) (hf : ℬ₊ ≤ 𝒜₊.map f) :
+    map f hf ≫ toSpecZero 𝒜 =
+      toSpecZero ℬ ≫ Spec.map (CommRingCat.ofHom (GradedRingHom.gradedZeroRingHom f)) := by
+  refine (mapAffineOpenCover f hf).openCover.hom_ext _ _ fun s ↦ ?_
+  rcases s with ⟨degree, form⟩
+  simp only [Scheme.AffineOpenCover.openCover_f, mapAffineOpenCover_f]
+  conv_lhs =>
+    rw [← Category.assoc, awayι_comp_map f hf degree.2 _ form.2,
+      Category.assoc, awayι_toSpecZero]
+  conv_rhs => rw [← Category.assoc, awayι_toSpecZero]
+  simp only [← Spec.map_comp, ← CommRingCat.ofHom_comp]
+  congr 1
+  exact congrArg CommRingCat.ofHom (away_map_fromZeroRingHom f (form : A))
+
+end AlgebraicGeometry.Proj
