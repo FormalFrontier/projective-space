@@ -7,7 +7,8 @@ points, graded-map transport, homogeneous-component dimensions, polynomial
 standard charts and transitions, gluing, equations and quotients,
 symmetric-algebra models, geometric-cover global-sections morphisms, whole-arrow
 unit-scaling invariance, positive-degree-scaled maps on their natural open
-domains with ordinary point-prime contraction, and geometric properties. See
+domains with ordinary point-prime contraction, positive-Veronese chart
+equivalences and whole-scheme invariance, and geometric properties. See
 [the module and API map](docs/MODULES.md) for the per-file imports and hypotheses. This guide
 describes the mathematical interfaces; source-specific correspondence and
 coverage decisions are separate.
@@ -71,6 +72,15 @@ coverage decisions are separate.
   inhomogeneous elements. It retains positive `d` and a common universe for
   the two underlying rings; it does not extend the morphism to all of
   `Proj ℬ`. See the [point-prime guide](docs/DegreeScaledMapPoint.md).
+- `ProjectiveSpace.Veronese` identifies `Proj 𝒮` with the **whole scheme**
+  `Proj (GradedRing.Veronese.component 𝒮 n)` for `0 < n`. The complete
+  selected-component ring exists for any `n`, but injective inclusion,
+  degree-zero comparison, chart equivalences and scheme invariance require
+  positivity. Charts include zero and nilpotent parameters, without a
+  domain, reducedness, finite generation or degree-one-generation assumption.
+  Its canonical forward arrow contracts arbitrary ordinary point ideals
+  and commutes with the degree-zero coefficient-ring arrow. See the
+  [Veronese guide](docs/Veronese.md).
 
 Other files give polynomial standard-chart algebras and overlaps over any
 commutative ring (including the zero ring), finite-coordinate polynomial
@@ -85,11 +95,21 @@ over a base ring with zero divisors.
 
 ## Imports and build status
 
-All 26 mathematical leaves and the aggregate `ProjectiveSpace.lean` root are
+All 27 mathematical leaves and the aggregate `ProjectiveSpace.lean` root are
 written as Lean `module` files
 with deliberate `public import` interfaces. `import ProjectiveSpace` is the
 intended ordinary import of the whole mathematical API; clients may instead
-import a specific `ProjectiveSpace.*` leaf. At development revision
+import a specific `ProjectiveSpace.*` leaf. The 41-file Veronese graph at
+accepted code revision `66933ebea062f913f4f155480d6e2a7bbd667907`
+passed native CI run 708 on all four targets (3,498 jobs) and all 41 Lean
+files. Its complete actual-origin transitive audit covered 819 declaration
+origins, including 305 private-prefix names and generated declarations; only
+`propext`, `Classical.choice` and `Quot.sound` occurred. Independent destination
+review 4474 approved that exact code, and Atlas accepted and integrated it
+into protected main on September 28, 2026 at 08:56:12 UTC. These are code
+facts; review and acceptance of a documentary release candidate, official
+release and publication are distinct decisions.
+At development revision
 `c74a33c74b7d9bde054a284ada6d28bac7bd2f7d` on September 27, 2026, all
 33 Lean files and four default targets passed the full build and transitive
 standard-axiom audit, including private declarations. Independent destination
@@ -115,8 +135,10 @@ checked and accepted at destination code revision
 files, including 780 declaration origins (302 private-prefix names), with only
 `propext`, `Classical.choice` and `Quot.sound` as transitive axioms. Atlas
 accepted the code and integrated it into protected main on September 28,
-2026. Neither the earlier producer checks nor this accepted main revision
-establishes a separately reviewed and verified point-prime release. The scoped
+2026. The prior point-prime code has since appeared in verified official
+release `94d6259a42b04eeaab8fab2c6e0f7e741abf6844`, with the tree of
+the accepted main baseline; that earlier result alone does not check the
+Veronese graph. The scoped
 polynomial grading requires
 `open scoped ProjectiveSpace` when used.
 
@@ -143,6 +165,12 @@ The seventh client, `ProjectiveSpaceTest.DegreeScaledMapPointClient`, directly
 imports `ProjectiveSpace.DegreeScaledMapPoint`. Its three examples check full
 ordinary-ideal equality, membership for an arbitrary ring element and a
 degree-zero element. Its test-only namespace is not imported by the root.
+The eighth client, `ProjectiveSpaceTest.VeroneseClient`, directly imports
+`ProjectiveSpace.Veronese`. Its seven examples exercise chart and zero-chart
+equivalences, the whole and `n = 1` scheme isomorphisms, arbitrary point-ideal
+membership, positive basic-open preimages and the coefficient-ring triangle.
+Its test-only namespace is not imported by the mathematical root. The
+aggregate-only `RootClient` has an additional private whole-scheme witness.
 
 Three additional private, complete ordinary-native-import examples are stored
 in [geometry](examples/GeometryExamples.lean),
@@ -161,15 +189,16 @@ Lean snippets substitute for these complete modules.
 `lean-toolchain` pins Lean `v4.34.0-rc2`; `lake-manifest.json` and
 `lakefile.toml` fix mathlib
 `83abb3e776bdefcbc447a1e44d0debe4010039e5`, graded-rings
-`f77410141b89532409fff563d368930a728f55b7` and scheme-properties
+`0a5c69da9b24beb5c33ddddbfe4d0067e53146ec` and scheme-properties
 `6b204a3e49f022e51d78a9f93e77513b99a87e00` (plus ten inherited
 packages in the resolved 13-package manifest). Graded Rings and Scheme
 Properties are pinned to their official private GitHub releases; access to
 those repositories is presently required to build this library.
-Four existing Lake targets cover all 39 Lean
-files: `ProjectiveSpace` (root and 26 leaves), `ProjectiveSpaceTest` (two
+Four existing Lake targets cover all 41 Lean
+files: `ProjectiveSpace` (root and 27 leaves), `ProjectiveSpaceTest` (two
 earlier clients, the root-only client, the global-sections client and the
-unit-scaling client, the degree-scaled-map client and the point-prime client),
+unit-scaling client, the degree-scaled-map client, the point-prime client and
+the Veronese client),
 `ProjectiveSpaceAxiomTests`
 (both diagnostic test modules), and `ProjectiveSpaceReaderExamples` (all
 three complete examples). Literal `defaultTargets` names all four. With access
@@ -182,7 +211,7 @@ lake exe cache get
 lake --wfail build
 ```
 
-The default build includes all 39 Lean files. To build an individual target, use
+The default build covers all 41 Lean files. To build an individual target, use
 `lake --wfail build ProjectiveSpace` (or one of the other three target names).
 `--wfail` is Lake's warning-fatal option; `-KwarningAsError=true` alone does
 not make Lake fail on source warnings. On the initial pinned-graph checkout,
@@ -230,8 +259,13 @@ leaf/client/root graph at `8712cd1d042032ba4577145b3a3034ed2609e671`
 received its own independent affected review 4399, complete native run 647
 and Atlas's code acceptance and protected integration on September 28, 2026.
 Documentary successors with unchanged Lean/build/dependency/checker inputs
-can reuse that evidence, but need their own review and release decisions;
-code acceptance is not point-prime publication or source-coverage certification.
+could reuse that evidence; the point-prime release is now officially verified
+at `94d6259a42b04eeaab8fab2c6e0f7e741abf6844`. The Veronese graph has
+its own native run 708 and author-distinct review 4474 at the accepted code
+revision recorded above. Documentation-only successors may reuse that
+computational result when their Lean, build, dependency and checker inputs
+remain unchanged; their release review and acceptance remain separate. No
+prior or current code acceptance or publication establishes source coverage.
 
 The `formalization.yaml` metadata and module/API map describe this library without
 asserting source completeness. The `NOTICE` records bounded attribution, not a
@@ -251,7 +285,7 @@ module map and original private example bodies; Worker A Task
 `hive-request-a11cc160eed1b0c777c9d375b66b4c5b41de124b` (UID
 `01de320f-d2fb-47c5-91b1-98d7a4984f70`) selected and corrected the
 earlier reader payload, its headers and Lake configuration. Later native
-adaptations, the bounded source assembly, and the UnitScaling transfer
+adaptations, the bounded source assembly, and the UnitScaling and Veronese transfers
 are credited in [CONTRIBUTORS.md](CONTRIBUTORS.md). These credits record
 contributions, not an assertion of copyright ownership.
 

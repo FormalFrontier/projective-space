@@ -75,4 +75,13 @@ private noncomputable def transport_points (f : 𝒜 →+*ᵍ ℬ)
   ProjectiveSpace.projectiveSpectrumHomeomorphOfInverseGradedRingHom
     f g hfg hgf
 
+private noncomputable def veronese_whole_iso {ringType : Type u}
+    [CommRing ringType] {componentType : Type v}
+    [SetLike componentType ringType] [AddSubgroupClass componentType ringType]
+    (grading : ℕ → componentType) [GradedRing grading]
+    (degree : ℕ) (positive : 0 < degree) :
+    AlgebraicGeometry.Proj grading ≅
+      AlgebraicGeometry.Proj (GradedRing.Veronese.component grading degree) :=
+  AlgebraicGeometry.Proj.Veronese.schemeIso grading degree positive
+
 end ProjectiveSpaceTest

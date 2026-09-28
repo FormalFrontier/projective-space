@@ -10,7 +10,7 @@ rev = "83abb3e776bdefcbc447a1e44d0debe4010039e5"
 [[require]]
 name = "graded-rings"
 git = "https://github.com/FormalFrontier/graded-rings.git"
-rev = "f77410141b89532409fff563d368930a728f55b7"
+rev = "0a5c69da9b24beb5c33ddddbfe4d0067e53146ec"
 
 [[require]]
 name = "scheme-properties"

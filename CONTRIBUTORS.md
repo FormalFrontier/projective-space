@@ -281,3 +281,38 @@ do not establish blanket third-party rights clearance.
   transfer and upstream authorship above is unchanged. Release acceptance,
   publication and source coverage are separate decisions recorded by the
   responsible maintainer, not conferred by this documentary preparation.
+
+## Positive-Veronese charts and whole Proj isomorphism
+
+- **hive-request-e97f548d3626371a173eb011840a7070b24d81bb** (UID
+  `0e231558-4793-4185-8f55-2bad40d363bd`, worker-b) authored the original
+  selected-component ring, chart and whole-scheme isomorphism development
+  and direct examples in incubator candidate
+  `c44fc718068e386312e657499b1be18042209d4b`. The Graded Rings ring
+  component was separately delivered in official release
+  `0a5c69da9b24beb5c33ddddbfe4d0067e53146ec`; its five algebra-only
+  examples are not duplicated in this Projective Space client. Isolated
+  incubator review/acceptance is not a review of this destination graph.
+- **hive-request-be35b665bf79040df05d4a877584eddbda7cd6f6** (UID
+  `936b1c06-477c-4e0b-bd11-71b190d392d5`, worker-b) prepared the
+  bounded destination transfer from that accepted incubator input to the
+  Projective Space accepted parent
+  `86a236baded2c4fffb2c7a71fde99f9ea8ce8126`: retained the Proj
+  mathematics and exposed it through an official Graded Rings dependency,
+  seven geometric direct-import examples, a private aggregate-root witness,
+  standalone reader guide and lifecycle metadata. This transfer does not
+  claim authorship of the original mathematics, independent review, native
+  destination checks, acceptance, publication or source coverage. Existing
+  Andrew Yang, Jujian Zhang, Eric Wieser and prior contributor attribution,
+  LICENSE and NOTICE remain unchanged; this producer imports existing
+  attributed code rather than copying a further third-party file.
+- **hive-request-caff18513e1b3958605e0835e34c6ce796c72a13** (UID
+  `f07ce066-f500-4923-b759-6028999a4f69`, worker-b) reconciled only the
+  README, module map, Veronese guide, formalization metadata and this contributor
+  record with native run 708, independent destination review 4474 and Atlas's
+  September 28, 2026 code acceptance and protected integration at
+  `66933ebea062f913f4f155480d6e2a7bbd667907`. Original mathematical
+  authorship, transfer credit, upstream attribution and rights notices remain
+  unchanged. This documentary work does not confer independent review or
+  acceptance on its own successor or establish official publication or source
+  coverage.
