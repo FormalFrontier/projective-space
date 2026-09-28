@@ -9,7 +9,12 @@ uniqueness. The destination code revision
 promotion review 4376, a complete native four-target build and transitive
 standard-axiom audit in run 632, and maintainer code acceptance on
 September 27, 2026. This guide does not itself certify a later documentary
-revision or assert release acceptance or verified publication.
+revision. The reviewed producer is now in verified official release
+`ad60036d9745d4f0bca2f398538cff4377c93603`. The separate point-prime
+leaf received its own independent affected review 4399 and native run 647
+on exact code revision `8712cd1d042032ba4577145b3a3034ed2609e671`;
+Atlas accepted and integrated it on September 28, 2026. Neither code
+acceptance nor this guide certifies a later point-prime release.
 
 ## Data and domain
 
@@ -76,6 +81,12 @@ This is `degreeScaledMap_preimage_basicOpen`; the preceding chart-level
 `degreeScaledChartSpec_preimage_basicOpen` and
 `degreeScaledChartMap_preimage_basicOpen` are also available. The supporting
 `mapDegreeMul_isLocalizationElem_pow` gives the chart parameter power law.
+This producer theorem concerns **positive-degree homogeneous basic opens**.
+For the separate **entire ordinary point-prime contraction** law and
+membership for every element (including degree zero and inhomogeneous ones),
+import `ProjectiveSpace.DegreeScaledMapPoint` and see
+[`DegreeScaledMapPoint.md`](DegreeScaledMapPoint.md). That point leaf retains
+the same actual domain `U` and hypotheses; it is not a globality extension.
 
 `degreeZeroRingHom 𝒜 ℬ f d hdeg : 𝒜 0 →+* ℬ 0` restricts `f` to
 degree-zero components. `mapDegreeMul_fromZeroRingHom` and
@@ -91,8 +102,10 @@ degreeScaledMap 𝒜 ℬ f d hd hdeg ≫ toSpecZero 𝒜 =
 The module builds on native mathlib Proj charts, gluing and pullbacks and on
 the official Graded Rings degree-multiplying localization map. It neither
 claims a global `Proj ℬ ⟶ Proj 𝒜` without an image-chart cover nor proves
-composition, classification, a radical globality condition or a separate
-point-contraction formula. Dependency and original adapted-mathlib credits
+composition, classification or a radical globality condition. Its own
+positive-basic-open theorem is the input to the **separate** point-prime
+leaf, not a claim that this producer leaf itself exports the all-element
+contraction formula. Dependency and original adapted-mathlib credits
 are recorded in [`CONTRIBUTORS.md`](../CONTRIBUTORS.md) and
 [`NOTICE`](../NOTICE); the complete public API is mapped in
 [`MODULES.md`](MODULES.md).

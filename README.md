@@ -7,8 +7,8 @@ points, graded-map transport, homogeneous-component dimensions, polynomial
 standard charts and transitions, gluing, equations and quotients,
 symmetric-algebra models, geometric-cover global-sections morphisms, whole-arrow
 unit-scaling invariance, positive-degree-scaled maps on their natural open
-domains, and geometric properties. See [the module and API
-map](docs/MODULES.md) for the per-file imports and hypotheses. This guide
+domains with ordinary point-prime contraction, and geometric properties. See
+[the module and API map](docs/MODULES.md) for the per-file imports and hypotheses. This guide
 describes the mathematical interfaces; source-specific correspondence and
 coverage decisions are separate.
 
@@ -64,6 +64,13 @@ coverage decisions are separate.
   of `Proj ℬ`. The API proves both overlap faces, whole-chart fraction laws,
   uniqueness, degree-zero base naturality and `U`-relative basic-open
   preimages. See the [degree-scaled-map guide](docs/DegreeScaledMap.md).
+- `ProjectiveSpace.DegreeScaledMapPoint` computes the **entire ordinary ideal**
+  of each point under the existing degree-scaled morphism on its **actual open
+  domain** as `Ideal.comap f` of the domain point's prime, and proves
+  membership for **every** ring element, including degree zero and
+  inhomogeneous elements. It retains positive `d` and a common universe for
+  the two underlying rings; it does not extend the morphism to all of
+  `Proj ℬ`. See the [point-prime guide](docs/DegreeScaledMapPoint.md).
 
 Other files give polynomial standard-chart algebras and overlaps over any
 commutative ring (including the zero ring), finite-coordinate polynomial
@@ -78,7 +85,7 @@ over a base ring with zero divisors.
 
 ## Imports and build status
 
-All 25 mathematical leaves and the aggregate `ProjectiveSpace.lean` root are
+All 26 mathematical leaves and the aggregate `ProjectiveSpace.lean` root are
 written as Lean `module` files
 with deliberate `public import` interfaces. `import ProjectiveSpace` is the
 intended ordinary import of the whole mathematical API; clients may instead
@@ -99,12 +106,19 @@ At accepted destination code revision
 all four targets and 37 Lean files (3,493 jobs) and audited 770 declaration
 origins, including 294 private names, with only the three standard axioms.
 Independent destination review 4376 and Atlas's code acceptance and protected
-integration followed on September 27, 2026. This documentation-only correction
-preserves those Lean, build, dependency and checker inputs; its own review and
-release status are distinct from the accepted code evidence. The maintainer's
-dated release record identifies separate release acceptance and verified
-publication decisions; this guide alone asserts neither. The scoped polynomial
-grading requires `open scoped ProjectiveSpace` when used.
+integration followed on September 27, 2026. That **producer** is now in the
+verified official release `ad60036d9745d4f0bca2f398538cff4377c93603`,
+whose tree equals the accepted baseline. The point-prime leaf was separately
+checked and accepted at destination code revision
+`8712cd1d042032ba4577145b3a3034ed2609e671`: independent affected review
+4399 and native run 647 checked all four targets (3,495 jobs) and all 39 Lean
+files, including 780 declaration origins (302 private-prefix names), with only
+`propext`, `Classical.choice` and `Quot.sound` as transitive axioms. Atlas
+accepted the code and integrated it into protected main on September 28,
+2026. Neither the earlier producer checks nor this accepted main revision
+establishes a separately reviewed and verified point-prime release. The scoped
+polynomial grading requires
+`open scoped ProjectiveSpace` when used.
 
 Two existing private native clients import selected leaves:
 `ProjectiveSpaceTest.PointClient` and `ProjectiveSpaceTest.GeometryClient`.
@@ -125,6 +139,10 @@ The sixth client, `ProjectiveSpaceTest.DegreeScaledMapClient`, directly imports
 domain complement, whole chart, localization fraction, open preimage,
 degree-zero triangle and uniqueness; the chart witness is private. Its
 test-only namespace is not imported by the mathematical root.
+The seventh client, `ProjectiveSpaceTest.DegreeScaledMapPointClient`, directly
+imports `ProjectiveSpace.DegreeScaledMapPoint`. Its three examples check full
+ordinary-ideal equality, membership for an arbitrary ring element and a
+degree-zero element. Its test-only namespace is not imported by the root.
 
 Three additional private, complete ordinary-native-import examples are stored
 in [geometry](examples/GeometryExamples.lean),
@@ -148,10 +166,11 @@ Lean snippets substitute for these complete modules.
 packages in the resolved 13-package manifest). Graded Rings and Scheme
 Properties are pinned to their official private GitHub releases; access to
 those repositories is presently required to build this library.
-Four existing Lake targets cover all 37 Lean
-files: `ProjectiveSpace` (root and 25 leaves), `ProjectiveSpaceTest` (two
+Four existing Lake targets cover all 39 Lean
+files: `ProjectiveSpace` (root and 26 leaves), `ProjectiveSpaceTest` (two
 earlier clients, the root-only client, the global-sections client and the
-unit-scaling client, and the degree-scaled-map client), `ProjectiveSpaceAxiomTests`
+unit-scaling client, the degree-scaled-map client and the point-prime client),
+`ProjectiveSpaceAxiomTests`
 (both diagnostic test modules), and `ProjectiveSpaceReaderExamples` (all
 three complete examples). Literal `defaultTargets` names all four. With access
 to the private dependencies, install the pinned Lean toolchain using `elan`,
@@ -163,7 +182,7 @@ lake exe cache get
 lake --wfail build
 ```
 
-The default build includes all 37 files in this candidate. To build an individual target, use
+The default build includes all 39 Lean files. To build an individual target, use
 `lake --wfail build ProjectiveSpace` (or one of the other three target names).
 `--wfail` is Lake's warning-fatal option; `-KwarningAsError=true` alone does
 not make Lake fail on source warnings. On the initial pinned-graph checkout,
@@ -205,11 +224,14 @@ Focused producer checks alone would not substitute for a full-graph check.
 Unchanged mathematical/build/dependency inputs may reuse applicable evidence;
 the degree-scaled producer, client, root and dependency change received the
 full-graph native run 632 and author-distinct review 4376 at the exact accepted
-code revision recorded above. The maintainer's dated
-release record for the earlier library identifies the exact independently
-assessed artifact, release acceptance and verified
-publication. Code acceptance and proof evidence alone do not make a candidate
-an official release; no source-coverage certification is implied.
+code revision recorded above. Its release is separately accepted and verified
+as `ad60036d9745d4f0bca2f398538cff4377c93603`. The added point-prime
+leaf/client/root graph at `8712cd1d042032ba4577145b3a3034ed2609e671`
+received its own independent affected review 4399, complete native run 647
+and Atlas's code acceptance and protected integration on September 28, 2026.
+Documentary successors with unchanged Lean/build/dependency/checker inputs
+can reuse that evidence, but need their own review and release decisions;
+code acceptance is not point-prime publication or source-coverage certification.
 
 The `formalization.yaml` metadata and module/API map describe this library without
 asserting source completeness. The `NOTICE` records bounded attribution, not a

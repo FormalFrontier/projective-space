@@ -5,8 +5,9 @@ project:
     Projective spectra of graded rings, polynomial standard charts and covers,
     homogeneous ideals, coordinate points, graded transport, geometric-cover
     global-sections morphisms, positive-degree-scaled Proj maps on their
-    natural open domains, whole-arrow unit-scaling invariance and geometric
-    properties.
+    natural open domains with full ordinary point-prime contraction and
+    arbitrary-element membership, whole-arrow unit-scaling invariance and
+    geometric properties.
   authors:
     - Formal Frontier Agents
   license: Apache-2.0
@@ -52,9 +53,16 @@ automation:
     this metadata describes involvement, not automated proof certification.
 status:
   scope: >-
-    25-leaf projective-space library with aggregate public import,
-    six direct/root clients, and official pinned private dependencies. Its
-    37-file, four-target graph has revision-specific evidence. The
+    26-leaf projective-space library with aggregate public import,
+    seven direct/root clients, and official pinned private dependencies. Its
+    39-file, four-target graph at accepted code revision
+    8712cd1d042032ba4577145b3a3034ed2609e671 passed its own native
+    run 647 (3495 build jobs) and complete transitive standard-axiom audit
+    of 780 origins, including 302 private-prefix names, with only propext,
+    Classical.choice and Quot.sound. Independent affected-destination review
+    4399 and Atlas's code acceptance and protected integration followed on
+    September 28, 2026. These are code facts, not point-prime release or
+    source-coverage decisions. The
     historical 33-file, four-target graph at
     c74a33c74b7d9bde054a284ada6d28bac7bd2f7d passed its full build and
     private-inclusive transitive standard-axiom audit on September 27, 2026.
@@ -67,10 +75,15 @@ status:
     passed native run 632 on all four targets and 37 files (3493 build jobs),
     with 770 audited origins including 294 private names and only the three
     standard axioms. Independent promotion review 4376 and Atlas's code
-    acceptance and integration apply to that revision. Any independent release
-    assessment, release acceptance and verified publication of a documentary
-    successor are separate revision-specific decisions in the maintainer's
-    dated release record. Source coverage is separate.
+    acceptance and integration apply to that revision. The producer's
+    corresponding official release ad60036d9745d4f0bca2f398538cff4377c93603
+    is verified and shares its tree with the accepted baseline. The added
+    point-prime leaf, client and changed root have their own review and native
+    evidence at the accepted code revision above; none of the historical
+    33/35/37-file checks by itself certifies that graph. Documentary successors
+    with unchanged Lean/build/dependency/checker inputs may reuse run 647;
+    subsequent release review, acceptance and publication are separate.
+    Source correspondence and coverage are separate.
   main_results:
     - declaration: AlgebraicGeometry.Proj.imageIrrelevant
       file: ProjectiveSpace/DegreeScaledMap.lean
@@ -96,8 +109,12 @@ status:
       file: ProjectiveSpace/DegreeScaledMap.lean
     - declaration: AlgebraicGeometry.Proj.degreeScaledMap_preimage_basicOpen
       file: ProjectiveSpace/DegreeScaledMap.lean
+    - declaration: AlgebraicGeometry.Proj.degreeScaledMap_pointIdeal
+      file: ProjectiveSpace/DegreeScaledMapPoint.lean
+    - declaration: AlgebraicGeometry.Proj.degreeScaledMap_mem_pointIdeal
+      file: ProjectiveSpace/DegreeScaledMapPoint.lean
 review:
-  status: destination code reviewed and accepted at exact revision; release acceptance separate
+  status: point-prime code accepted at exact revision; release acceptance is separate
   notes: >-
     Independent destination review and maintainer code acceptance were recorded
     for the geometric-cover contribution at c74a33c74b7d9bde054a284ada6d28bac7bd2f7d.
@@ -111,8 +128,15 @@ review:
     Exact code revision d866ec190766ef2a76978fadc05627717f300468 received
     independent destination review 4376, applicable native build and complete
     private/generated-inclusive transitive standard-axiom audit in run 632,
-    and maintainer code acceptance on September 27, 2026. This documentary
-    revision preserves Lean/build/dependency/checker inputs; its independent
-    release assessment, acceptance and verified official publication are
-    separate revision-specific maintainer decisions recorded elsewhere.
+    and maintainer code acceptance on September 27, 2026. The producer is in
+    the verified official release ad60036d9745d4f0bca2f398538cff4377c93603.
+    The original point-prime proof was separately reviewed and accepted on
+    its isolated input, not this destination graph. Exact point destination
+    code revision 8712cd1d042032ba4577145b3a3034ed2609e671 received
+    fresh independent affected review 4399 and native run 647 checking four
+    targets, all 39 Lean files and 780 declaration origins (302 private-prefix),
+    including generated declarations and only the three standard axioms. Atlas
+    accepted and integrated that code on September 28, 2026. Later documentary
+    revisions need distinct review and release decisions; this metadata does
+    not claim a reviewed or verified point-prime release.
     No source correspondence or coverage follows from this metadata.

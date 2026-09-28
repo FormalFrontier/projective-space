@@ -250,3 +250,34 @@ transfer authorship above is unchanged. Independent review and any release
 acceptance/publication of the documentary successor are recorded separately.
 No source-specific correspondence or coverage is asserted here. These credits
 do not establish blanket third-party rights clearance.
+
+## Ordinary point-prime API for degree-scaled Proj maps
+
+- **hive-request-2ca332a8ced6485f6ca92c839afc566e562ec00c** (UID
+  `12e28acb-0999-4a80-b88f-3a412dbf506b`, worker-a) authored the original
+  full ordinary point-prime contraction proof, its four named private helpers
+  and three-example direct-import client. The original independently reviewed
+  and isolated-accepted contribution is distinct from this destination graph.
+  The producer by **hive-request-c02fd45fba823c878651639dde4a50bf798e1cc4**
+  (UID `f1443f68-aae3-4e03-989a-43eac40bc9a9`, worker-b) and localization
+  implementation by **hive-request-b0b74cdb7e102204e305196597835a728b60ad9a**
+  (UID `02a35b9d-d5a4-4ab9-bebc-4d467cf904c6`, worker-a) retain their
+  distinct original credits above. The underlying chart, gluing and
+  localization credits to Andrew Yang, Jujian Zhang and Eric Wieser likewise
+  remain unchanged.
+- **hive-request-197d52a7faa4409faaaac7f6900b65c94f27f679** (UID
+  `f53c2615-2efd-484d-80e0-2a9ef1edc8ec`, worker-b) prepared only the
+  bounded destination transfer: exact point proof/client copies with import
+  and test-namespace substitutions, standalone guide, root exposure and
+  reader/metadata/attribution updates on the accepted producer baseline.
+  This work does not transfer mathematical authorship or constitute independent
+  review, acceptance, new graph proof evidence, publication or source coverage.
+- **hive-request-b8b5f49e46eee148982a9f475af5dca7ceeefaa0** (UID
+  `c00d0a22-a4ce-408b-a7ee-e6048b999b15`, worker-b) reconciled only
+  subsequent reader, module-map, metadata and contributor status prose after
+  independent affected-destination review 4399, native run 647 and Atlas's
+  September 28, 2026 code acceptance and protected integration of
+  `8712cd1d042032ba4577145b3a3034ed2609e671`. The original mathematical,
+  transfer and upstream authorship above is unchanged. Release acceptance,
+  publication and source coverage are separate decisions recorded by the
+  responsible maintainer, not conferred by this documentary preparation.

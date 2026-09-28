@@ -1,21 +1,26 @@
 # Projective-space module and API map
 
-This library has 25 mathematical
-leaves, one aggregate root, six test clients (four with private named checks), two diagnostic tests
-and three complete reader examples: **37 Lean files**. All 25 leaves and the
-root have native `module` headers and public imports. At development revision
+This library has 26 mathematical leaves, one aggregate root, seven test clients
+(four with private named checks), two diagnostic tests and three complete
+reader examples: **39 Lean files**. All 26 leaves and the root have native
+`module` headers and public imports. At development revision
 `c74a33c74b7d9bde054a284ada6d28bac7bd2f7d`, the full 33-file graph passed
 its build and private-inclusive standard-axiom audit; independent destination
 review and maintainer code acceptance were recorded for that revision. A later
 35-file baseline was separately accepted and published. Neither earlier result
-by itself checks the new leaf, client, changed root or revised dependency in
-the 37-file graph. At accepted code revision
+by itself checks the producer, client, root and revised dependency in the
+subsequent 37-file graph. At accepted code revision
 `d866ec190766ef2a76978fadc05627717f300468`, independent destination
 review 4376 and native run 632 checked that graph: all four targets (3,493
 jobs) and 770 audited declaration origins, including 294 private names, with
 only the three standard axioms. Atlas accepted and integrated this code on
-September 27, 2026. This documentary correction does not itself establish
-release acceptance or verified publication.
+September 27, 2026; the producer is in verified official release
+`ad60036d9745d4f0bca2f398538cff4377c93603`. The point leaf and client
+received independent affected-destination review 4399 and native run 647 at
+`8712cd1d042032ba4577145b3a3034ed2609e671`: all four targets (3,495
+jobs), all 39 Lean files and 780 audited origins (302 private-prefix names),
+with only the three standard axioms. Atlas accepted and integrated that code
+on September 28, 2026; release review and publication remain separate.
 This table records actual direct imports and
 principal public entry points, not independent release or proof acceptance. Typeclass and
 size restrictions below come from the declarations, not just their names.
@@ -48,15 +53,17 @@ and cache-first build commands; neither document certifies a release.
 | `Reduced` native | `StandardChartScheme`; mathlib | `ProjectiveSpace.proj_isReduced` for a reduced commutative graded ring, plus `polynomialProj_isReduced` for reduced polynomial base (no nonempty-index restriction). |
 | `Factorial` native | `StandardChartScheme`, **`SchemeProperties.FactorialNormal`** | `polynomialProj_isFactorial`, `polynomialProj_isNormal`: finite coordinates, `UniqueFactorizationMonoid` commutative ring, including empty indices; official Scheme Properties dependency. |
 | `GlobalSections` **native** | mathlib `ProjectiveSpectrum.Basic` only | `AlgebraicGeometry.Proj.openCoverOfGlobalSectionsOfIsOpenCover`, `fromOfGlobalSectionsOfIsOpenCover`, five chart/base/recovery identities: ordinary `A →+* Γ(X, ⊤)` from a graded ring and an actual positive-homogeneous basic-open cover; only recovery takes the stronger irrelevant-ideal condition. See [`GlobalSections.md`](GlobalSections.md). |
-| `DegreeScaledMap` **candidate leaf** | official **`GradedRings.HomogeneousLocalizationMap`**; mathlib `ProjectiveSpectrum.Basic`, `Pullbacks` | `AlgebraicGeometry.Proj.imageIrrelevant`, `degreeScaledDomain`, `degreeScaledDomain_eq_zeroLocus_compl`, `degreeScaledChartMap`, `degreeScaledChartMap_compatible`, `degreeScaledMap`, `chartCover_map`, `degreeScaledMap_chartSpec`, `degreeScaledMap_unique`, `degreeZeroRingHom`, `degreeScaledMap_toSpecZero`, `degreeScaledMap_preimage_basicOpen`: ordinary `A →+* B`, degree multiplier `d > 0`, images homogeneous in degree `d * n`, genuine scheme arrow from the natural zero-locus-complement open in `Proj ℬ`. Also provides `chartOpen`, `chartCover`, localized base and positive-basic-open chart computations. See [`DegreeScaledMap.md`](DegreeScaledMap.md). |
+| `DegreeScaledMap` **published producer leaf** | official **`GradedRings.HomogeneousLocalizationMap`**; mathlib `ProjectiveSpectrum.Basic`, `Pullbacks` | `AlgebraicGeometry.Proj.imageIrrelevant`, `degreeScaledDomain`, `degreeScaledDomain_eq_zeroLocus_compl`, `degreeScaledChartMap`, `degreeScaledChartMap_compatible`, `degreeScaledMap`, `chartCover_map`, `degreeScaledMap_chartSpec`, `degreeScaledMap_unique`, `degreeZeroRingHom`, `degreeScaledMap_toSpecZero`, `degreeScaledMap_preimage_basicOpen`: ordinary `A →+* B`, degree multiplier `d > 0`, images homogeneous in degree `d * n`, genuine scheme arrow from the natural zero-locus-complement open in `Proj ℬ`. Also provides `chartOpen`, `chartCover`, localized base and positive-basic-open chart computations. See [`DegreeScaledMap.md`](DegreeScaledMap.md). |
+| `DegreeScaledMapPoint` **accepted point leaf** | `DegreeScaledMap` only | `AlgebraicGeometry.Proj.degreeScaledMap_pointIdeal`: the entire ordinary ideal of each point under the existing degree-scaled arrow from its **actual open domain** equals `Ideal.comap f` of the domain point's prime; `degreeScaledMap_mem_pointIdeal`: membership for any `a : A`, including degree zero and inhomogeneous elements. Positive `d`, common underlying-ring universe; no global map. See [`DegreeScaledMapPoint.md`](DegreeScaledMapPoint.md). |
 | `UnitScaling` **native leaf** | `GlobalSections` only | `AlgebraicGeometry.Proj.awayMapOfIsUnit`, `awayMapOfIsUnit_mk_spec`, `awayMapOfIsUnit_eq_of_unitScaling`, `basicOpen_eq_of_unitScaling`, `isOpenCover_of_unitScaling`, `toBasicOpenOfGlobalSections_eq_of_unitScaling`, `fromOfGlobalSectionsOfIsOpenCover_eq_of_unitScaling`, `fromOfGlobalSectionsOfIsOpenCover_unitScaling`: degree-weighted global-unit scaling with an actual geometric source cover for whole arrows, including independently supplied witnesses; no extra ideal-equals-top hypothesis. See [`UnitScaling.md`](UnitScaling.md). |
-| `ProjectiveSpace.lean` **native aggregate root** | direct public imports of all 25 mathematical leaves | Ordinary `import ProjectiveSpace` entry point; no new declarations. Earlier full-graph evidence does not check the new leaf/root graph. |
+| `ProjectiveSpace.lean` **native aggregate root** | direct public imports of all 26 mathematical leaves | Ordinary `import ProjectiveSpace` entry point; no new declarations. Native run 647 checked the accepted 39-file leaf/root graph. |
 | `ProjectiveSpaceTest.PointClient` **native private test** | `HomogeneousCoordinatePoint`, `GradedProjIso` | Public generator simplification, definitional kernel, stored algebra map, irrelevant-map bound across independent universes. Not a published theorem API. |
 | `ProjectiveSpaceTest.GeometryClient` **native private test** | `BasicOpenBasis`, `ProjectiveNullstellensatz`, `Irreducible`, `HomogeneousDimension` | Positive-degree radical/basis, semiring finrank, domain/nonempty irreducibility. Not a published theorem API. |
 | `ProjectiveSpaceTest.RootClient` **native private test; built** | ordinary `import ProjectiveSpace` only | Scoped chart algebra and cover, polynomial reducedness/compactness, point chart/evaluation, graded transport; all named checks are private. |
 | `ProjectiveSpaceTest.GlobalSectionsClient` **native test client** | ordinary public import `ProjectiveSpace.GlobalSections` | Geometric-cover constructor, positive-degree chart preimage/restriction, degree-zero base arrow, native strong-hypothesis recovery; public Lean names in a test-only namespace, not imported by the mathematical library root or intended as library API. |
 | `ProjectiveSpaceTest.UnitScalingClient` **native test client** | ordinary public import `ProjectiveSpace.UnitScaling` | Five direct-public-import examples: same source open, transferred cover, complete chart arrow, independently covered whole arrows, one-cover whole arrows. Its test-namespace Lean names are not imported by the mathematical root or intended as library API. |
-| `ProjectiveSpaceTest.DegreeScaledMapClient` **candidate test client** | ordinary public import `ProjectiveSpace.DegreeScaledMap` | Seven examples: generic scheme arrow, image-irrelevant complement, whole-affine chart, homogeneous fraction, open preimage inside the domain, degree-zero base triangle and uniqueness; includes a private whole-chart witness. Test-only namespace, not mathematical-library API. |
+| `ProjectiveSpaceTest.DegreeScaledMapClient` **published producer test client** | ordinary public import `ProjectiveSpace.DegreeScaledMap` | Seven examples: generic scheme arrow, image-irrelevant complement, whole-affine chart, homogeneous fraction, open preimage inside the domain, degree-zero base triangle and uniqueness; includes a private whole-chart witness. Test-only namespace, not mathematical-library API. |
+| `ProjectiveSpaceTest.DegreeScaledMapPointClient` **accepted point test client** | ordinary public import `ProjectiveSpace.DegreeScaledMapPoint` | Three examples: full ordinary-prime equality, membership of arbitrary `a : A` and membership of a degree-zero element. Test-only namespace; not mathematical-library API. |
 | `Tests.GradedTransportAxioms` **diagnostic** | `GradedProjIso`, `SymmetricAlgebraProj` | Ordinary public imports and literal transport `#print axioms` commands; listing is not a new axiom check. |
 | `Tests.SymmetricAlgebraAxioms` **diagnostic** | `import all` of `SymmetricAlgebraClosedPoint`, `SymmetricAlgebraAffineClosedPoint` | Internal-name axiom diagnostics, including private names; not an ordinary public-API client. |
 | `examples.GeometryExamples` **reader example** | `BasicOpenBasis`, `ProjectiveNullstellensatz`, `HomogeneousDimension`, `Irreducible` | Complete private geometry examples with scoped grading. |
@@ -69,13 +76,13 @@ downstream usage, not new public theorems. New users may import
 `ProjectiveSpace` for the intended whole API or an individual leaf; use
 `open scoped ProjectiveSpace` where polynomial grading is needed. The
 `ProjectiveSpace` target names root and all leaves, `ProjectiveSpaceTest` all
-six clients, `ProjectiveSpaceAxiomTests` both diagnostic modules, and
+seven clients, `ProjectiveSpaceAxiomTests` both diagnostic modules, and
 `ProjectiveSpaceReaderExamples` all three examples; defaults name every target.
 The resolved 13-package manifest pins mathlib, official Graded Rings and official
 Scheme Properties directly and inherits their exact supporting dependencies.
 Full-graph evidence and independent review apply to their recorded inputs;
-the accepted 37-file code graph has the exact native and review evidence above.
-Unchanged Lean/build/dependency/checker inputs may reuse that evidence across
-this documentation-only correction. Official release acceptance and verified
-publication are revision-specific decisions documented separately.
-This lightweight map does not assert those decisions or source coverage.
+the accepted 37-file producer graph has the native and review evidence above
+and its official release is verified. The accepted 39-file point graph has
+separate native run 647 and review 4399 at the exact code revision above;
+the historical 33/35/37-file evidence alone does not certify it. This
+lightweight map claims no point-prime release or source coverage.
