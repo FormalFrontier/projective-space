@@ -76,12 +76,12 @@ finite-generation results or further Veronese-generation/embedding claims.
 Source-specific correspondence and coverage are separate from this
 source-independent mathematical library.
 
-## Code verification
+## Using the module
 
-The 41-file graph at code revision
-`66933ebea062f913f4f155480d6e2a7bbd667907` passed all four native build
-targets and a complete actual-origin, private/generated-inclusive transitive
-standard-axiom audit in run 708 on September 28, 2026. Independent destination
-review 4474 approved that code, which was accepted into main on the same day.
-These code facts do not themselves accept a later documentary release candidate,
-establish a verified publication or decide source correspondence.
+The [production module](../ProjectiveSpace/Veronese.lean) exports the chart,
+point and whole-scheme results; the [direct client](../ProjectiveSpaceTest/VeroneseClient.lean)
+checks seven geometric uses. Graded Rings supplies the selected-component
+algebra through the pinned official dependency. The [reader guide](../README.md)
+gives the cache-first four-target build recipe and distinguishes the historical
+proof-integrity evidence from review of changed documentation. Source-specific
+correspondence remains separate.

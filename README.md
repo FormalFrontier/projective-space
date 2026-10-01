@@ -21,7 +21,9 @@ coverage decisions are separate.
   `ProjectiveSpace.projectiveSpectrumHomeomorphOfInverseGradedRingHom` and
   `ProjectiveSpace.projClosedPointsEquivOfInverseGradedRingHom`.
   Scheme transport uses one universe for underlying rings; point transport
-  permits independent ring universes. See `ProjectiveSpace.GradedProjIso`.
+  permits independent ring universes. See the
+  [module](ProjectiveSpace/GradedProjIso.lean) and
+  [point client](ProjectiveSpaceTest/PointClient.lean).
 - Compatible graded tails with equivalent degree-zero rings and high-degree
   pieces induce an isomorphism of **entire projective schemes**
   `E.projIso n hNn hn` for `N ≤ n` and `0 < n`, with both forward and inverse
@@ -29,24 +31,30 @@ coverage decisions are separate.
   low-degree original components, finite generation, domain, reducedness or
   `Nontrivial` is needed. The algebraic `TailEquiv` is provided by the official
   Graded Rings dependency; this library proves the geometric transfer. See
-  [the coherent-tail guide](docs/CoherentTailProj.md).
+  [the coherent-tail guide](docs/CoherentTailProj.md),
+  [module](ProjectiveSpace/CoherentTailProj.lean) and
+  [client](ProjectiveSpaceTest/CoherentTailProjClient.lean).
 - Every positive selected-component Veronese has a whole-scheme isomorphism
   `AlgebraicGeometry.Proj.Veronese.schemeIso`, compatible with the degree-zero
   coefficient map; its charts accommodate zero divisors and nilpotents.
   Selected-component ring algebra comes from Graded Rings. See
-  [the Veronese guide](docs/Veronese.md).
+  [the Veronese guide](docs/Veronese.md),
+  [module](ProjectiveSpace/Veronese.lean) and
+  [client](ProjectiveSpaceTest/VeroneseClient.lean).
 - A positive degree-scaled ring hom constructs a projective scheme arrow on
   the **actual open complement** of its image-irrelevant zero locus, with
   coefficient naturality and arbitrary-element ordinary point-prime
   contraction. The generic arrow is not asserted to extend to all of `Proj`.
-  See [the degree-scaled guide](docs/DegreeScaledMap.md) and
-  [the point-prime guide](docs/DegreeScaledMapPoint.md).
+  See the [degree-scaled guide](docs/DegreeScaledMap.md),
+  [point-prime guide](docs/DegreeScaledMapPoint.md) and
+  [direct client](ProjectiveSpaceTest/DegreeScaledMapPointClient.lean).
 - Positive-degree homogeneous basic opens form a basis on arbitrary graded
   `Proj`, including the zero ring; the positive-degree projective radical
   criterion identifies vanishing with membership in an **ordinary** radical.
   The latter needs a positive-degree homogeneous element, not a field or
-  Noetherianity. See `ProjectiveSpace.BasicOpenBasis` and
-  `ProjectiveSpace.ProjectiveNullstellensatz`.
+  Noetherianity. See the [basis module](ProjectiveSpace/BasicOpenBasis.lean),
+  [radical module](ProjectiveSpace/ProjectiveNullstellensatz.lean) and
+  [geometry client](ProjectiveSpaceTest/GeometryClient.lean).
 
 ## Mathematical scope
 
@@ -137,136 +145,25 @@ base. Neither finite type nor quasicompactness is claimed for unrestricted
 coordinate types. Total fractions of a field cannot replace localization
 over a base ring with zero divisors.
 
-## Imports and build status
+## Imports and build
 
-All 28 mathematical leaves and the aggregate `ProjectiveSpace.lean` root are
-written as Lean `module` files
-with deliberate `public import` interfaces. `import ProjectiveSpace` is the
-intended ordinary import of the whole mathematical API; clients may instead
-import a specific `ProjectiveSpace.*` leaf. The 41-file Veronese graph at
-accepted code revision `66933ebea062f913f4f155480d6e2a7bbd667907`
-passed native CI run 708 on all four targets (3,498 jobs) and all 41 Lean
-files. Its complete actual-origin transitive audit covered 819 declaration
-origins, including 305 private-prefix names and generated declarations; only
-`propext`, `Classical.choice` and `Quot.sound` occurred. Independent destination
-review 4474 approved that exact code, and Atlas accepted and integrated it
-into protected main on September 28, 2026 at 08:56:12 UTC. These are code
-facts; the earlier official Projective release `787322743df1506fdca2cf9d5666e2e38edbc42f`
-has the same tree as the accepted 41-file baseline. It predates this
-coherent-tail transfer. At exact candidate
-`4d7243be9503b8898e48d6495e54a182a5eb8cc6`, cache-first native run 774
-(UI run 27, artifact 157826) succeeded September 28, 2026 at 13:25:28 UTC:
-all four targets built, including the upstream flat fixture and destination
-client, and the transitive audit checked 859 kernel declaration origins across
-all 43 Lean modules, including 313 private-prefix names and generated
-declarations, with
-only `propext`, `Classical.choice` and `Quot.sound`. The H-bound independent
-review 4565 requested documentation corrections; that verdict does not approve
-a repaired candidate. Exact-revision review, Atlas's code acceptance and
-protected integration, and a separately reviewed official release are distinct
-from these CI results.
-At development revision
-`c74a33c74b7d9bde054a284ada6d28bac7bd2f7d` on September 27, 2026, all
-33 Lean files and four default targets passed the full build and transitive
-standard-axiom audit, including private declarations. Independent destination
-review and maintainer code acceptance were recorded for that revision.
-Those results are revision-specific: they do not by themselves check the
-later 35-file accepted baseline, nor the subsequent 37-file graph. The earlier
-documentation successor `7eab8f1f08cbc12e63520f189efbc3d3ea1841bf` was
-published as official release `18b517099fddac61a86f7c20d591178db9825b9a`;
-the 35-file baseline was separately accepted and published, with official
-release `a02283d8e40759d4ef58a76e8183b11dd7021a17` sharing its tree.
-The frozen incubator input was separately accepted on September 27, 2026.
-At accepted destination code revision
-`d866ec190766ef2a76978fadc05627717f300468`, native CI run 632 built
-all four targets and 37 Lean files (3,493 jobs) and audited 770 declaration
-origins, including 294 private names, with only the three standard axioms.
-Independent destination review 4376 and Atlas's code acceptance and protected
-integration followed on September 27, 2026. That **producer** is now in the
-verified official release `ad60036d9745d4f0bca2f398538cff4377c93603`,
-whose tree equals the accepted baseline. The point-prime leaf was separately
-checked and accepted at destination code revision
-`8712cd1d042032ba4577145b3a3034ed2609e671`: independent affected review
-4399 and native run 647 checked all four targets (3,495 jobs) and all 39 Lean
-files, including 780 declaration origins (302 private-prefix names), with only
-`propext`, `Classical.choice` and `Quot.sound` as transitive axioms. Atlas
-accepted the code and integrated it into protected main on September 28,
-2026. The prior point-prime code has since appeared in verified official
-release `94d6259a42b04eeaab8fab2c6e0f7e741abf6844`, with the tree of
-the accepted main baseline; that earlier result alone does not check the
-Veronese graph. The scoped
-polynomial grading requires
-`open scoped ProjectiveSpace` when used.
+The 28 mathematical leaves are public `module` files, and
+[`ProjectiveSpace.lean`](ProjectiveSpace.lean) publicly imports all of them.
+Use `import ProjectiveSpace` for the whole library or import an individual
+`ProjectiveSpace.*` leaf. Use `open scoped ProjectiveSpace` for the polynomial
+total-degree grading. The hand-maintained [module and API map](docs/MODULES.md)
+lists each leaf, its direct imports and hypotheses, all nine test clients, two
+diagnostic modules and three [complete reader examples](examples/). The clients,
+diagnostics and private examples are not additional production theorem APIs.
 
-Two existing private native clients import selected leaves:
-`ProjectiveSpaceTest.PointClient` and `ProjectiveSpaceTest.GeometryClient`.
-`ProjectiveSpaceTest.RootClient` imports **only** the aggregate
-root and checks chart and scoped-grading use, point evaluation, graded transport,
-reducedness and quasicompactness. Its named checks are private. The new test-only
-`ProjectiveSpaceTest.GlobalSectionsClient` directly imports the existing leaf and
-checks its geometric-cover constructor, chart and base identities, and
-strong-hypothesis recovery. Its declarations are public Lean names in the
-`ProjectiveSpaceTest.ProjGlobalSections` namespace, but the mathematical library
-root does not import this test module; they are not intended as library API.
-The fifth client, `ProjectiveSpaceTest.UnitScalingClient`, directly imports
-`ProjectiveSpace.UnitScaling` and tests five public declarations in the
-test-only `ProjectiveSpaceTest.ProjUnitScaling` namespace. It is not a
-mathematical-library API or imported by the root.
-The sixth client, `ProjectiveSpaceTest.DegreeScaledMapClient`, directly imports
-`ProjectiveSpace.DegreeScaledMap`. Its seven examples use the generic arrow,
-domain complement, whole chart, localization fraction, open preimage,
-degree-zero triangle and uniqueness; the chart witness is private. Its
-test-only namespace is not imported by the mathematical root.
-The seventh client, `ProjectiveSpaceTest.DegreeScaledMapPointClient`, directly
-imports `ProjectiveSpace.DegreeScaledMapPoint`. Its three examples check full
-ordinary-ideal equality, membership for an arbitrary ring element and a
-degree-zero element. Its test-only namespace is not imported by the root.
-The eighth client, `ProjectiveSpaceTest.VeroneseClient`, directly imports
-`ProjectiveSpace.Veronese`. Its seven examples exercise chart and zero-chart
-equivalences, the whole and `n = 1` scheme isomorphisms, arbitrary point-ideal
-membership, positive basic-open preimages and the coefficient-ring triangle.
-Its test-only namespace is not imported by the mathematical root. The
-aggregate-only `RootClient` has an additional private whole-scheme witness.
-The ninth client, `ProjectiveSpaceTest.CoherentTailProjClient`, imports the
-coherent-tail producer and the official Graded Rings **flat test fixture**
-`CoherentTailVeronese` only in test code. Its missing-linear case retains
-the actual universal high-identity nonextension theorem, and the coefficient
-swap and zero-ring cases exercise complete scheme inverse laws and the actual
-coefficient triangle. The root client separately tests a private generic
-coherent-tail iso without importing this fixture.
-
-Three additional private, complete ordinary-native-import examples are stored
-in [geometry](examples/GeometryExamples.lean),
-[coordinate points](examples/PointExamples.lean), and
-[graded transport](examples/TransportExamples.lean). Read their `module`,
-imports, universes, variables, namespace, proofs and same-file `#print axioms`
-commands together; these are not extra public theorem APIs. The geometry
-example explicitly uses `open scoped ProjectiveSpace` for the non-global
-polynomial total-degree grading, including the zero-ring positive-open case,
-the radical direction, semiring finrank and domain/nonempty irreducibility.
-The point example uses generator simplification and the definitional cone-line
-kernel over a field; the transport example checks points and closed points
-across independent universes in the contravariant direction. No excerpt-only
-Lean snippets substitute for these complete modules.
-
-`lean-toolchain` pins Lean `v4.34.0-rc2`; `lake-manifest.json` and
-`lakefile.toml` fix mathlib
-`83abb3e776bdefcbc447a1e44d0debe4010039e5`, graded-rings
-`db2a1d555639e2a381abbf755982ffdcf126621e` and scheme-properties
-`6b204a3e49f022e51d78a9f93e77513b99a87e00` (plus ten inherited
-packages in the resolved 13-package manifest). Graded Rings and Scheme
-Properties are pinned to their official private GitHub releases; access to
-those repositories is presently required to build this library.
-Four existing Lake targets cover all 43 Lean
-files: `ProjectiveSpace` (root and 28 leaves), `ProjectiveSpaceTest` (two
-earlier clients, the root-only client, the global-sections client and the
-unit-scaling client, the degree-scaled-map client, the point-prime client and
-the Veronese client and coherent-tail client),
-`ProjectiveSpaceAxiomTests`
-(both diagnostic test modules), and `ProjectiveSpaceReaderExamples` (all
-three complete examples). Literal `defaultTargets` names all four. With access
-to the private dependencies, install the pinned Lean toolchain using `elan`,
-fetch the matching mathlib cache successfully **before** any build, then build:
+The four default Lake targets are `ProjectiveSpace`, `ProjectiveSpaceTest`,
+`ProjectiveSpaceAxiomTests` and `ProjectiveSpaceReaderExamples`. The project pins
+Lean `v4.34.0-rc2`, mathlib `83abb3e776bdefcbc447a1e44d0debe4010039e5`,
+official Graded Rings `db2a1d555639e2a381abbf755982ffdcf126621e` and
+official Scheme Properties `6b204a3e49f022e51d78a9f93e77513b99a87e00`;
+`lake-manifest.json` records the complete resolved 13-package graph. Access to
+the pinned private dependencies is presently required. Fetch the matching
+mathlib cache *before* building:
 
 ```sh
 elan toolchain install "$(cat lean-toolchain)"
@@ -274,18 +171,21 @@ lake exe cache get
 lake --wfail build
 ```
 
-The default build covers all 43 Lean files. To build an individual target, use
-`lake --wfail build ProjectiveSpace` (or one of the other three target names).
-`--wfail` is Lake's warning-fatal option; `-KwarningAsError=true` alone does
-not make Lake fail on source warnings. On the initial pinned-graph checkout,
-the matching mathlib cache is several gigabytes; once dependencies are cached,
-the 33-file, four-target build at the revision recorded above took about 52
-seconds after cache preparation in native CI. This is not an end-to-end clean
-installation time; dependency fetches and other machines may take longer.
-The three reader examples
-independently import selected leaves, not the aggregate root. The two `Tests`
-files contain diagnostic axiom commands; their selected-name prints are not a
-complete transitive audit of all shipped declarations, including private ones.
+The matching mathlib cache occupies several gigabytes on an initial pinned-
+graph checkout. As historical guidance only, a **33-file** four-target build
+in native CI took about **52 seconds after cache preparation**; this is not a
+43-file timing, a cold installation estimate or a RAM measurement. Dependency
+fetches and other machines may take longer. `LEAN_NUM_THREADS=2` may limit
+Lean runtime threads during a build, but it is not an aggregate memory cap.
+
+The two `Tests` modules contain selected-name `#print axioms` diagnostics;
+those prints are not a complete transitive audit of every shipped declaration.
+The historical 43-file graph received a four-target build and a transitive
+standard-three audit of 859 declaration origins, including 313 private-prefix
+names and generated declarations, at its recorded original code revision.
+Changed headers and module comments in this repository require an applicability
+decision for that evidence; the historical result is not a check of modified
+whole-file bytes. Release and source-coverage decisions remain separate.
 
 ## Why the principal results hold
 
@@ -306,53 +206,23 @@ graded map/comap identities give the point equivalence, whose homeomorphism
 transports closed points. The [module map](docs/MODULES.md) locates the other
 interfaces.
 
-## Integration and attribution
+## Contributors and provenance
 
-Bounded source, mathematical and review findings apply only to their exact
-revisions and scopes. The historical full check recorded above covered 33 shipped modules
-and 669 module/declaration origins, including 249 private declarations, with
-only `propext`, `Classical.choice` and `Quot.sound` as transitive axioms.
-Focused producer checks alone would not substitute for a full-graph check.
-Unchanged mathematical/build/dependency inputs may reuse applicable evidence;
-the degree-scaled producer, client, root and dependency change received the
-full-graph native run 632 and author-distinct review 4376 at the exact accepted
-code revision recorded above. Its release is separately accepted and verified
-as `ad60036d9745d4f0bca2f398538cff4377c93603`. The added point-prime
-leaf/client/root graph at `8712cd1d042032ba4577145b3a3034ed2609e671`
-received its own independent affected review 4399, complete native run 647
-and Atlas's code acceptance and protected integration on September 28, 2026.
-Documentary successors with unchanged Lean/build/dependency/checker inputs
-could reuse that evidence; the point-prime release is now officially verified
-at `94d6259a42b04eeaab8fab2c6e0f7e741abf6844`. The Veronese graph has
-its own native run 708 and author-distinct review 4474 at the accepted code
-revision recorded above. Documentation-only successors may reuse that
-computational result when their Lean, build, dependency and checker inputs
-remain unchanged; their release review and acceptance remain separate. No
-prior or current code acceptance or publication establishes source coverage.
+Authors: Formal Frontier Agents.
 
-The `formalization.yaml` metadata and module/API map describe this library without
-asserting source completeness. The `NOTICE` records bounded attribution, not a
-blanket redistribution-rights clearance; release review covers retained third-party
-material and the actual public history. Tags are deferred. No fresh generated API
-documentation or separate stored-proof replay is required in addition to the
-applicable build, complete axiom audit and independent release assessment.
+The original project mathematical development was AI-assisted work by Atlas;
+later Formal Frontier AI agents separately authored native adaptations,
+geometric-cover and unit-scaling constructions, degree-scaled and point-prime
+proofs, positive-Veronese and coherent-tail geometry, reader examples and
+client modules. Original coherent-tail and Veronese algebra is supplied by
+Graded Rings, not reauthored here. Atlas assembled and accepted the library;
+independent reviewers examined bounded candidate revisions. See
+[CONTRIBUTORS.md](CONTRIBUTORS.md) for distinct contribution roles and
+[NOTICE](NOTICE) for retained mathlib attributions and license boundaries.
+These credits do not assert copyright ownership or source coverage.
 
-Authors: Formal Frontier Agents. Original mathematical files and repository
-history were authored by Atlas. Worker A Task
-`hive-request-6d6a73bb45d27e7fc8f3e3021270e3c4a3701c49` (UID
-`4ba77f48-bce0-4e37-8101-3df08089a5d0`) prepared six native module
-interfaces and two earlier clients; Worker B Task
-`hive-request-00a7647d0c694c4eaf4654c0548c0ab129c53130` (UID
-`be7b6056-8d20-41e1-b1be-2d825db69e8b`) wrote the selected guide,
-module map and original private example bodies; Worker A Task
-`hive-request-a11cc160eed1b0c777c9d375b66b4c5b41de124b` (UID
-`01de320f-d2fb-47c5-91b1-98d7a4984f70`) selected and corrected the
-earlier reader payload, its headers and Lake configuration. Later native
-adaptations, the bounded source assembly, and the UnitScaling and Veronese transfers
-are credited in [CONTRIBUTORS.md](CONTRIBUTORS.md). These credits record
-contributions, not an assertion of copyright ownership.
-
-Original project contributions are offered under the complete Apache License
-2.0 in `LICENSE`; dependency licenses and notices remain separate. The adapted
-mathlib proof text retains its own attribution as described in `NOTICE`; no
-motivating source PDFs are reproduced or other dependency files relicensed.
+Original project contributions are offered under [Apache-2.0](LICENSE).
+Mathlib, Graded Rings and Scheme Properties are separately licensed dependencies.
+The adapted mathlib chart and gluing text retains Andrew Yang's 2024 copyright
+and license notice; the homogeneous-localization lineage retains Jujian
+Zhang's 2022 credit and Eric Wieser's role. No motivating source PDF is included.

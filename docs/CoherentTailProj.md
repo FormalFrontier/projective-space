@@ -64,9 +64,11 @@ an original-ring graded homomorphism extending the tail across exceptional
 positive low degrees, cutoff independence, finite generation, generation in
 degree one, a domain, reducedness, a field, or `Nontrivial`.
 
-## Independent examples and verification
+## Examples and reproduction
 
-`ProjectiveSpaceTest.CoherentTailProjClient` is a test-only client; it imports
+The [production module](../ProjectiveSpace/CoherentTailProj.lean) exposes these
+results. [`ProjectiveSpaceTest.CoherentTailProjClient`](../ProjectiveSpaceTest/CoherentTailProjClient.lean)
+is a test-only client; it imports
 the **flat** `CoherentTailVeronese` module from the published Graded Rings
 `GradedRingsTests` target (source directory `test`, namespace
 `GradedRingsTest.CoherentTailVeronese`). It reuses its missing-linear
@@ -91,15 +93,13 @@ lake build ProjectiveSpace ProjectiveSpaceTest \
   ProjectiveSpaceAxiomTests ProjectiveSpaceReaderExamples
 ```
 
-**Lifecycle checkpoint, September 28, 2026:** the original isolated
-geometry was accepted after its own independent review and two-target
-standard-axiom check, and the required upstream algebra is published as the
-official Graded Rings commit `db2a1d555639e2a381abbf755982ffdcf126621e`.
-The adapted destination graph, including cross-package fixture resolution,
-requires its **own** four-target build, complete private/generated-inclusive
-transitive standard-axiom audit, independent review and maintainer acceptance
-before integration, followed by a separately reviewed official release. The
-historical isolated and destination checks do not establish those new facts.
+The upstream algebra is supplied by official Graded Rings release
+`db2a1d555639e2a381abbf755982ffdcf126621e`. The original 43-file
+destination graph, including the cross-package fixture and client, passed a
+four-target build and complete private/generated-inclusive transitive
+standard-three audit on its recorded original inputs. Later changed-header
+revisions require an evidence-applicability decision and their own independent
+review; neither a guide nor the upstream check alone certifies such changes.
 
 The mathematical motivation includes Ravi Vakil, *The Rising Sea*, October 21,
 2025 draft, §7.4.4, Exercise 7.4.F (printed p. 215); coefficient conventions

@@ -1,9 +1,6 @@
 /-
-Released under Apache 2.0 license as described in the file LICENSE.
+SPDX-License-Identifier: Apache-2.0
 Authors: Formal Frontier Agents
-Contributors: formalization-worker-a (AI-assisted)
-Hive Task: hive-request-92c08639fb81b0816b051996b79498bf6ffc5a8f
-Task UID: 4a594451-3ef9-4b59-84ad-5b19680bf05b
 -/
 module
 

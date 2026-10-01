@@ -1,7 +1,6 @@
 /-
-Released under Apache 2.0 license as described in the file LICENSE.
+SPDX-License-Identifier: Apache-2.0
 Authors: Formal Frontier Agents
-Contributors: Atlas and Formal Frontier contributors (AI-assisted)
 -/
 module
 

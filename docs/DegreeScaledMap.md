@@ -4,17 +4,10 @@ Import `ProjectiveSpace.DegreeScaledMap` for the leaf, or `ProjectiveSpace` for
 the aggregate library. The ordinary-import examples in
 [`ProjectiveSpaceTest.DegreeScaledMapClient`](../ProjectiveSpaceTest/DegreeScaledMapClient.lean)
 exercise the scheme arrow, chart, fractions, basic opens, base triangle and
-uniqueness. The destination code revision
-`d866ec190766ef2a76978fadc05627717f300468` received independent
-promotion review 4376, a complete native four-target build and transitive
-standard-axiom audit in run 632, and maintainer code acceptance on
-September 27, 2026. This guide does not itself certify a later documentary
-revision. The reviewed producer is now in verified official release
-`ad60036d9745d4f0bca2f398538cff4377c93603`. The separate point-prime
-leaf received its own independent affected review 4399 and native run 647
-on exact code revision `8712cd1d042032ba4577145b3a3034ed2609e671`;
-Atlas accepted and integrated it on September 28, 2026. Neither code
-acceptance nor this guide certifies a later point-prime release.
+uniqueness. The [producer](../ProjectiveSpace/DegreeScaledMap.lean) and its
+direct client are part of this library. The separate
+[point-prime module](../ProjectiveSpace/DegreeScaledMapPoint.lean) extends the
+computation to arbitrary ordinary elements, not the arrow to all of `Proj`.
 
 ## Data and domain
 

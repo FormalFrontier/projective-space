@@ -57,15 +57,13 @@ is used. Empty opens, nilpotents and zero rings are included. This does not
 classify maps into projective space, add a polynomial specialization, or
 establish source-specific correspondence.
 
-## Verification and attribution
+## Using this result
 
-The client examples use the direct leaf import. The README records how to
-fetch the pinned mathlib cache and check the library's four default targets;
-the preexisting 33-file evidence applies only to its unchanged historical
-inputs, not by itself this 35-file transfer. The original producer and
-test client were prepared by the worker-a Task named in their file headers;
-the source-independent transfer and earlier reviews are credited in
-[`CONTRIBUTORS.md`](../CONTRIBUTORS.md). The producer retains Andrew Yang's
-2024 mathlib chart attribution and Apache-2.0 notice; see [`NOTICE`](../NOTICE).
-Destination review, new-graph build, complete axiom audit and release remain
-separate decisions, not claims made by this guide.
+The [client](../ProjectiveSpaceTest/UnitScalingClient.lean) directly imports
+the [producer](../ProjectiveSpace/UnitScaling.lean); the
+[reader guide](../README.md) supplies the cache-first four-target build recipe.
+A Formal Frontier AI-agent contributor developed the original producer and
+client, and another prepared its destination transfer. Andrew Yang's 2024
+mathlib chart attribution and Apache-2.0 notice remain in the producer; see
+[`CONTRIBUTORS.md`](../CONTRIBUTORS.md) and [`NOTICE`](../NOTICE). This guide
+does not by itself decide source correspondence or rights clearance.

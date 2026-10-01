@@ -1,9 +1,7 @@
 /-
 SPDX-License-Identifier: Apache-2.0
 Authors: Andrew Yang (adapted gluing and chart arguments from Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Basic),
-  Formal Frontier Agents,
-  Formal Frontier Hive Task hive-request-b988d896159b1606f206dbd80748f923ee680d6f
-  (UID 66dd1fe1-34c7-4874-b17b-5400ac0aa165, formalization-worker-a)
+  Formal Frontier Agents
 Copyright (c) 2024 Andrew Yang. All rights reserved.
 Adapted material released under Apache 2.0, as in mathlib's LICENSE.
 -/

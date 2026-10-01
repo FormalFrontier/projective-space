@@ -1,16 +1,10 @@
 # Underlying primes of positive-degree-scaled Proj morphisms
 
-**Public import:** `ProjectiveSpace.DegreeScaledMapPoint` (or the aggregate
-`ProjectiveSpace`). **Status:** the producer is in verified official release
-`ad60036d9745d4f0bca2f398538cff4377c93603`. This separate point-prime
-leaf received independent affected-destination review 4399 and native run 647
-at exact code revision `8712cd1d042032ba4577145b3a3034ed2609e671`:
-all four targets and 39 Lean files built, and the complete transitive audit
-included private and generated declarations with only the three standard
-axioms. Atlas accepted and integrated that code on September 28, 2026.
-The original isolated point proof had its own earlier review and acceptance;
-the destination review and checks are distinct. Release acceptance and
-verified publication require separate revision-specific decisions.
+**Public import:** [the point-prime leaf](../ProjectiveSpace/DegreeScaledMapPoint.lean)
+or the aggregate `ProjectiveSpace`. The [direct client](../ProjectiveSpaceTest/DegreeScaledMapPointClient.lean)
+checks both the full ideal equality and arbitrary-element membership. This
+point result uses the separate [degree-scaled producer](DegreeScaledMap.md)
+and its actual open domain, not a global morphism.
 
 For commutative rings `A` and `B` in the same underlying-ring universe, arbitrary
 independently represented `ℕ`-gradings `𝒜` and `ℬ` (whose grading-carrier types
@@ -50,32 +44,25 @@ injectivity or surjectivity assumption; it does not assert that the morphism
 extends beyond `U`. In particular, the contraction formula is *not* obtained
 by silently replacing the actual open domain with all of `Proj ℬ`.
 
-**Provenance and credit:** The original point-ideal proof and client
-are by Formal Frontier Hive Task
-`hive-request-2ca332a8ced6485f6ca92c839afc566e562ec00c`, UID
-`12e28acb-0999-4a80-b88f-3a412dbf506b`, worker-a. The bounded destination
-copy, import/namespace adaptation and guide were prepared by worker-b Hive
-Task `hive-request-197d52a7faa4409faaaac7f6900b65c94f27f679` (UID
-`f53c2615-2efd-484d-80e0-2a9ef1edc8ec`), not as new mathematical
-authorship. The point proof builds on the `DegreeScaledMap` producer by Task
-`hive-request-c02fd45fba823c878651639dde4a50bf798e1cc4` (UID
-`f1443f68-aae3-4e03-989a-43eac40bc9a9`, worker-b) and the published
-`GradedRings.HomogeneousLocalizationMap` contribution by Hive Task
-`hive-request-b0b74cdb7e102204e305196597835a728b60ad9a` (UID
-`02a35b9d-d5a4-4ab9-bebc-4d467cf904c6`, worker-a). Native Proj chart/gluing
-technology credits Andrew Yang; homogeneous-localization technology credits
-Jujian Zhang and Eric Wieser. Mathlib supplies the native graded decomposition,
-homogeneous ideals and prime-ideal lemmas. The code carries the Apache-2.0 SPDX
-identifier consistent with the imported producer and upstream mathlib license;
-this description makes no blanket rights or clearance claim about other material.
+**Provenance and credit:** A Formal Frontier AI-agent contributor wrote
+the original point-prime proof and client; another prepared the destination
+import adaptation and guide. The point proof builds on the separately authored
+`DegreeScaledMap` producer and official Graded Rings localization contribution.
+Mathlib chart/gluing work credits Andrew Yang, and mathlib homogeneous
+localization credits Jujian Zhang and Eric Wieser. Mathlib also supplies
+native graded decomposition and homogeneous ideal/prime lemmas. See
+[`CONTRIBUTORS.md`](../CONTRIBUTORS.md) and [`NOTICE`](../NOTICE) for distinct
+roles and license notices, not blanket rights clearance.
 
-**Reproduction after checks are authorized:** Use this repository's unchanged
+**Reproduction:** Use this repository's unchanged
 `lakefile.toml`, `lake-manifest.json` and `lean-toolchain`
 (`leanprover/lean4:v4.34.0-rc2`, mathlib
 `83abb3e776bdefcbc447a1e44d0debe4010039e5`, official Graded Rings
-`f77410141b89532409fff563d368930a728f55b7` and official Scheme Properties
-`6b204a3e49f022e51d78a9f93e77513b99a87e00`). With access to the
-private dependencies, from the Projective Space root:
+`db2a1d555639e2a381abbf755982ffdcf126621e` and official Scheme Properties
+`6b204a3e49f022e51d78a9f93e77513b99a87e00`). The earlier point-only
+revision used Graded Rings `f77410141b89532409fff563d368930a728f55b7`;
+its historical check does not describe this resolved graph. With access to
+the private dependencies, from the Projective Space root:
 
 ```sh
 elan toolchain install "$(cat lean-toolchain)"
@@ -83,10 +70,8 @@ lake exe cache get
 lake --wfail build
 ```
 
-The cache fetch must succeed before building the four default targets. These
-are reproduction instructions, not a claim that a later documentary or release
-revision was rebuilt. Native run 647 checked the accepted code revision above,
-including private and generated declarations, with transitive axioms limited
-to `propext`, `Classical.choice` and `Quot.sound`. Release review, acceptance
-and verified publication are distinct from that code acceptance; source
-correspondence and coverage are separate.
+The cache fetch must succeed before building the four default targets.
+These are reproduction instructions, not a new benchmark or check receipt.
+Earlier proof-integrity evidence applies to its exact inputs, and any revised
+headers require independent review and an evidence-applicability decision.
+Source correspondence and coverage remain separate.

@@ -2,12 +2,9 @@
 SPDX-License-Identifier: Apache-2.0
 Copyright (c) 2024 Andrew Yang. All rights reserved.
 Copyright (c) 2022 Jujian Zhang. All rights reserved.
-Authors: Formal Frontier Hive Task hive-request-c02fd45fba823c878651639dde4a50bf798e1cc4
-  (UID f1443f68-aae3-4e03-989a-43eac40bc9a9, worker-b)
+Authors: Formal Frontier Agents
   Andrew Yang (native Proj chart and gluing construction in mathlib)
   Jujian Zhang and Eric Wieser (homogeneous-localization construction in mathlib)
-  Formal Frontier Hive Task hive-request-b0b74cdb7e102204e305196597835a728b60ad9a
-  (UID 02a35b9d-d5a4-4ab9-bebc-4d467cf904c6, worker-a; degree-scaled localization)
 Adapted material released under Apache 2.0, as in mathlib's LICENSE.
 -/
 module

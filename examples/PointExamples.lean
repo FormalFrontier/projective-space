@@ -1,11 +1,6 @@
 /-
 SPDX-License-Identifier: Apache-2.0
 Authors: Formal Frontier Agents
-Original example proofs: Worker B Task hive-request-00a7647d0c694c4eaf4654c0548c0ab129c53130
-UID be7b6056-8d20-41e1-b1be-2d825db69e8b
-Reader selection and header: Worker A Task hive-request-a11cc160eed1b0c777c9d375b66b4c5b41de124b
-UID 01de320f-d2fb-47c5-91b1-98d7a4984f70
-Imported project mathematics: Atlas and Formal Frontier contributors (AI-assisted)
 -/
 module
 

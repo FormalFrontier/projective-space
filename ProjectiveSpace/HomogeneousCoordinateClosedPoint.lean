@@ -12,8 +12,9 @@ import Mathlib.RingTheory.Nullstellensatz
 /-!
 # Closed points of polynomial projective space
 
-Over a field, distinct vector-space projective points define distinct points
-of polynomial `Proj`, and every such homogeneous-coordinate point is closed.
+Over a field with finitely many coordinates, distinct vector-space projective
+points define distinct points of polynomial `Proj`, and every such
+homogeneous-coordinate point is closed.
 Over an algebraically closed field with finitely many coordinates, every
 closed point arises uniquely in this way.
 

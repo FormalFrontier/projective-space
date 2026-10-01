@@ -73,19 +73,14 @@ LEAN_NUM_THREADS=2 lake --wfail build +ProjectiveSpace.GlobalSections:olean
 LEAN_NUM_THREADS=2 lake --wfail build +ProjectiveSpaceTest.GlobalSectionsClient:olean
 ```
 
-These commands are reproduction instructions, not release certification.
-The README records revision-specific full-graph build and private-inclusive
-axiom evidence; documentation and a focused module build alone do not
-establish that complete audit. Exact release acceptance remains a separate
-recorded decision.
+These focused reproduction commands do not replace a complete four-target
+build and private-inclusive transitive axiom audit. The
+[module map](MODULES.md) links the producer and direct client.
 
 The gluing and chart arguments adapt `Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Basic`
 by Andrew Yang (copyright 2024, Apache-2.0); his attribution and license
-are preserved in the producer. The original adaptation, client and starting
-guide were prepared by Formal Frontier Hive Task
-`hive-request-b988d896159b1606f206dbd80748f923ee680d6f` (UID
-`66dd1fe1-34c7-4874-b17b-5400ac0aa165`, worker-a). Destination transfer,
-import registration and revised guide: Hive Task
-`hive-request-af87e868d7dce8c74c764b92299ed7eee5bf2391` (UID
-`0679634e-c393-4e51-bb75-2a5afdd30709`, worker-a). Credits do not
-assert blanket third-party rights clearance or completed destination acceptance.
+are preserved in the producer. One Formal Frontier AI-agent contributor
+prepared the original adaptation, direct client and starting guide; another
+registered the destination import and revised this guide. See
+[`CONTRIBUTORS.md`](../CONTRIBUTORS.md) and [`NOTICE`](../NOTICE) for these
+distinct roles and authentic third-party notices, not blanket rights clearance.

@@ -20,8 +20,9 @@ sources:
     type: original-proof
     relationship: independently-proves
     note: >-
-      Original project mathematical development and subsequent native adaptations;
-      this bibliographic entry does not claim coverage of any selected external source.
+      Original AI-assisted project proofs by Atlas and later distinct Formal Frontier
+      agents, plus native adaptations and reader examples. Contributor roles are
+      described in CONTRIBUTORS.md; no selected external-source coverage is claimed.
   - title: The Lean mathematical library (mathlib4)
     authors:
       - The mathlib community
@@ -50,12 +51,13 @@ sources:
     authors:
       - Ravi Vakil
     type: book
-    location: "October 21, 2025 draft, §7.4.4, Exercise 7.4.D, printed p. 215"
+    location: "October 21, 2025 draft, §7.4.4, Exercises 7.4.D and 7.4.F, printed p. 215; coefficient conventions pp. 151–152"
     relationship: background
     note: >-
-      Mathematical inspiration for positive-Veronese Proj invariance, not a
-      selected-source coverage assertion or a redistribution of source text.
-      The source's finite-generation context is not a Lean hypothesis here.
+      Mathematical inspiration for positive-Veronese Proj invariance; the
+      finite-generation context is not a Lean hypothesis. Exercise 7.4.F on
+      printed p. 215 motivates coherent tails; coefficient conventions occur
+      on pp. 151–152. No source text or coverage assertion is included.
 automation:
   methods:
     - method: agent
@@ -66,62 +68,16 @@ automation:
     this metadata describes involvement, not automated proof certification.
 status:
   scope: >-
-    28-leaf projective-space library with aggregate public import,
-    nine direct/root clients, 43 Lean files and official pinned private
-    dependencies. The coherent-tail candidate pins official Graded Rings
-    db2a1d555639e2a381abbf755982ffdcf126621e. Exact candidate
-    4d7243be9503b8898e48d6495e54a182a5eb8cc6 passed cache-first native
-    run 774 (UI run 27, artifact 157826) on September 28, 2026 at 13:25:28 UTC:
-    all four targets, including the actual upstream flat fixture and destination
-    client, built; the transitive standard-three audit covered all 43 Lean
-    modules and 859 kernel declaration origins, including 313 private-prefix
-    names and generated declarations. Independent H-bound review 4565 requested documentary
-    correction, not acceptance of a repaired candidate; owner acceptance,
-    protected integration and corresponding official release are separate
-    exact-revision decisions. Exact prior Veronese destination code revision
-    66933ebea062f913f4f155480d6e2a7bbd667907 passed native run 708 on
-    all four targets (3498 build jobs) and all 41 Lean files: 819 actual
-    transitive declaration origins, 305 private-prefix names, generated
-    declarations included, only propext, Classical.choice and Quot.sound.
-    Independent review 4474 approved that code; Atlas accepted and integrated
-    it on September 28, 2026 at 08:56:12 UTC. Subsequent documentary
-    release candidates require separate review and acceptance. The prior
-    41-file main tree is also the official Projective release
-    787322743df1506fdca2cf9d5666e2e38edbc42f. The earlier
-    accepted 26-leaf library's
-    39-file, four-target graph at accepted code revision
-    8712cd1d042032ba4577145b3a3034ed2609e671 passed its own native
-    run 647 (3495 build jobs) and complete transitive standard-axiom audit
-    of 780 origins, including 302 private-prefix names, with only propext,
-    Classical.choice and Quot.sound. Independent affected-destination review
-    4399 and Atlas's code acceptance and protected integration followed on
-    September 28, 2026. These are code facts, not point-prime release or
-    source-coverage decisions. The
-    historical 33-file, four-target graph at
-    c74a33c74b7d9bde054a284ada6d28bac7bd2f7d passed its full build and
-    private-inclusive transitive standard-axiom audit on September 27, 2026.
-    Its documentation successor 7eab8f1f08cbc12e63520f189efbc3d3ea1841bf
-    was published as official release 18b517099fddac61a86f7c20d591178db9825b9a;
-    the later 35-file accepted baseline was separately published with the same
-    tree as its accepted main. This open-domain transfer was prepared from
-    frozen incubator input separately accepted on September 27, 2026. Exact
-    destination code revision d866ec190766ef2a76978fadc05627717f300468
-    passed native run 632 on all four targets and 37 files (3493 build jobs),
-    with 770 audited origins including 294 private names and only the three
-    standard axioms. Independent promotion review 4376 and Atlas's code
-    acceptance and integration apply to that revision. The producer's
-    corresponding official release ad60036d9745d4f0bca2f398538cff4377c93603
-    is verified and shares its tree with the accepted baseline. The added
-    point-prime leaf, client and changed root have their own review and native
-    evidence at the accepted code revision above; none of the historical
-    33/35/37-file checks by itself certifies that graph. Documentary successors
-    with unchanged Lean/build/dependency/checker inputs may reuse run 647;
-    subsequent release review, acceptance and publication were separate.
-    The point-prime code has since appeared in verified official release
-    94d6259a42b04eeaab8fab2c6e0f7e741abf6844, whose tree matches the
-    accepted main baseline f2ca7047ad33a4edb03ba5d17c2d07b6392494b8.
-    Neither that earlier release nor the isolated Veronese review alone checks
-    the later Projective Space graph. Source correspondence and coverage are separate.
+    Reusable 28-leaf mathematical library with aggregate public import, nine
+    test clients, two diagnostic modules and three reader examples (43 Lean
+    files). Results include positive-degree projective basics and radical,
+    homogeneous coordinates, charts, quotient and symmetric-algebra Proj,
+    geometric-cover global sections, whole-arrow unit scaling, degree-scaled
+    maps on their natural open domain with full ordinary-prime contraction,
+    positive-Veronese whole-scheme isomorphism and coherent-tail whole-scheme
+    isomorphisms with both degree-zero coefficient triangles. Official pinned
+    Graded Rings supplies the selected-component and coherent-tail algebra.
+    See README.md and docs/MODULES.md for exact assumptions and direct imports.
   main_results:
     - declaration: AlgebraicGeometry.Proj.imageIrrelevant
       file: ProjectiveSpace/DegreeScaledMap.lean
@@ -168,55 +124,11 @@ status:
     - declaration: GradedRing.Veronese.CoherentTail.TailEquiv.projIso_toSpecZero
       file: ProjectiveSpace/CoherentTailProj.lean
 review:
-  status: coherent-tail candidate H passed native run 774; H-bound review 4565 requested documentation changes; repaired-candidate review and owner acceptance are distinct
+  status: Independently reviewed mathematical development with separate publication-readiness assessment
   notes: >-
-    Independent destination review and maintainer code acceptance were recorded
-    for the geometric-cover contribution at c74a33c74b7d9bde054a284ada6d28bac7bd2f7d.
-    Earlier specialist reviews and source/notice acceptances retain their exact
-    scopes. The earlier UnitScaling transfer has a distinct accepted and
-    published baseline. The positive-degree-scaled Proj mathematics was
-    independently reviewed in its isolated incubator contribution; the frozen
-    official-Graded-import input was subsequently accepted in the incubator on
-    September 27, 2026. Neither that
-    review nor earlier destination build evidence alone certified the new graph.
-    Exact code revision d866ec190766ef2a76978fadc05627717f300468 received
-    independent destination review 4376, applicable native build and complete
-    private/generated-inclusive transitive standard-axiom audit in run 632,
-    and maintainer code acceptance on September 27, 2026. The producer is in
-    the verified official release ad60036d9745d4f0bca2f398538cff4377c93603.
-    The original point-prime proof was separately reviewed and accepted on
-    its isolated input, not this destination graph. Exact point destination
-    code revision 8712cd1d042032ba4577145b3a3034ed2609e671 received
-    fresh independent affected review 4399 and native run 647 checking four
-    targets, all 39 Lean files and 780 declaration origins (302 private-prefix),
-    including generated declarations and only the three standard axioms. Atlas
-    accepted and integrated that code on September 28, 2026. Later documentary
-    revisions needed distinct review and release decisions; this metadata did
-    not at that point claim a reviewed or verified point-prime release.
-    The subsequently published official point release is
-    94d6259a42b04eeaab8fab2c6e0f7e741abf6844. The isolated Veronese
-    contribution was separately reviewed and accepted before this transfer;
-    it is not the new Projective Space destination graph. Its official Graded
-    Rings dependency is 0a5c69da9b24beb5c33ddddbfe4d0067e53146ec.
-    Exact Veronese code revision 66933ebea062f913f4f155480d6e2a7bbd667907
-    passed native run 708 on all four targets, all 41 Lean files and 819
-    actual declaration origins including 305 private-prefix names and
-    generated declarations, with only the three standard axioms. Fresh
-    author-distinct destination review 4474 approved that exact revision;
-    Atlas accepted and integrated the code into protected main on
-    September 28, 2026 at 08:56:12 UTC. Its later official Projective release
-    is 787322743df1506fdca2cf9d5666e2e38edbc42f, sharing the accepted
-    main tree. This later coherent-tail transfer is a separate code candidate:
-    the accepted isolated geometry review and checks, Graded Rings evidence,
-    and earlier 41-file native run do not certify the new 43-file graph.
-    Exact coherent-tail candidate 4d7243be9503b8898e48d6495e54a182a5eb8cc6
-    passed native run 774 on September 28, 2026 at 13:25:28 UTC after fetching
-    matching mathlib cache: all four targets built, and the complete transitive
-    audit of 859 actual kernel origins across all 43 Lean modules, including
-    313 private-prefix names and generated declarations, reported only propext,
-    Classical.choice and Quot.sound. Independent review 4565 requested only
-    documentation changes on that exact candidate; it does not approve a
-    revised candidate. Revised-candidate independent review, Atlas's code
-    acceptance and protected integration, and a separately reviewed official
-    release/private publication are distinct steps. This metadata makes no
-    new official release, source correspondence or coverage claim.
+    The mathematical modules were subject to independent exact-candidate review,
+    maintainer acceptance and complete original-input, four-target transitive
+    standard-axiom audits, including private and generated declarations. The
+    reviewed 43-file graph is in the verified official release; altered headers
+    and documentation need their own review and evidence-applicability decision.
+    These results do not establish correspondence with any selected source.

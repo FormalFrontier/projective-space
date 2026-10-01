@@ -17,8 +17,8 @@ public import Mathlib.AlgebraicGeometry.Morphisms.Basic
 The maps of affine projective charts are the existing degree-multiplying maps
 on homogeneous localizations, specialized to the selected-component inclusion.
 The corresponding target-local equivalences give an isomorphism of whole schemes.
-Original development: hive-request-e97f548d3626371a173eb011840a7070b24d81bb / 0e231558-4793-4185-8f55-2bad40d363bd.
-Destination transfer: hive-request-be35b665bf79040df05d4a877584eddbda7cd6f6 / 936b1c06-477c-4e0b-bd11-71b190d392d5.
+Original project development and the subsequent destination transfer are
+credited separately in `CONTRIBUTORS.md`.
 -/
 
 noncomputable section

@@ -1,41 +1,31 @@
 Projective Space — Formal Frontier Agents
 
-The original mathematical development was contributed by Atlas; later native
-module adaptations, private client/examples and source preparation are credited
-by actual roles and Task identities in CONTRIBUTORS.md. Work was AI-assisted.
-These credits identify contributions, not an established copyright owner or
+The original project mathematics was AI-assisted development by Atlas. Later
+Formal Frontier AI-agent contributors authored separate proofs, native
+adaptations, direct-import clients, examples and guides. CONTRIBUTORS.md
+distinguishes their roles. Credit does not establish a copyright owner or
 permission to redistribute unrelated third-party expression.
 
-This project includes its own Apache License, Version 2.0, in LICENSE. It imports
-mathlib4, official Graded Rings and official Scheme Properties at pinned
-revisions as separately licensed dependencies;
-their repositories and licenses remain separate. Except for the adapted
-mathlib proof text described below, their source files are not incorporated
-or relicensed here.
-Mathematical background and software dependencies are distinguished in
-formalization.yaml. No motivating source PDFs are included.
-`ProjectiveSpace/GlobalSections.lean` adapts gluing and chart proof text from
-`Mathlib/AlgebraicGeometry/ProjectiveSpectrum/Basic.lean` by Andrew Yang,
-copyright 2024, under Apache-2.0; its file header preserves his notice and
-license attribution. The transferred `ProjectiveSpace/UnitScaling.lean`
-retains the original author's header credit, Andrew Yang's 2024 mathlib chart
-credit, copyright and Apache-2.0 notice for its adapted chart construction
-and gluing proof expression. This source transfer preserves the original
-proof body but does not alone certify its new dependency graph. Other
-dependency source files are not incorporated or relicensed here. Release
-review must still inspect authentic third-party notices, generated outputs
-and any proposed public history; this notice does not assert blanket rights
-clearance or release acceptance for any candidate.
+Original project contributions are offered under Apache License 2.0; the
+complete license is in LICENSE. Mathlib4, official Graded Rings and official
+Scheme Properties are imported at pinned revisions as separately licensed
+dependencies. Except for the adapted mathlib chart and gluing expression
+identified below, their source files are not incorporated or relicensed here.
+The Graded Rings homogeneous-localization implementation and its flat
+coherent-tail test fixture are imported dependencies, not copied production
+proofs. No motivating source PDF is included.
 
-The transferred `ProjectiveSpace/DegreeScaledMap.lean` preserves its original
-Apache-2.0 file header and adapted mathlib projective-chart/gluing notice for
-Andrew Yang (copyright 2024), together with homogeneous-localization credit
-for Jujian Zhang (copyright 2022) and Eric Wieser. The degree-multiplying
-localization implementation is imported from the separately licensed official
-Graded Rings dependency, not copied into this project. The original Proj
-author and localization contributor retain their distinct credits in the
-producer and CONTRIBUTORS.md. This static transfer adds no proof edits.
-Independent review 4376, full-graph native run 632 and maintainer code
-acceptance apply to exact revision `d866ec190766ef2a76978fadc05627717f300468`;
-they do not by themselves certify redistribution rights for unrelated material,
-review of a later documentary revision, release acceptance or publication.
+ProjectiveSpace/GlobalSections.lean adapts chart and gluing arguments from
+Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Basic by Andrew Yang (copyright
+2024, Apache-2.0). ProjectiveSpace/UnitScaling.lean retains Andrew Yang's
+2024 mathlib chart and gluing attribution and license notice. The adapted
+ProjectiveSpace/DegreeScaledMap.lean retains the same 2024 Andrew Yang chart
+and gluing notice, along with Jujian Zhang's 2022 homogeneous-localization
+copyright and attribution and Eric Wieser's distinct contributor role. The
+three producer file headers preserve those authentic copyright, author and
+Apache-2.0 notices.
+
+This notice describes bounded provenance, not blanket redistribution-rights
+clearance. Release review must assess the actual published files, generated
+outputs and reachable public history under their applicable terms. Mathematical
+background and dependency origin are distinguished in formalization.yaml.
