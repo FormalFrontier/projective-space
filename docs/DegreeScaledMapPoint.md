@@ -28,7 +28,7 @@ requiring it to have positive degree or to be homogeneous. The test-only
 and checks ideal equality, arbitrary-element membership and a dedicated
 degree-zero element of `𝒜 0`.
 
-The proof uses the accepted positive-basic-open preimage theorem for homogeneous
+The proof uses the positive-basic-open preimage theorem for homogeneous
 positive degrees. At degree zero, it takes a positive image-chart witness from
 the domain and applies the positive law to its product with the tested element;
 primality cancels the witness on both sides. For all elements, it decomposes the
@@ -45,23 +45,22 @@ extends beyond `U`. In particular, the contraction formula is *not* obtained
 by silently replacing the actual open domain with all of `Proj ℬ`.
 
 **Provenance and credit:** A Formal Frontier AI-agent contributor wrote
-the original point-prime proof and client; another prepared the destination
-import adaptation and guide. The point proof builds on the separately authored
-`DegreeScaledMap` producer and official Graded Rings localization contribution.
+the original point-prime proof and client; another adapted the point leaf for
+this library and wrote this guide. The point proof builds on the separately
+authored `DegreeScaledMap` producer and official Graded Rings localization
+contribution.
 Mathlib chart/gluing work credits Andrew Yang, and mathlib homogeneous
 localization credits Jujian Zhang and Eric Wieser. Mathlib also supplies
 native graded decomposition and homogeneous ideal/prime lemmas. See
 [`CONTRIBUTORS.md`](../CONTRIBUTORS.md) and [`NOTICE`](../NOTICE) for distinct
 roles and license notices, not blanket rights clearance.
 
-**Reproduction:** Use this repository's unchanged
+**Reproduction:** Use this repository's
 `lakefile.toml`, `lake-manifest.json` and `lean-toolchain`
 (`leanprover/lean4:v4.34.0-rc2`, mathlib
 `83abb3e776bdefcbc447a1e44d0debe4010039e5`, official Graded Rings
 `db2a1d555639e2a381abbf755982ffdcf126621e` and official Scheme Properties
-`6b204a3e49f022e51d78a9f93e77513b99a87e00`). The earlier point-only
-revision used Graded Rings `f77410141b89532409fff563d368930a728f55b7`;
-its historical check does not describe this resolved graph. With access to
+`6b204a3e49f022e51d78a9f93e77513b99a87e00`). With access to
 the private dependencies, from the Projective Space root:
 
 ```sh
@@ -71,7 +70,3 @@ lake --wfail build
 ```
 
 The cache fetch must succeed before building the four default targets.
-These are reproduction instructions, not a new benchmark or check receipt.
-Earlier proof-integrity evidence applies to its exact inputs, and any revised
-headers require independent review and an evidence-applicability decision.
-Source correspondence and coverage remain separate.

@@ -60,7 +60,7 @@ lemma awayMapOfIsUnit_mk_spec {R : Type u} [CommRing R] (f : A →+* R)
 including zero rings and nilpotent/empty charts. -/
 lemma awayMapOfIsUnit_eq_of_unitScaling {R : Type u} [CommRing R]
     (f g : A →+* R) (unit : Rˣ)
-    (hscale : ∀ d (a : A), a ∈ 𝒜 d → g a = (unit : R)^d * f a)
+    (hscale : ∀ d (a : A), a ∈ 𝒜 d → g a = (unit : R) ^ d * f a)
     {t : A} {d : ℕ} (ht : t ∈ 𝒜 d) (hunit : IsUnit (f t)) :
     awayMapOfIsUnit 𝒜 f hunit =
       awayMapOfIsUnit 𝒜 g (by
@@ -90,13 +90,13 @@ lemma awayMapOfIsUnit_eq_of_unitScaling {R : Type u} [CommRing R]
 
 variable {X : Scheme.{u}} (f g : A →+* Γ(X, ⊤)) (unit : Γ(X, ⊤)ˣ)
 variable (hscale : ∀ d (a : A), a ∈ 𝒜 d →
-  g a = (unit : Γ(X, ⊤))^d * f a)
+  g a = (unit : Γ(X, ⊤)) ^ d * f a)
 
 omit [AddSubgroupClass σ A] [GradedRing 𝒜] in
 /-- Degree-weighted unit scaling preserves the source basic open of each homogeneous
 element, even when the basic open is empty. -/
 lemma basicOpen_eq_of_unitScaling
-    (hscale : ∀ d (a : A), a ∈ 𝒜 d → g a = (unit : Γ(X, ⊤))^d * f a)
+    (hscale : ∀ d (a : A), a ∈ 𝒜 d → g a = (unit : Γ(X, ⊤)) ^ d * f a)
     {t : A} {d : ℕ} (ht : t ∈ 𝒜 d) :
     X.basicOpen (g t) = X.basicOpen (f t) := by
   rw [hscale d t ht, X.basicOpen_mul,
@@ -106,7 +106,7 @@ lemma basicOpen_eq_of_unitScaling
 omit [AddSubgroupClass σ A] [GradedRing 𝒜] in
 /-- The geometric positive-homogeneous cover transfers under unit scaling. -/
 lemma isOpenCover_of_unitScaling
-    (hscale : ∀ d (a : A), a ∈ 𝒜 d → g a = (unit : Γ(X, ⊤))^d * f a)
+    (hscale : ∀ d (a : A), a ∈ 𝒜 d → g a = (unit : Γ(X, ⊤)) ^ d * f a)
     (hcover : IsOpenCover (fun ir : Σ' d t, 0 < d ∧ t ∈ 𝒜 d ↦
       X.basicOpen (f ir.2.1))) :
     IsOpenCover (fun ir : Σ' d t, 0 < d ∧ t ∈ 𝒜 d ↦
@@ -223,7 +223,7 @@ set_option backward.isDefEq.respectTransparency.types false in
 opens along the equality induced by degree-weighted unit scaling. -/
 lemma toBasicOpenOfGlobalSections_eq_of_unitScaling
     (hscale : ∀ n (a : A), a ∈ 𝒜 n →
-      g a = (unit : Γ(X, ⊤))^n * f a)
+      g a = (unit : Γ(X, ⊤)) ^ n * f a)
     {t : A} {d : ℕ} (hd : 0 < d) (ht : t ∈ 𝒜 d) :
     toBasicOpenOfGlobalSections 𝒜 f rfl hd ht =
       (X.isoOfEq (basicOpen_eq_of_unitScaling 𝒜 f g unit hscale ht).symm).hom ≫
@@ -256,7 +256,7 @@ entire geometrically constructed `Proj` morphism unchanged. This statement does 
 on which witnesses of the geometric cover are chosen for either morphism. -/
 lemma fromOfGlobalSectionsOfIsOpenCover_eq_of_unitScaling
     (hscale : ∀ n (a : A), a ∈ 𝒜 n →
-      g a = (unit : Γ(X, ⊤))^n * f a)
+      g a = (unit : Γ(X, ⊤)) ^ n * f a)
     (hcoverf : IsOpenCover (fun ir : Σ' d t, 0 < d ∧ t ∈ 𝒜 d ↦
       X.basicOpen (f ir.2.1)))
     (hcoverg : IsOpenCover (fun ir : Σ' d t, 0 < d ∧ t ∈ 𝒜 d ↦
@@ -297,7 +297,7 @@ lemma fromOfGlobalSectionsOfIsOpenCover_eq_of_unitScaling
 /-- A single geometric cover for `f` suffices to construct and compare both arrows. -/
 lemma fromOfGlobalSectionsOfIsOpenCover_unitScaling
     (hscale : ∀ n (a : A), a ∈ 𝒜 n →
-      g a = (unit : Γ(X, ⊤))^n * f a)
+      g a = (unit : Γ(X, ⊤)) ^ n * f a)
     (hcover : IsOpenCover (fun ir : Σ' d t, 0 < d ∧ t ∈ 𝒜 d ↦
       X.basicOpen (f ir.2.1))) :
     fromOfGlobalSectionsOfIsOpenCover 𝒜 f hcover =

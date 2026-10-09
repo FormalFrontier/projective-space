@@ -24,6 +24,7 @@ public import ProjectiveSpace.HomogeneousPolynomialChartLocalization
 public import ProjectiveSpace.HomogeneousQuotientProj
 public import ProjectiveSpace.HypersurfaceChart
 public import ProjectiveSpace.Irreducible
+public import ProjectiveSpace.Noetherian
 public import ProjectiveSpace.ProjectiveNullstellensatz
 public import ProjectiveSpace.Reduced
 public import ProjectiveSpace.StandardChart
@@ -37,14 +38,14 @@ public import ProjectiveSpace.Veronese
 /-!
 # Projective space
 
-Public aggregate import for the project's 28 mathematical modules. The library
+Public aggregate import for the project's 29 mathematical modules. The library
 develops basic opens and homogeneous ideals on `Proj`, polynomial standard
 charts, chart covers and equation localizations, coordinate and closed points,
 graded transport, symmetric-algebra models, geometric-cover global-sections
 morphisms, positive-degree-scaled maps on their natural open domains, whole-arrow
 invariance under unit scaling, positive-Veronese chart and whole-scheme
 isomorphisms, coherent-tail whole-scheme isomorphisms with degree-zero
-coefficient naturality, and geometric properties. For
+coefficient naturality, and geometric properties including Noetherianity. For
 `p : (degreeScaledDomain 𝒜 ℬ f).toScheme`, the point-prime leaf gives the full
 ordinary-ideal formula
 `((degreeScaledMap 𝒜 ℬ f d hd hdeg) p).asHomogeneousIdeal.toIdeal =

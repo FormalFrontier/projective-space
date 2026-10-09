@@ -8,8 +8,8 @@ project:
     natural open domains with full ordinary point-prime contraction and
     arbitrary-element membership, whole-arrow unit-scaling invariance,
     positive-Veronese chart equivalences and whole-scheme Proj invariance,
-    coherent-tail whole-scheme isomorphisms with actual degree-zero coefficient
-    naturality, and geometric properties.
+    coherent-tail whole-scheme isomorphisms with degree-zero coefficient
+    naturality, Noetherian projective spectra and geometric properties.
   authors:
     - Formal Frontier Agents
   license: Apache-2.0
@@ -21,7 +21,7 @@ sources:
     relationship: independently-proves
     note: >-
       Original AI-assisted project proofs by Atlas and later distinct Formal Frontier
-      agents, plus native adaptations and reader examples. Contributor roles are
+      agents, plus adaptations and reader examples. Contributor roles are
       described in CONTRIBUTORS.md; no selected external-source coverage is claimed.
   - title: The Lean mathematical library (mathlib4)
     authors:
@@ -30,7 +30,8 @@ sources:
     type: software
     relationship: background
     note: >-
-      Imported projective-spectrum, graded-ring and polynomial infrastructure;
+      Imported projective-spectrum, graded-ring, polynomial and Noetherian
+      degree-zero and scheme infrastructure;
       the geometric-cover global-sections, unit-scaling and degree-scaled-map
       modules adapt gluing and chart proof text by Andrew Yang (2024), copyright
       2024, Apache-2.0, from Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Basic,
@@ -40,9 +41,9 @@ sources:
     type: software
     relationship: background
     note: >-
-      Direct graded-quotient, symmetric-algebra, selected-component Veronese
-      and degree-multiplying homogeneous-localization dependency at its
-      reviewed and published official release.
+      Direct graded-quotient, symmetric-algebra, selected-component Veronese,
+      degree-multiplying homogeneous-localization and Noetherian finite-type
+      dependency.
   - title: Scheme Properties
     type: software
     relationship: background
@@ -51,13 +52,16 @@ sources:
     authors:
       - Ravi Vakil
     type: book
-    location: "October 21, 2025 draft, §7.4.4, Exercises 7.4.D and 7.4.F, printed p. 215; coefficient conventions pp. 151–152"
+    location: "October 21, 2025 draft, projective-space corollary following Exercise 5.1.C, printed p. 157; §7.4.4, Exercises 7.4.D and 7.4.F, printed p. 215; coefficient conventions pp. 151–152"
     relationship: background
     note: >-
-      Mathematical inspiration for positive-Veronese Proj invariance; the
-      finite-generation context is not a Lean hypothesis. Exercise 7.4.F on
-      printed p. 215 motivates coherent tails; coefficient conventions occur
-      on pp. 151–152. No source text or coverage assertion is included.
+      Mathematical inspiration for polynomial Proj Noetherianity and
+      positive-Veronese Proj invariance. The library's scheme-level result over
+      any Noetherian coefficient ring strengthens the projective-space
+      corollary; the finite-generation context in §7.4.4 is not a Lean
+      hypothesis. Exercise 7.4.F on printed p. 215 motivates coherent tails;
+      coefficient conventions occur on pp. 151–152. No source text or coverage
+      assertion is included.
 automation:
   methods:
     - method: agent
@@ -68,17 +72,25 @@ automation:
     this metadata describes involvement, not automated proof certification.
 status:
   scope: >-
-    Reusable 28-leaf mathematical library with aggregate public import, nine
-    test clients, two diagnostic modules and three reader examples (43 Lean
+    Reusable 29-leaf mathematical library with aggregate public import, ten
+    test clients, two diagnostic modules and three reader examples (45 Lean
     files). Results include positive-degree projective basics and radical,
     homogeneous coordinates, charts, quotient and symmetric-algebra Proj,
     geometric-cover global sections, whole-arrow unit scaling, degree-scaled
     maps on their natural open domain with full ordinary-prime contraction,
     positive-Veronese whole-scheme isomorphism and coherent-tail whole-scheme
-    isomorphisms with both degree-zero coefficient triangles. Official pinned
-    Graded Rings supplies the selected-component and coherent-tail algebra.
+    isomorphisms with both degree-zero coefficient triangles, and Noetherian
+    Proj of arbitrary N-graded Noetherian commutative rings, including
+    finite-coordinate polynomial Proj over any Noetherian coefficient ring.
+    The Noetherian results need no field, domain, degree-one generation or
+    nontriviality assumption. Official pinned Graded Rings supplies the
+    selected-component and coherent-tail algebra.
     See README.md and docs/MODULES.md for exact assumptions and direct imports.
   main_results:
+    - declaration: AlgebraicGeometry.Proj.isNoetherian
+      file: ProjectiveSpace/Noetherian.lean
+    - declaration: ProjectiveSpace.isNoetherian_polynomialProj
+      file: ProjectiveSpace/Noetherian.lean
     - declaration: AlgebraicGeometry.Proj.imageIrrelevant
       file: ProjectiveSpace/DegreeScaledMap.lean
     - declaration: AlgebraicGeometry.Proj.degreeScaledDomain
@@ -124,11 +136,7 @@ status:
     - declaration: GradedRing.Veronese.CoherentTail.TailEquiv.projIso_toSpecZero
       file: ProjectiveSpace/CoherentTailProj.lean
 review:
-  status: Independently reviewed mathematical development with separate publication-readiness assessment
+  status: Independently reviewed mathematical development
   notes: >-
-    The mathematical modules were subject to independent exact-candidate review,
-    maintainer acceptance and complete original-input, four-target transitive
-    standard-axiom audits, including private and generated declarations. The
-    reviewed 43-file graph is in the verified official release; altered headers
-    and documentation need their own review and evidence-applicability decision.
-    These results do not establish correspondence with any selected source.
+    Independent mathematical review and maintainer acceptance do not establish
+    correspondence with or coverage of any selected source.

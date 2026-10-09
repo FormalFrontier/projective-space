@@ -1,6 +1,7 @@
 /-
 SPDX-License-Identifier: Apache-2.0
-Authors: Andrew Yang (adapted gluing and chart arguments from Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Basic),
+Authors: Andrew Yang (adapted gluing and chart arguments from
+  Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Basic),
   Formal Frontier Agents
 Copyright (c) 2024 Andrew Yang. All rights reserved.
 Adapted material released under Apache 2.0, as in mathlib's LICENSE.

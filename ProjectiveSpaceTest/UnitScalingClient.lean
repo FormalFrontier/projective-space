@@ -14,7 +14,8 @@ set_option warningAsError true
 
 namespace ProjectiveSpaceTest.ProjUnitScaling
 
-open AlgebraicGeometry AlgebraicGeometry.Proj CategoryTheory HomogeneousLocalization TopologicalSpace
+open AlgebraicGeometry AlgebraicGeometry.Proj CategoryTheory
+  HomogeneousLocalization TopologicalSpace
 
 universe u
 
@@ -22,7 +23,7 @@ variable {σ : Type*} {A : Type u} [CommRing A] [SetLike σ A]
   [AddSubgroupClass σ A] (𝒜 : ℕ → σ) [GradedRing 𝒜] {X : Scheme.{u}}
 variable (f g : A →+* Γ(X, ⊤)) (unit : Γ(X, ⊤)ˣ)
 variable (hscale : ∀ d (a : A), a ∈ 𝒜 d →
-  g a = (unit : Γ(X, ⊤))^d * f a)
+  g a = (unit : Γ(X, ⊤)) ^ d * f a)
 
 include hscale
 

@@ -73,8 +73,6 @@ Vakil, *The Rising Sea* (October 21, 2025), §7.4.4, Exercise 7.4.D,
 printed p. 215, is mathematical inspiration. The source's finite-generation
 context is **not** an extra Lean hypothesis here. This API does not provide
 finite-generation results or further Veronese-generation/embedding claims.
-Source-specific correspondence and coverage are separate from this
-source-independent mathematical library.
 
 ## Using the module
 
@@ -82,6 +80,4 @@ The [production module](../ProjectiveSpace/Veronese.lean) exports the chart,
 point and whole-scheme results; the [direct client](../ProjectiveSpaceTest/VeroneseClient.lean)
 checks seven geometric uses. Graded Rings supplies the selected-component
 algebra through the pinned official dependency. The [reader guide](../README.md)
-gives the cache-first four-target build recipe and distinguishes the historical
-proof-integrity evidence from review of changed documentation. Source-specific
-correspondence remains separate.
+gives the cache-first four-target build recipe.

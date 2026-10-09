@@ -54,8 +54,7 @@ to equality of complete chart morphisms; source-open-cover extensionality
 then yields equality of complete arrows into `Proj 𝒜`. No affine, reduced,
 domain, field, nonzero-chart, or global-irrelevant-ideal-equals-top hypothesis
 is used. Empty opens, nilpotents and zero rings are included. This does not
-classify maps into projective space, add a polynomial specialization, or
-establish source-specific correspondence.
+classify maps into projective space or add a polynomial specialization.
 
 ## Using this result
 
@@ -63,7 +62,7 @@ The [client](../ProjectiveSpaceTest/UnitScalingClient.lean) directly imports
 the [producer](../ProjectiveSpace/UnitScaling.lean); the
 [reader guide](../README.md) supplies the cache-first four-target build recipe.
 A Formal Frontier AI-agent contributor developed the original producer and
-client, and another prepared its destination transfer. Andrew Yang's 2024
-mathlib chart attribution and Apache-2.0 notice remain in the producer; see
-[`CONTRIBUTORS.md`](../CONTRIBUTORS.md) and [`NOTICE`](../NOTICE). This guide
-does not by itself decide source correspondence or rights clearance.
+client; a separate contributor adapted the producer for this library and wrote
+this guide. The chart construction and gluing adapt Andrew Yang's 2024 mathlib
+work; his Apache-2.0 notice remains in the producer. See
+[`CONTRIBUTORS.md`](../CONTRIBUTORS.md) and [`NOTICE`](../NOTICE).

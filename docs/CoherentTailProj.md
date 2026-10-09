@@ -94,16 +94,10 @@ lake build ProjectiveSpace ProjectiveSpaceTest \
 ```
 
 The upstream algebra is supplied by official Graded Rings release
-`db2a1d555639e2a381abbf755982ffdcf126621e`. The original 43-file
-destination graph, including the cross-package fixture and client, passed a
-four-target build and complete private/generated-inclusive transitive
-standard-three audit on its recorded original inputs. Later changed-header
-revisions require an evidence-applicability decision and their own independent
-review; neither a guide nor the upstream check alone certifies such changes.
+`db2a1d555639e2a381abbf755982ffdcf126621e`.
 
 The mathematical motivation includes Ravi Vakil, *The Rising Sea*, October 21,
 2025 draft, §7.4.4, Exercise 7.4.F (printed p. 215); coefficient conventions
-appear on pp. 151–152. No source text is copied here, and the library makes
-no source-correspondence or coverage assertion. The original coherent-tail
-algebra, original geometry, official Graded Rings adaptation and this
-destination transfer have distinct contributor credits in `CONTRIBUTORS.md`.
+appear on pp. 151–152. No source text is copied here. The original coherent-tail
+algebra, original geometry, official Graded Rings adaptation and this library's
+geometric adaptation have distinct contributor credits in `CONTRIBUTORS.md`.

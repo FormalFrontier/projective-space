@@ -56,8 +56,8 @@ recovers mathlib's `Proj.fromOfGlobalSections 𝒜 f hf` when its **stronger**
 native assumption `(HomogeneousIdeal.irrelevant 𝒜).toIdeal.map f = ⊤` is
 available. That stronger assumption supplies a geometric cover, but a
 geometric cover is not asserted to imply it. This general scheme-level API
-does not itself specialize to polynomials, classify maps into projective
-space, or establish a source-specific correspondence.
+does not itself specialize to polynomials or classify maps into projective
+space.
 
 ## Build and attribution
 
@@ -73,14 +73,13 @@ LEAN_NUM_THREADS=2 lake --wfail build +ProjectiveSpace.GlobalSections:olean
 LEAN_NUM_THREADS=2 lake --wfail build +ProjectiveSpaceTest.GlobalSectionsClient:olean
 ```
 
-These focused reproduction commands do not replace a complete four-target
-build and private-inclusive transitive axiom audit. The
+For the four library targets, see the [reader guide](../README.md). The
 [module map](MODULES.md) links the producer and direct client.
 
 The gluing and chart arguments adapt `Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Basic`
 by Andrew Yang (copyright 2024, Apache-2.0); his attribution and license
 are preserved in the producer. One Formal Frontier AI-agent contributor
 prepared the original adaptation, direct client and starting guide; another
-registered the destination import and revised this guide. See
+provided its library import and revised this guide. See
 [`CONTRIBUTORS.md`](../CONTRIBUTORS.md) and [`NOTICE`](../NOTICE) for these
 distinct roles and authentic third-party notices, not blanket rights clearance.

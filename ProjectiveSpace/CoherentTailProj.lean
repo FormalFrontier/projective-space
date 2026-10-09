@@ -35,7 +35,7 @@ variable {R S : Type u} [CommRing R] [CommRing S]
 
 namespace TailEquiv
 
-variable (E : TailEquiv 𝒜 ℬ N) (n : ℕ) (hNn : N ≤ n) (hn : 0 < n)
+variable {N : ℕ} (E : TailEquiv 𝒜 ℬ N) (n : ℕ) (hNn : N ≤ n) (hn : 0 < n)
 
 /-- Isomorphism of the selected Proj schemes, including their structure sheaves. -/
 def selectedProjIso : AlgebraicGeometry.Proj (component 𝒜 n) ≅

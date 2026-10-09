@@ -35,7 +35,9 @@ example : (degreeScaledDomain 𝒜 ℬ f : Set (Proj ℬ)) =
     (ProjectiveSpectrum.zeroLocus ℬ (imageIrrelevant 𝒜 f) : Set (Proj ℬ))ᶜ :=
   degreeScaledDomain_eq_zeroLocus_compl 𝒜 ℬ f
 
-private theorem clientWholeChart (i : Σ n : PNat, 𝒜 n) :
+/-- Checks that the degree-scaled morphism restricts to the expected map on an
+entire homogeneous affine chart. -/
+theorem clientWholeChart (i : Σ n : PNat, 𝒜 n) :
     (basicOpenIsoSpec ℬ (f (i.2 : A))
       (hdeg i.1 (i.2 : A) i.2.2) (Nat.mul_pos hd i.1.2)).inv ≫
         (chartCover 𝒜 ℬ f).f i ≫ degreeScaledMap 𝒜 ℬ f d hd hdeg =

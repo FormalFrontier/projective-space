@@ -8,10 +8,10 @@ standard charts and transitions, gluing, equations and quotients,
 symmetric-algebra models, geometric-cover global-sections morphisms, whole-arrow
 unit-scaling invariance, positive-degree-scaled maps on their natural open
 domains with ordinary point-prime contraction, positive-Veronese chart
-equivalences and whole-scheme invariance, and geometric properties. See
+equivalences and whole-scheme invariance, and geometric properties including
+Noetherian projective spectra. See
 [the module and API map](docs/MODULES.md) for the per-file imports and hypotheses. This guide
-describes the mathematical interfaces; source-specific correspondence and
-coverage decisions are separate.
+describes the mathematical interfaces.
 
 ## Headline results
 
@@ -55,6 +55,13 @@ coverage decisions are separate.
   Noetherianity. See the [basis module](ProjectiveSpace/BasicOpenBasis.lean),
   [radical module](ProjectiveSpace/ProjectiveNullstellensatz.lean) and
   [geometry client](ProjectiveSpaceTest/GeometryClient.lean).
+- The `Proj` of a naturally graded **Noetherian commutative ring** is a
+  Noetherian scheme. In particular, total-degree polynomial `Proj` over any
+  Noetherian commutative ring with **finite coordinates** is Noetherian,
+  including empty coordinate types and the zero ring. Mathlib then gives
+  Noetherianity of its underlying topological space; every subset is compact.
+  See the [module](ProjectiveSpace/Noetherian.lean) and
+  [client](ProjectiveSpaceTest/NoetherianClient.lean).
 
 ## Mathematical scope
 
@@ -147,12 +154,12 @@ over a base ring with zero divisors.
 
 ## Imports and build
 
-The 28 mathematical leaves are public `module` files, and
+The 29 mathematical leaves are public `module` files, and
 [`ProjectiveSpace.lean`](ProjectiveSpace.lean) publicly imports all of them.
 Use `import ProjectiveSpace` for the whole library or import an individual
 `ProjectiveSpace.*` leaf. Use `open scoped ProjectiveSpace` for the polynomial
 total-degree grading. The hand-maintained [module and API map](docs/MODULES.md)
-lists each leaf, its direct imports and hypotheses, all nine test clients, two
+lists each leaf, its direct imports and hypotheses, all ten test clients, two
 diagnostic modules and three [complete reader examples](examples/). The clients,
 diagnostics and private examples are not additional production theorem APIs.
 
@@ -172,20 +179,12 @@ lake --wfail build
 ```
 
 The matching mathlib cache occupies several gigabytes on an initial pinned-
-graph checkout. As historical guidance only, a **33-file** four-target build
-in native CI took about **52 seconds after cache preparation**; this is not a
-43-file timing, a cold installation estimate or a RAM measurement. Dependency
-fetches and other machines may take longer. `LEAN_NUM_THREADS=2` may limit
-Lean runtime threads during a build, but it is not an aggregate memory cap.
+graph checkout. Dependency fetches and available resources affect build time.
+`LEAN_NUM_THREADS=2` may limit Lean runtime threads during a build, but it is
+not an aggregate memory cap.
 
 The two `Tests` modules contain selected-name `#print axioms` diagnostics;
 those prints are not a complete transitive audit of every shipped declaration.
-The historical 43-file graph received a four-target build and a transitive
-standard-three audit of 859 declaration origins, including 313 private-prefix
-names and generated declarations, at its recorded original code revision.
-Changed headers and module comments in this repository require an applicability
-decision for that evidence; the historical result is not a check of modified
-whole-file bytes. Release and source-coverage decisions remain separate.
 
 ## Why the principal results hold
 
@@ -215,11 +214,10 @@ later Formal Frontier AI agents separately authored native adaptations,
 geometric-cover and unit-scaling constructions, degree-scaled and point-prime
 proofs, positive-Veronese and coherent-tail geometry, reader examples and
 client modules. Original coherent-tail and Veronese algebra is supplied by
-Graded Rings, not reauthored here. Atlas assembled and accepted the library;
-independent reviewers examined bounded candidate revisions. See
+Graded Rings, not reauthored here. Atlas assembled the library. See
 [CONTRIBUTORS.md](CONTRIBUTORS.md) for distinct contribution roles and
 [NOTICE](NOTICE) for retained mathlib attributions and license boundaries.
-These credits do not assert copyright ownership or source coverage.
+These credits do not assert copyright ownership.
 
 Original project contributions are offered under [Apache-2.0](LICENSE).
 Mathlib, Graded Rings and Scheme Properties are separately licensed dependencies.
