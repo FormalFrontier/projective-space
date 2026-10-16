@@ -60,13 +60,14 @@ roles and license notices, not blanket rights clearance.
 (`leanprover/lean4:v4.34.0-rc2`, mathlib
 `83abb3e776bdefcbc447a1e44d0debe4010039e5`, official Graded Rings
 `db2a1d555639e2a381abbf755982ffdcf126621e` and official Scheme Properties
-`6b204a3e49f022e51d78a9f93e77513b99a87e00`). With access to
-the private dependencies, from the Projective Space root:
+`6b204a3e49f022e51d78a9f93e77513b99a87e00`). From the Projective Space root:
 
 ```sh
 elan toolchain install "$(cat lean-toolchain)"
 lake exe cache get
-lake --wfail build
+lake build
 ```
 
-The cache fetch must succeed before building the four default targets.
+The cache fetch must succeed before building the four default targets. For an
+optional warning-fatal check, use `lake --wfail build`; the targets can emit
+linter warnings even when the ordinary build succeeds.

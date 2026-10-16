@@ -72,8 +72,8 @@ automation:
     this metadata describes involvement, not automated proof certification.
 status:
   scope: >-
-    Reusable 29-leaf mathematical library with aggregate public import, ten
-    test clients, two diagnostic modules and three reader examples (45 Lean
+    Reusable 30-leaf mathematical library with aggregate public import, eleven
+    test clients, two diagnostic modules and three reader examples (47 Lean
     files). Results include positive-degree projective basics and radical,
     homogeneous coordinates, charts, quotient and symmetric-algebra Proj,
     geometric-cover global sections, whole-arrow unit scaling, degree-scaled
@@ -82,11 +82,17 @@ status:
     isomorphisms with both degree-zero coefficient triangles, and Noetherian
     Proj of arbitrary N-graded Noetherian commutative rings, including
     finite-coordinate polynomial Proj over any Noetherian coefficient ring.
+    Finite-dimensional polynomial projective space is geometrically integral
+    over every commutative ring, with finite nonempty coordinates.
     The Noetherian results need no field, domain, degree-one generation or
     nontriviality assumption. Official pinned Graded Rings supplies the
     selected-component and coherent-tail algebra.
     See README.md and docs/MODULES.md for exact assumptions and direct imports.
   main_results:
+    - declaration: ProjectiveSpace.polynomialProjToSpec_geometricallyIntegral_of_finite
+      file: ProjectiveSpace/GeometricallyIntegral.lean
+    - declaration: ProjectiveSpace.polynomialProjToSpec_fin_geometricallyIntegral
+      file: ProjectiveSpace/GeometricallyIntegral.lean
     - declaration: AlgebraicGeometry.Proj.isNoetherian
       file: ProjectiveSpace/Noetherian.lean
     - declaration: ProjectiveSpace.isNoetherian_polynomialProj

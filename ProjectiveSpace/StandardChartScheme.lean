@@ -5,7 +5,7 @@ Authors: Formal Frontier Agents
 
 module
 
-public import ProjectiveSpace.StandardChart
+public import ProjectiveSpace.CoefficientRingBase
 public import Mathlib.AlgebraicGeometry.Gluing
 public import Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Basic
 
@@ -16,7 +16,8 @@ This file packages the standard affine cover of projective space over a
 commutative ring. Its `i`th component is literally the spectrum of the
 polynomial ring in the coordinates other than `i`. The component map is the
 usual identification with the degree-zero homogeneous localization at `X i`,
-followed by the canonical open immersion into `Proj`.
+followed by the canonical open immersion into `Proj`. The chart isomorphism
+commutes with the coefficient morphisms of the two affine presentations.
 -/
 
 public section
@@ -167,5 +168,50 @@ theorem standardCoordinateGlueData_ι_gluedIsoProj_hom [Fintype ι] (i : ι) :
       standardCoordinateChartMap R ι i := by
   exact AlgebraicGeometry.Scheme.Cover.ι_fromGlued
     (standardCoordinateGluingOpenCover R ι) (ULift.up i)
+
+section CoefficientBase
+
+variable (S : Type (max u v)) [CommRing S] (κ : Type v)
+
+local notation "ℬ" => MvPolynomial.homogeneousSubmodule κ S
+
+/-- The standard chart isomorphism respects the coefficient morphisms of its
+two affine presentations. -/
+@[reassoc]
+theorem standardCoordinateChartIso_hom_toSpec [Fintype κ] (i : κ) :
+    (standardCoordinateChartIso S κ i).hom ≫
+        Spec.map (CommRingCat.ofHom (algebraMap S (StandardChart S κ i))) =
+      Spec.map (CommRingCat.ofHom
+        (MvPolynomial.C : S →+* MvPolynomial {j : κ // j ≠ i} S)) := by
+  change Spec.map (CommRingCat.ofHom (standardChartEquiv S κ i).symm.toRingHom) ≫
+      Spec.map (CommRingCat.ofHom (algebraMap S (StandardChart S κ i))) = _
+  rw [← Spec.map_comp]
+  congr 1
+  apply CommRingCat.hom_ext
+  apply RingHom.ext
+  intro r
+  exact (standardChartEquiv S κ i).symm.commutes r
+
+/-- Each standard polynomial chart is a morphism over the coefficient
+spectrum, with structure map induced by the polynomial coefficient inclusion. -/
+@[reassoc]
+theorem standardCoordinateChartMap_toSpec [Fintype κ] (i : κ) :
+    standardCoordinateChartMap S κ i ≫ polynomialProjToSpec S κ =
+      Spec.map (CommRingCat.ofHom
+        (MvPolynomial.C : S →+* MvPolynomial {j : κ // j ≠ i} S)) := by
+  have hcoeff :
+      (mvPolynomialDegreeZeroEquiv S κ).toRingEquiv.toCommRingCatIso.hom ≫
+          CommRingCat.ofHom (HomogeneousLocalization.fromZeroRingHom ℬ
+            (Submonoid.powers (MvPolynomial.X i))) =
+        CommRingCat.ofHom (algebraMap S (StandardChart S κ i)) := by
+    apply CommRingCat.hom_ext
+    apply RingHom.ext
+    intro r
+    exact fromZeroRingHom_mvPolynomialDegreeZeroEquiv S κ i r
+  rw [polynomialProjToSpec_eq_toSpecZero, standardCoordinateChartMap]
+  rw [Category.assoc, Proj.awayι_toSpecZero_assoc, ← Spec.map_comp, hcoeff]
+  exact standardCoordinateChartIso_hom_toSpec S κ i
+
+end CoefficientBase
 
 end ProjectiveSpace

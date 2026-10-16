@@ -93,6 +93,15 @@ private theorem standardChartAlgebra_eq_privateConstruction :
     standardChartAlgebra R ι i = (coefficientHom R ι i).toAlgebra := by
   rfl
 
+/-- A coefficient on a standard chart is its image from the degree-zero
+homogeneous component. -/
+theorem standardChart_algebraMap (r : R) :
+    algebraMap R (StandardChart R ι i) r =
+      fromZeroRingHom 𝒜 (Submonoid.powers Xi)
+        ⟨MvPolynomial.C r,
+          (MvPolynomial.mem_homogeneousSubmodule 0 _).2
+            (MvPolynomial.isHomogeneous_C ι r)⟩ := rfl
+
 /-- The homogeneous coordinates generate the polynomial ring as an algebra
 over its degree-zero homogeneous component. -/
 theorem adjoin_degreeZero_range_X_eq_top :

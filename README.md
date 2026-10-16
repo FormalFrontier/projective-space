@@ -63,6 +63,16 @@ describes the mathematical interfaces.
   See the [module](ProjectiveSpace/Noetherian.lean) and
   [client](ProjectiveSpaceTest/NoetherianClient.lean).
 
+- Finite-dimensional projective space is **geometrically integral over every
+  commutative ring**: `polynomialProjToSpec_fin_geometricallyIntegral` applies
+  to `Fin (n + 1)`, and `polynomialProjToSpec_geometricallyIntegral_of_finite`
+  to any finite nonempty coordinate type. No domain, Noetherian or
+  nontrivial-base hypothesis is needed. The finite restriction belongs to the
+  polynomial-chart API; empty coordinates are excluded because projective
+  space over a field would be empty. See the
+  [module](ProjectiveSpace/GeometricallyIntegral.lean) and the
+  [projective-line client](ProjectiveSpaceTest/GeometricallyIntegralClient.lean).
+
 ## Mathematical scope
 
 - `ProjectiveSpace.BasicOpenBasis` gives a basis of positive-degree homogeneous
@@ -154,12 +164,12 @@ over a base ring with zero divisors.
 
 ## Imports and build
 
-The 29 mathematical leaves are public `module` files, and
+The 30 mathematical leaves are public `module` files, and
 [`ProjectiveSpace.lean`](ProjectiveSpace.lean) publicly imports all of them.
 Use `import ProjectiveSpace` for the whole library or import an individual
 `ProjectiveSpace.*` leaf. Use `open scoped ProjectiveSpace` for the polynomial
 total-degree grading. The hand-maintained [module and API map](docs/MODULES.md)
-lists each leaf, its direct imports and hypotheses, all ten test clients, two
+lists each leaf, its direct imports and hypotheses, all eleven test clients, two
 diagnostic modules and three [complete reader examples](examples/). The clients,
 diagnostics and private examples are not additional production theorem APIs.
 
@@ -168,15 +178,18 @@ The four default Lake targets are `ProjectiveSpace`, `ProjectiveSpaceTest`,
 Lean `v4.34.0-rc2`, mathlib `83abb3e776bdefcbc447a1e44d0debe4010039e5`,
 official Graded Rings `db2a1d555639e2a381abbf755982ffdcf126621e` and
 official Scheme Properties `6b204a3e49f022e51d78a9f93e77513b99a87e00`;
-`lake-manifest.json` records the complete resolved 13-package graph. Access to
-the pinned private dependencies is presently required. Fetch the matching
-mathlib cache *before* building:
+`lake-manifest.json` records the complete resolved 13-package graph. Fetch the
+matching mathlib cache *before* building:
 
 ```sh
 elan toolchain install "$(cat lean-toolchain)"
 lake exe cache get
-lake --wfail build
+lake build
 ```
+
+The default targets include modules that emit linter warnings. The optional
+`lake --wfail build` check treats warnings as errors and can fail even when the
+ordinary build succeeds.
 
 The matching mathlib cache occupies several gigabytes on an initial pinned-
 graph checkout. Dependency fetches and available resources affect build time.

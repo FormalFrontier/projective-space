@@ -65,6 +65,14 @@ theorem coe_mvPolynomialDegreeZeroEquiv_apply (r : R) :
 theorem mvPolynomialDegreeZeroEquiv_symm_apply (f : 𝒜 0) :
     (mvPolynomialDegreeZeroEquiv R ι).symm f = f.1.coeff 0 := rfl
 
+/-- The degree-zero coefficient identification agrees with the coefficient
+algebra structure on a standard chart. -/
+theorem fromZeroRingHom_mvPolynomialDegreeZeroEquiv (i : ι) (r : R) :
+    HomogeneousLocalization.fromZeroRingHom 𝒜
+        (Submonoid.powers (MvPolynomial.X i)) (mvPolynomialDegreeZeroEquiv R ι r) =
+      algebraMap R (StandardChart R ι i) r := by
+  exact (standardChart_algebraMap R ι i r).symm
+
 /-- A multivariable polynomial ring in finitely many variables is of finite
 type over its degree-zero homogeneous component. -/
 instance instFiniteTypeDegreeZeroMvPolynomial [Finite ι] :
@@ -103,9 +111,15 @@ local notation "ℬ" => MvPolynomial.homogeneousSubmodule κ S
 
 /-- The structure morphism from polynomial projective space directly to its
 coefficient spectrum. -/
-def polynomialProjToSpec : Proj ℬ ⟶ Spec (CommRingCat.of S) :=
+@[expose] def polynomialProjToSpec : Proj ℬ ⟶ Spec (CommRingCat.of S) :=
   Proj.toSpecZero ℬ ≫
     Spec.map (mvPolynomialDegreeZeroEquiv S κ).toRingEquiv.toCommRingCatIso.hom
+
+/-- The coefficient morphism is the degree-zero structure morphism followed
+by the coefficient-ring identification. -/
+theorem polynomialProjToSpec_eq_toSpecZero :
+    polynomialProjToSpec S κ = Proj.toSpecZero ℬ ≫
+      Spec.map (mvPolynomialDegreeZeroEquiv S κ).toRingEquiv.toCommRingCatIso.hom := rfl
 
 instance instLocallyOfFiniteTypePolynomialProjToSpec [Finite κ] :
     LocallyOfFiniteType (polynomialProjToSpec S κ) := by
