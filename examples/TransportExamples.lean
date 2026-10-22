@@ -6,42 +6,45 @@ module
 
 import ProjectiveSpace.GradedProjIso
 
-namespace ProjectiveSpaceReader.TransportExamples
+/-!
+# Transport along inverse graded ring homomorphisms
 
-universe uA uB uσ uτ
+Use independent universes `uA`, `uB`, `uσ`, and `uτ` for
+`A : Type uA`, `B : Type uB`, `σ : Type uσ`, and `τ : Type uτ`.
+Both rings are commutative. The grade carriers have `SetLike σ A`,
+`AddSubgroupClass σ A`, `SetLike τ B`, and `AddSubgroupClass τ B`.
+Let `𝒜 : ℕ → σ` and `ℬ : ℕ → τ` have `GradedRing 𝒜` and `GradedRing ℬ`.
 
-variable {A : Type uA} {B : Type uB}
-variable {σ : Type uσ} {τ : Type uτ}
-variable [CommRing A] [SetLike σ A] [AddSubgroupClass σ A]
-variable [CommRing B] [SetLike τ B] [AddSubgroupClass τ B]
-variable {𝒜 : ℕ → σ} {ℬ : ℕ → τ} [GradedRing 𝒜] [GradedRing ℬ]
+Take `f : 𝒜 →+*ᵍ ℬ` and `g : ℬ →+*ᵍ 𝒜`, with
+`hfg : f.comp g = GradedRingHom.id ℬ` and
+`hgf : g.comp f = GradedRingHom.id 𝒜`.
+Both composition identities are inputs, not consequences of an arbitrary
+graded homomorphism.
 
-private theorem transport_point_roundtrip
-    (f : 𝒜 →+*ᵍ ℬ) (g : ℬ →+*ᵍ 𝒜)
-    (hfg : f.comp g = GradedRingHom.id ℬ)
-    (hgf : g.comp f = GradedRingHom.id 𝒜)
-    (p : ProjectiveSpectrum ℬ) :
-    (ProjectiveSpace.projectiveSpectrumEquivOfInverseGradedRingHom
-      f g hfg hgf).symm
-      (ProjectiveSpace.projectiveSpectrumEquivOfInverseGradedRingHom
-        f g hfg hgf p) = p :=
-  (ProjectiveSpace.projectiveSpectrumEquivOfInverseGradedRingHom
-    f g hfg hgf).left_inv p
+## Roundtrip on the projective spectrum
 
-private theorem transported_closed_point_underlying
-    (f : 𝒜 →+*ᵍ ℬ) (g : ℬ →+*ᵍ 𝒜)
-    (hfg : f.comp g = GradedRingHom.id ℬ)
-    (hgf : g.comp f = GradedRingHom.id 𝒜)
-    (p : closedPoints (AlgebraicGeometry.Proj ℬ)) :
-    (ProjectiveSpace.projClosedPointsEquivOfInverseGradedRingHom
-      f g hfg hgf p).1 =
-      AlgebraicGeometry.ProjectiveSpectrum.comapFun f
-        (ProjectiveSpace.irrelevant_le_map_of_comp_eq_id f g hfg) p.1 := by
-  simpa only using
-    ProjectiveSpace.projClosedPointsEquivOfInverseGradedRingHom_apply_coe
-      f g hfg hgf p
+The producer
+`ProjectiveSpace.projectiveSpectrumEquivOfInverseGradedRingHom f g hfg hgf`
+sends `p : ProjectiveSpectrum ℬ` to the spectrum for `𝒜`.
+Writing this equivalence as `e`, its existing field `e.left_inv p` proves
+`e.symm (e p) = p`. Use that equivalence law directly rather than a
+specialized roundtrip lemma. Notice the contravariant direction relative
+to `f`.
 
-#print axioms transport_point_roundtrip
-#print axioms transported_closed_point_underlying
+## Underlying point of transported closed points
 
-end ProjectiveSpaceReader.TransportExamples
+For `p : closedPoints (AlgebraicGeometry.Proj ℬ)`, apply
+`ProjectiveSpace.projClosedPointsEquivOfInverseGradedRingHom_apply_coe
+  f g hfg hgf p`.
+It identifies
+`(ProjectiveSpace.projClosedPointsEquivOfInverseGradedRingHom
+  f g hfg hgf p).1`
+with
+`AlgebraicGeometry.ProjectiveSpectrum.comapFun f
+  (ProjectiveSpace.irrelevant_le_map_of_comp_eq_id f g hfg) p.1`.
+If needed, `simpa only using` this existing equality gives that precise
+underlying-point statement. The irrelevant-ideal condition is supplied
+by the named producer using `hfg`; the closed-point equivalence itself
+still takes both inverse identities. This recipe concerns the underlying
+point of a closed-point subtype, not an extra scheme-level isomorphism.
+-/

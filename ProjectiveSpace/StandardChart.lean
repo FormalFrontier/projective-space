@@ -124,15 +124,13 @@ theorem adjoin_degreeZero_range_X_eq_top :
 private lemma sum_eq_self_add_others [Fintype ι] (ai : ι → ℕ) :
     ∑ j, ai j = ai i + ∑ j : Others, ai j.1 := by
   rw [← Fintype.sum_subtype_add_sum_subtype (fun j ↦ j = i) ai]
-  simp
-  exact congrArg ai ((default : {j : ι // j = i}).property)
+  simp only [Fintype.sum_unique, (default : {j : ι // j = i}).property]
 
 private lemma prod_eq_self_mul_others [Fintype ι] {M : Type*} [CommMonoid M]
     (f : ι → M) :
     ∏ j, f j = f i * ∏ j : Others, f j.1 := by
   rw [← Fintype.prod_subtype_mul_prod_subtype (fun j ↦ j = i) f]
-  simp
-  rw [congrArg f ((default : {j : ι // j = i}).property)]
+  simp only [Fintype.prod_unique, (default : {j : ι // j = i}).property]
 
 /-- The affine coordinate `X j / X i` in the degree-zero homogeneous
 localization at `X i`. -/
@@ -306,8 +304,9 @@ private lemma zeroDegree_algebraMap_eq (r : 𝒜 0) :
   apply Subtype.ext
   exact zeroDegree_eq_C R ι r
 
-private lemma chartMap_surjective [Fintype ι] :
+private lemma chartMap_surjective [Finite ι] :
     Function.Surjective (chartMap R ι i) := by
+  let := Fintype.ofFinite ι
   rw [← AlgHom.range_eq_top]
   apply top_unique
   intro x hxTop

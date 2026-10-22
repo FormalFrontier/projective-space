@@ -29,7 +29,8 @@ variable (R : Type u) [CommRing R]
 variable (ι : Type v) (i : ι)
 
 /-- Classical coordinate equality, scoped to homogeneous-ideal localization. -/
-local instance instDecidableEqHomogeneousIdealLocalizationCoordinates : DecidableEq ι := Classical.decEq ι
+local instance instDecidableEqHomogeneousIdealLocalizationCoordinates : DecidableEq ι :=
+  Classical.decEq ι
 
 local notation "Others" => {j : ι // j ≠ i}
 local notation "Q" => MvPolynomial Others R

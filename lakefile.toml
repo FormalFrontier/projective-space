@@ -1,6 +1,7 @@
 name = "projective-space"
 version = "0.1.0"
 defaultTargets = ["ProjectiveSpace", "ProjectiveSpaceTest", "ProjectiveSpaceAxiomTests", "ProjectiveSpaceReaderExamples"]
+lintDriver = "batteries/runLinter"
 
 [leanOptions]
 autoImplicit = false
@@ -30,6 +31,9 @@ globs = ["ProjectiveSpace", "ProjectiveSpace.+"]
 [[lean_lib]]
 name = "ProjectiveSpaceTest"
 globs = ["ProjectiveSpaceTest.+"]
+
+[lean_lib.leanOptions]
+weak.linter.privateModule = false
 
 [[lean_lib]]
 name = "ProjectiveSpaceAxiomTests"

@@ -39,9 +39,10 @@ attribute [local instance] MvPolynomial.gradedAlgebra
 
 local notation "𝒜" => MvPolynomial.homogeneousSubmodule ι k
 
-omit [IsAlgClosed k] in
-private theorem polynomialProj_jacobsonSpace :
+omit [IsAlgClosed k] [Fintype ι] in
+private theorem polynomialProj_jacobsonSpace [Finite ι] :
     JacobsonSpace (AlgebraicGeometry.Proj 𝒜) := by
+  let := Fintype.ofFinite ι
   let U := standardCoordinateAffineOpenCover k ι
   rw [U.openCover.isOpenCover_opensRange.jacobsonSpace_iff]
   intro i
@@ -51,12 +52,13 @@ private theorem polynomialProj_jacobsonSpace :
   let e := (U.openCover.f i).isOpenEmbedding.isEmbedding.toHomeomorph
   exact .of_isClosedEmbedding e.symm.isClosedEmbedding
 
-omit [IsAlgClosed k] in
+omit [IsAlgClosed k] [Fintype ι] in
 /-- A nonzero homogeneous-coordinate vector defines a closed point of
 polynomial projective space. Algebraic closure is not needed. -/
-theorem homogeneousCoordinatePoint_isClosed (a : ι → k) (ha : a ≠ 0) :
+theorem homogeneousCoordinatePoint_isClosed [Finite ι] (a : ι → k) (ha : a ≠ 0) :
     IsClosed ({homogeneousCoordinatePoint a ha} :
       Set (ProjectiveSpectrum 𝒜)) := by
+  let := Fintype.ofFinite ι
   have inst : JacobsonSpace (AlgebraicGeometry.Proj 𝒜) :=
     polynomialProj_jacobsonSpace
   obtain ⟨i, hi⟩ : ∃ i, a i ≠ 0 := by
@@ -112,11 +114,12 @@ private theorem normalizedCoordinates_eq_of_affineCoordinatePoint_eq
     simpa using hj
   exact (sub_eq_zero.mp hba).symm
 
-omit [IsAlgClosed k] in
+omit [IsAlgClosed k] [Fintype ι] in
 /-- The map from vector-space projectivization to polynomial `Proj` is
 injective. Algebraic closure is not needed. -/
-theorem projectivizationToProj_injective :
+theorem projectivizationToProj_injective [Finite ι] :
     Function.Injective (projectivizationToProj (k := k) (ι := ι)) := by
+  let := Fintype.ofFinite ι
   intro x y hxy
   induction x using Projectivization.ind with
   | h a ha =>
@@ -150,12 +153,14 @@ theorem projectivizationToProj_injective :
         field_simp at hj ⊢
         exact hj.symm
 
+omit [Fintype ι] in
 /-- Over an algebraically closed field, every closed point of finite-coordinate
 polynomial projective space is represented by homogeneous coordinates. -/
-theorem projectivizationToProj_surjective_on_closedPoint
+theorem projectivizationToProj_surjective_on_closedPoint [Finite ι]
     (p : ProjectiveSpectrum 𝒜) (hp : IsClosed ({p} : Set (ProjectiveSpectrum 𝒜))) :
     ∃ x : Projectivization k (ι → k), projectivizationToProj x = p := by
   classical
+  let := Fintype.ofFinite ι
   obtain ⟨i, hpOpen⟩ := TopologicalSpace.Opens.mem_iSup.mp
     ((iSup_basicOpen_X_eq_top k ι).ge (Set.mem_univ p))
   have inst : AlgebraicGeometry.IsOpenImmersion (standardCoordinateChartMap k ι i) :=

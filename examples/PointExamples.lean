@@ -6,39 +6,44 @@ module
 
 import ProjectiveSpace.HomogeneousCoordinatePoint
 
-namespace ProjectiveSpaceReader.PointExamples
+/-!
+# Homogeneous-coordinate point recipes
 
-universe u v
+Let `k : Type u` be a field and `ι : Type v` an index type. These recipes
+use no finite-coordinate hypothesis.
 
-variable {k : Type u} [Field k] {ι : Type v}
+## Evaluation and the cone-line kernel
 
-private theorem coordinate_evaluation_and_nonvanishing
-    (a : ι → k) (i : ι) (hi : a i ≠ 0) :
-    ProjectiveSpace.homogeneousCoordinateMap a (MvPolynomial.X i) =
-      Polynomial.C (a i) * Polynomial.X ∧
-    MvPolynomial.X i ∉ ProjectiveSpace.homogeneousCoordinateIdeal a := by
-  exact ⟨by simp, ProjectiveSpace.X_not_mem_homogeneousCoordinateIdeal a i hi⟩
+For `a : ι → k` and `i : ι`, simplification gives
+`ProjectiveSpace.homogeneousCoordinateMap a (MvPolynomial.X i) =
+Polynomial.C (a i) * Polynomial.X`.
+If `hi : a i ≠ 0`, use
+`ProjectiveSpace.X_not_mem_homogeneousCoordinateIdeal a i hi` for
+`MvPolynomial.X i ∉ ProjectiveSpace.homogeneousCoordinateIdeal a`.
+The nonvanishing hypothesis belongs to this latter conclusion, not to
+the evaluation formula.
 
-private theorem ideal_reduces_to_cone_line_kernel (a : ι → k) :
-    ProjectiveSpace.homogeneousCoordinateIdeal a =
-      RingHom.ker (ProjectiveSpace.homogeneousCoordinateMap a).toRingHom := by
-  rfl
+The equality
+`ProjectiveSpace.homogeneousCoordinateIdeal a =
+RingHom.ker (ProjectiveSpace.homogeneousCoordinateMap a).toRingHom`
+is definitional (`rfl`). It identifies the ideal with the kernel of the
+map to the polynomial cone line; it does not require `a ≠ 0`.
 
-private theorem point_unchanged_by_scalar
-    (a : ι → k) (ha : a ≠ 0) (c : k) (hca : c • a ≠ 0) :
-    ProjectiveSpace.homogeneousCoordinatePoint (c • a) hca =
-      ProjectiveSpace.homogeneousCoordinatePoint a ha := by
-  exact ProjectiveSpace.homogeneousCoordinatePoint_eq_of_eq_smul
-    (c • a) a hca ha c rfl
+## Scalar invariance and projectivization
 
-private theorem projectivization_mk_point (a : ι → k) (ha : a ≠ 0) :
-    ProjectiveSpace.projectivizationToProj (Projectivization.mk k a ha) =
-      ProjectiveSpace.homogeneousCoordinatePoint a ha := by
-  simp
+For `ha : a ≠ 0`, `c : k`, and `hca : c • a ≠ 0`, the direct application
+`ProjectiveSpace.homogeneousCoordinatePoint_eq_of_eq_smul
+  (c • a) a hca ha c rfl`
+identifies `ProjectiveSpace.homogeneousCoordinatePoint (c • a) hca` with
+`ProjectiveSpace.homogeneousCoordinatePoint a ha`.
+Keep both nonzero-vector witnesses: this recipe does not construct a
+point from the zero vector and does not replace `hca` with an unstated
+assumption on the scalar.
 
-#print axioms coordinate_evaluation_and_nonvanishing
-#print axioms ideal_reduces_to_cone_line_kernel
-#print axioms point_unchanged_by_scalar
-#print axioms projectivization_mk_point
-
-end ProjectiveSpaceReader.PointExamples
+For `a : ι → k` and `ha : a ≠ 0`, simplification also gives
+`ProjectiveSpace.projectivizationToProj (Projectivization.mk k a ha) =
+ProjectiveSpace.homogeneousCoordinatePoint a ha`.
+Thus the quotient constructor and the homogeneous-coordinate constructor
+agree on this representative. This recipe starts with the supplied
+nonzero vector; it does not choose a normalized representative.
+-/

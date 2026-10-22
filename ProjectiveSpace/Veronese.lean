@@ -23,7 +23,6 @@ credited separately in `CONTRIBUTORS.md`.
 
 noncomputable section
 
-set_option maxHeartbeats 800000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace AlgebraicGeometry.Proj.Veronese

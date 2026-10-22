@@ -9,57 +9,45 @@ import ProjectiveSpace.ProjectiveNullstellensatz
 import ProjectiveSpace.HomogeneousDimension
 import ProjectiveSpace.Irreducible
 
-open scoped ProjectiveSpace
+/-!
+# Geometry recipes for projective spectra
 
-namespace ProjectiveSpaceReader.GeometryExamples
+## Positive basic opens and projective vanishing
 
-universe u v
+Let `A : Type u` be a commutative ring, `σ : Type v` have `SetLike σ A`
+and `AddSubgroupClass σ A`, and let `𝒜 : ℕ → σ` have `GradedRing 𝒜`.
+For `degree : PNat` and `f : 𝒜 (degree : ℕ)`, the set underlying
+`AlgebraicGeometry.Proj.basicOpen 𝒜 (f : A)` belongs to
+`AlgebraicGeometry.Proj.positiveBasicOpens 𝒜`: its defining witness is
+`⟨⟨degree, f⟩, rfl⟩`. For the basis property itself, use
+`AlgebraicGeometry.Proj.isTopologicalBasis_positiveBasicOpens 𝒜` directly.
+The positive degree is part of the indexing here, not a statement about
+arbitrary degree-zero basic opens.
 
-variable {A : Type u} [CommRing A]
-variable {σ : Type v} [SetLike σ A] [AddSubgroupClass σ A]
-variable (𝒜 : ℕ → σ) [GradedRing 𝒜]
+For `I : HomogeneousIdeal 𝒜`, `f : A`, `degree : ℕ`,
+`hf : f ∈ 𝒜 degree`, and `hdegree : 0 < degree`, apply
+`ProjectiveSpectrum.mem_vanishingIdeal_zeroLocus_iff_mem_radical 𝒜 I hf hdegree`.
+Its reverse implication, `.2 h`, sends `h : f ∈ I.toIdeal.radical` to
+`f ∈ ProjectiveSpectrum.vanishingIdeal (ProjectiveSpectrum.zeroLocus 𝒜 I)`.
+This recipe keeps both homogeneity and strict positivity explicit; it does
+not supply a degree-zero variant.
 
-private theorem positive_basicOpen_is_in_basis
-    (degree : PNat) (f : 𝒜 (degree : ℕ)) :
-    (AlgebraicGeometry.Proj.basicOpen 𝒜 (f : A) :
-      Set (AlgebraicGeometry.Proj 𝒜)) ∈
-      AlgebraicGeometry.Proj.positiveBasicOpens 𝒜 := by
-  exact ⟨⟨degree, f⟩, rfl⟩
+## Homogeneous dimension and irreducibility
 
-private theorem positive_basicOpen_basis :
-    TopologicalSpace.IsTopologicalBasis
-      (AlgebraicGeometry.Proj.positiveBasicOpens 𝒜) :=
-  AlgebraicGeometry.Proj.isTopologicalBasis_positiveBasicOpens 𝒜
+The dimension calculation uses a separate `R : Type u` with
+`CommSemiring R` and `StrongRankCondition R`. For `ι : Type v` with
+`Fintype ι` and any `degree : ℕ`, the direct producer
+`ProjectiveSpace.finrank_homogeneousSubmodule R ι degree` gives
+`Module.finrank R (MvPolynomial.homogeneousSubmodule ι R degree) =
+(Fintype.card ι).multichoose degree`.
+This is the finite-coordinate finrank formula, including degree zero;
+its hypotheses are not a field assumption.
 
-private theorem radical_implies_projective_vanishing
-    (I : HomogeneousIdeal 𝒜) {f : A} {degree : ℕ}
-    (hf : f ∈ 𝒜 degree) (hdegree : 0 < degree)
-    (h : f ∈ I.toIdeal.radical) :
-    f ∈ ProjectiveSpectrum.vanishingIdeal
-      (ProjectiveSpectrum.zeroLocus 𝒜 I) :=
-  (ProjectiveSpectrum.mem_vanishingIdeal_zeroLocus_iff_mem_radical
-    𝒜 I hf hdegree).2 h
-
-variable {R : Type u} [CommSemiring R] [StrongRankCondition R]
-
-private theorem finrank_for_finite_coordinates
-    (ι : Type v) [Fintype ι] (degree : ℕ) :
-    Module.finrank R (MvPolynomial.homogeneousSubmodule ι R degree) =
-      (Fintype.card ι).multichoose degree :=
-  ProjectiveSpace.finrank_homogeneousSubmodule R ι degree
-
-variable {S : Type u} [CommRing S] [IsDomain S]
-variable {ι : Type v} [Nonempty ι]
-
-private theorem polynomial_proj_is_irreducible :
-    IrreducibleSpace
-      (AlgebraicGeometry.Proj (MvPolynomial.homogeneousSubmodule ι S)) := by
-  infer_instance
-
-#print axioms positive_basicOpen_is_in_basis
-#print axioms positive_basicOpen_basis
-#print axioms radical_implies_projective_vanishing
-#print axioms finrank_for_finite_coordinates
-#print axioms polynomial_proj_is_irreducible
-
-end ProjectiveSpaceReader.GeometryExamples
+For a separate `S : Type u` with `CommRing S` and `IsDomain S`, and
+`ι : Type v` with `Nonempty ι`, use instance inference for
+`IrreducibleSpace (AlgebraicGeometry.Proj
+  (MvPolynomial.homogeneousSubmodule ι S))`.
+The instance route here uses nonempty coordinates, not the `Fintype`
+hypothesis used by the dimension formula. These two recipes should not
+be conflated into a single set of assumptions.
+-/
