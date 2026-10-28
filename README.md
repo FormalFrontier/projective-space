@@ -164,6 +164,22 @@ over a base ring with zero divisors.
 
 ## Imports and build
 
+To use this library in another Lake project, add this dependency to its
+`lakefile.toml`:
+
+```toml
+[[require]]
+name = "projective-space"
+git = "https://github.com/FormalFrontier/projective-space.git"
+rev = "main"
+```
+
+GitHub `main` follows reviewed releases. Retain your `lake-manifest.json` to
+preserve the resolved dependency revisions; to pin a specific release explicitly,
+replace `main` with its full Git commit. Use that revision's `lean-toolchain`.
+A project combining deliverables must use compatible releases on one Mathlib
+revision, including the Graded Rings and Scheme Properties dependencies here.
+
 The 30 mathematical leaves are public `module` files, and
 [`ProjectiveSpace.lean`](ProjectiveSpace.lean) publicly imports all of them.
 Use `import ProjectiveSpace` for the whole library or import an individual
